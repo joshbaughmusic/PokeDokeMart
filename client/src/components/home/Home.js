@@ -1,6 +1,5 @@
 import PDMWelcome from '../../images/PDMWelcome.png';
 import './Home.css';
-import { HomeFeatureProductsCarousel } from './HomeFeaturedProductsCarousel.js';
 
 export const Home = () => {
   return (
@@ -13,8 +12,6 @@ export const Home = () => {
             alt="Welcome to PokeDokeMart!"
           />
         </div>
-        {/* <HomeFeatureProductsCarousel /> */}
-
       </div>
     </>
   );
