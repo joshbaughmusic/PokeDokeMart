@@ -24,25 +24,31 @@ export const PaginationTool = ({
         </PaginationItem>
         <PaginationItem>
           <PaginationLink
-            onClick={() => paginatePrevOrNext('prev')}
+            onClick={() =>
+              currentPage > 1 ? paginatePrevOrNext('prev') : ''
+            }
             previous
           />
         </PaginationItem>
-        {pageNumbers.map((p, index) => (
-          p === currentPage ?
-          <PaginationItem active key={index}>
-            <PaginationLink onClick={() => paginate(p)}>{p}</PaginationLink>
-          </PaginationItem>
-
-          :
-        
-          <PaginationItem key={index}>
-            <PaginationLink onClick={() => paginate(p)}>{p}</PaginationLink>
-          </PaginationItem>
-        ))}
+        {pageNumbers.map((p, index) =>
+          p === currentPage ? (
+            <PaginationItem
+              active
+              key={index}
+            >
+              <PaginationLink onClick={() => paginate(p)}>{p}</PaginationLink>
+            </PaginationItem>
+          ) : (
+            <PaginationItem key={index}>
+              <PaginationLink onClick={() => paginate(p)}>{p}</PaginationLink>
+            </PaginationItem>
+          )
+        )}
         <PaginationItem>
           <PaginationLink
-            onClick={() => paginatePrevOrNext('next')}
+            onClick={() =>
+              currentPage < pageNumbers.length ? paginatePrevOrNext('next') : ''
+            }
             next
           />
         </PaginationItem>
