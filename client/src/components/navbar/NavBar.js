@@ -33,7 +33,11 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
           tag={RRNavLink}
           to="/"
         >
-          <img className="w-50 m-2" src={PDMNav} alt="" />
+          <img
+            className="w-50 m-2"
+            src={PDMNav}
+            alt=""
+          />
         </NavbarBrand>
         {loggedInUser ? (
           <>
@@ -42,7 +46,16 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
               isOpen={open}
               navbar
             >
-              <Nav navbar></Nav>
+              <Nav navbar>
+                <NavItem>
+                  <NavLink
+                    tag={RRNavLink}
+                    to="/items"
+                  >
+                    Items
+                  </NavLink>
+                </NavItem>
+              </Nav>
             </Collapse>
             <Button
               color="primary"
