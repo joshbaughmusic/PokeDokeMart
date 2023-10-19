@@ -5,6 +5,7 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import { Home } from './home/Home.js';
 import { AllItems } from './items/allItems/AllItems.js';
+import { ItemDetails } from './items/itemDetails/ItemDetails.js';
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -24,6 +25,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
                 <AllItems />
+              </AuthorizedRoute>
+            }
+          />
+          <Route
+            path=":id"
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <ItemDetails loggedInUser={loggedInUser}/>
               </AuthorizedRoute>
             }
           />

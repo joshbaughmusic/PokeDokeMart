@@ -4,19 +4,24 @@ import {
   CardSubtitle,
   CardTitle,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export const AllItemCard = ({ item, index }) => {
+  const navigate = useNavigate()
+
   return (
     <>
       <Card
+        onClick={() => navigate(`${item.id}`)}
         color="dark"
         key={index}
         inverse
+        className="rounded-0"
         style={{
           width: '12rem',
           marginTop: '15px',
+          cursor: 'pointer',
         }}
       >
         <img
@@ -25,7 +30,7 @@ export const AllItemCard = ({ item, index }) => {
         />
         <CardBody>
           <CardTitle tag="h5">
-            <Link to={`${item.id}`}>{item.name}</Link>
+            <span>{item.name}</span>
           </CardTitle>
           <CardSubtitle
             className="mb-2"
