@@ -6,4 +6,12 @@ public class Order
     public UserProfile UserProfile { get; set; }
     public DateTime Date { get; set; }
     public List<OrderItem> OrderItems { get; set; }
+    public string FirstName { get; set; }
+    public string MiddleInitial { get; set; }
+    public string LastName { get; set; }
+    public string Address { get; set; }
+    public int CityId { get; set; }
+    public City City { get; set; }
+    public int RegionId { get; set; }
+    public Region Region { get; set; }
 }

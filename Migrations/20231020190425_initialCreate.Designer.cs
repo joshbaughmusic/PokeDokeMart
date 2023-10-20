@@ -12,7 +12,7 @@ using PokeDokeMartRedux.Data;
 namespace PokeDokeMartRedux.Migrations
 {
     [DbContext(typeof(PokeDokeMartReduxDbContext))]
-    [Migration("20231018192903_initialCreate")]
+    [Migration("20231020190425_initialCreate")]
     partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -151,13 +151,13 @@ namespace PokeDokeMartRedux.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0a67899c-6a88-4dd8-85b3-e23ce3029372",
+                            ConcurrencyStamp = "7f852af4-0a6c-4564-84c6-7f150e615eea",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEKHIONurwfssfYT7nH361NA4jiaipOkTijNnwnC+d/elRqSd77h8KXVhY3Hv3SoPvg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOvNyViDOCIUpgyqcN3haV8NBsfZO5yBAVpwZm5OoDfXIhvV+ac2syM/y2dTfPMccw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e4f243c9-02cf-4c5c-862c-83be52e98cb4",
+                            SecurityStamp = "d79a426c-b5e1-465a-a988-d9d8ff5780ff",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -326,6 +326,863 @@ namespace PokeDokeMartRedux.Migrations
                         {
                             Id = 12,
                             Name = "Berries"
+                        });
+                });
+
+            modelBuilder.Entity("PokeDokeMartRedux.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RegionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegionId");
+
+                    b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Accumula Town",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Alfornada",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Ambrette Town",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Anistar City",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Anville Town",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Aquacorde Town",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Artazon",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Aspertia City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Azalea Town",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Ballonlea",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Black City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Blackthorn City",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Cabo Poco",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Camphrier Town",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Canalave City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Cascarrafa",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Castelia City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Celadon City",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "Celestic Town",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Cerulean City",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Cherrygrove City",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "Cianwood City",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "Circhester",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "Cinnabar Island",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "Cortondo",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "Coumarine City",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "Couriway Town",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "Cyllage City",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "Dendemille Town",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Name = "Dewford Town",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "Diamond Settlement",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Name = "Driftveil City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Name = "Ecruteak City",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Name = "Eterna City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Name = "Ever Grande City",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Name = "Fallarbor Town",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Name = "Fight Area",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Name = "Five Island",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Name = "Floaroma Town",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Name = "Floccesy Town",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Name = "Fortree City",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Name = "Four Island",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Name = "Freezington",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Name = "Frontier Access",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Name = "Fuchsia City",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Name = "Geosenge Town",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Name = "Goldenrod City",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Name = "Hammerlocke",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Name = "Hau'oli City",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Name = "Heahea City",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Name = "Hearthome City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Name = "Hulbury",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Name = "Humilau City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Name = "Icirrus City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Name = "Iki Town",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Name = "Jubilife City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Name = "Jubilife Village",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Name = "Kiloude City",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Name = "Konikoni City",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Name = "Lacunosa Town",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Name = "Lavaridge Town",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Name = "Lavender Town",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Name = "Laverre City",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Name = "Lentimas Town",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Name = "Levincia",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Name = "Littleroot Town",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Name = "Lilycove City",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Name = "Los Platos",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Name = "Lumiose City",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Name = "Mahogany Town",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Name = "Malie City",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Name = "Mauville City",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Name = "Medali",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Name = "Mesagoza",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Name = "Mistralton City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Name = "Montenevera",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Name = "Mossdeep City",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Name = "Motostoke",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Name = "Nacrene City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Name = "New Bark Town",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Name = "Nimbasa City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Name = "Nuvema Town",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Name = "Oldale Town",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Name = "Olivine City",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Name = "One Island",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Name = "Opelucid City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Name = "Oreburgh City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Name = "Pacifidlog Town",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Name = "Pallet Town",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Name = "Paniola Town",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Name = "Pastoria City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Name = "Pearl Settlement",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Name = "Pewter City",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Name = "Phenac City",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Name = "Pompona",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Name = "Prairie",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Name = "Profanity",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Name = "Pueblo",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Name = "Pueblo Soledad",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Name = "Punta Brigal",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Name = "Punto Isla",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Name = "Punta Sonorama",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Name = "Quicksand Castle",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Name = "Raihon",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Name = "Relic Town",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Name = "Revive Town",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Name = "Rustboro City",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Name = "Santalune City",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Name = "Saraltar",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Name = "Seafoam Islands",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Name = "Sootopolis City",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Name = "Snowbelle City",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Name = "Solaceon Town",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Name = "Spearmint",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Name = "Slateport City",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Name = "Snowpoint City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Name = "Snowy City",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Name = "Spikemuth",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Name = "Spindle",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Name = "Spikestown",
+                            RegionId = 10
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Name = "Stark Mountain",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Name = "Striaton City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Name = "Sunyshore City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 124,
+                            Name = "Tarroco",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 125,
+                            Name = "Tempo Tiempo",
+                            RegionId = 9
+                        },
+                        new
+                        {
+                            Id = 126,
+                            Name = "Three Island",
+                            RegionId = 7
+                        },
+                        new
+                        {
+                            Id = 127,
+                            Name = "Twinleaf Town",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 128,
+                            Name = "Undella Town",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 129,
+                            Name = "Vaniville Town",
+                            RegionId = 6
+                        },
+                        new
+                        {
+                            Id = 130,
+                            Name = "Veilstone City",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 131,
+                            Name = "Verdanturf Town",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 132,
+                            Name = "Vermilion City",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 133,
+                            Name = "Violet City",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 134,
+                            Name = "Virbank City",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 135,
+                            Name = "Viridian City",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 136,
+                            Name = "Wedgehurst",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 137,
+                            Name = "White Forest",
+                            RegionId = 5
+                        },
+                        new
+                        {
+                            Id = 138,
+                            Name = "Wyndon",
+                            RegionId = 8
+                        },
+                        new
+                        {
+                            Id = 139,
+                            Name = "Zapapico",
+                            RegionId = 9
                         });
                 });
 
@@ -3480,13 +4337,35 @@ namespace PokeDokeMartRedux.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("MiddleInitial")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RegionId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("UserProfileId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("RegionId");
 
                     b.HasIndex("UserProfileId");
 
@@ -3496,7 +4375,12 @@ namespace PokeDokeMartRedux.Migrations
                         new
                         {
                             Id = 1,
+                            Address = "101 Poke St",
+                            CityId = 62,
                             Date = new DateTime(2023, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Admina",
+                            LastName = "Strator",
+                            RegionId = 1,
                             UserProfileId = 1
                         });
                 });
@@ -20208,6 +21092,74 @@ namespace PokeDokeMartRedux.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PokeDokeMartRedux.Models.Region", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Regions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Kanto"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Johto"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Hoenn"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Sinnoh"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Unova"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Kalos"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Alola"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Galar"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Paldea"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Hisui"
+                        });
+                });
+
             modelBuilder.Entity("PokeDokeMartRedux.Models.Review", b =>
                 {
                     b.Property<int>("Id")
@@ -20398,6 +21350,17 @@ namespace PokeDokeMartRedux.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PokeDokeMartRedux.Models.City", b =>
+                {
+                    b.HasOne("PokeDokeMartRedux.Models.Region", "Region")
+                        .WithMany("Cities")
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Region");
+                });
+
             modelBuilder.Entity("PokeDokeMartRedux.Models.Item", b =>
                 {
                     b.HasOne("PokeDokeMartRedux.Models.Category", "Category")
@@ -20436,11 +21399,27 @@ namespace PokeDokeMartRedux.Migrations
 
             modelBuilder.Entity("PokeDokeMartRedux.Models.Order", b =>
                 {
+                    b.HasOne("PokeDokeMartRedux.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PokeDokeMartRedux.Models.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("PokeDokeMartRedux.Models.UserProfile", "UserProfile")
                         .WithMany("Orders")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("Region");
 
                     b.Navigation("UserProfile");
                 });
@@ -20564,6 +21543,11 @@ namespace PokeDokeMartRedux.Migrations
                     b.Navigation("PokemonLearnableMoves");
 
                     b.Navigation("PokemonTypes");
+                });
+
+            modelBuilder.Entity("PokeDokeMartRedux.Models.Region", b =>
+                {
+                    b.Navigation("Cities");
                 });
 
             modelBuilder.Entity("PokeDokeMartRedux.Models.UserProfile", b =>

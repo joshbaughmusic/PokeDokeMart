@@ -94,7 +94,7 @@ export const ItemDetails = () => {
             </div>
             {successMessage ? (
               <Button
-                className="mt-5"
+                className="mt-5 rounded-0"
                 disabled
                 style={{ width: '40%' }}
               >
@@ -103,7 +103,7 @@ export const ItemDetails = () => {
             ) : (
               <Button
                 onClick={() => handleAddToCart()}
-                className="mt-5"
+                className="mt-5 rounded-0"
                 style={{ width: '40%' }}
               >
                 Add to cart
