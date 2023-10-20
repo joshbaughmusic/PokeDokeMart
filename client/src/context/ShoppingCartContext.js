@@ -13,29 +13,21 @@ export const ShoppingCartProvider = ({ children }) => {
     return cartItems.find((item) => item.id == id)?.quantity || 0;
   };
 
-  const increaseCartQuantity = (id) => {
-    setCartItems((currItems) => {
-      return currItems.map((item) => {
-        if (item.id === id) {
-          return { ...item, quantity: item.quantity + 1 };
-        } else {
-          return item;
-        }
-      });
-    });
+  const getUniqueItemCount = () => {
+    return cartItems.length;
   };
 
-  const decreaseCartQuantity = (id) => {
+  const alterCartQuantity = (itemObj, value) => {
     setCartItems((currItems) => {
-      return currItems.map((item) => {
-        if (item.id === id && item.quantity > 0) {
-          return { ...item, quantity: item.quantity - 1 };
+      return currItems.map((i) => {
+        if (i.id === itemObj.id && i.quantity > 0) {
+          return { ...i, quantity: value };
         } else {
-          return item;
+          return i;
         }
       });
     });
-  };
+  }
 
   const addToCart = (itemObj) => {
     const itemIndex = cartItems.findIndex((item) => item.id === itemObj.id);
@@ -63,10 +55,11 @@ export const ShoppingCartProvider = ({ children }) => {
     <ShoppingCartContext.Provider
       value={{
         getItemQuantity,
-        increaseCartQuantity,
-        decreaseCartQuantity,
         addToCart,
         removeFromCart,
+        getUniqueItemCount,
+        alterCartQuantity,
+        cartItems,
       }}
     >
       {children}
