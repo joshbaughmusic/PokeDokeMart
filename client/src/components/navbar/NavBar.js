@@ -33,11 +33,12 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
           tag={RRNavLink}
           to="/"
         >
-          <img
+          PokeDokeMart
+          {/* <img
             className="w-50 m-2"
             src={PDMNav}
             alt=""
-          />
+          /> */}
         </NavbarBrand>
         {loggedInUser ? (
           <>

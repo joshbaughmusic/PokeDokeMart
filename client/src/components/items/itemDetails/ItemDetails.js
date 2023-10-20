@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchSingleItem } from '../../../managers/ItemsManager.js';
 import { Button, Col, Container, Row, Spinner } from 'reactstrap';
+import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
 
 export const ItemDetails = () => {
   const [item, setItem] = useState();
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+  const [successMessage, setSuccessMessage] = useState(false);
+  const { addToCart } = useShoppingCart();
 
   const getSingleItem = () => {
     fetchSingleItem(id).then(setItem);
@@ -15,6 +18,19 @@ export const ItemDetails = () => {
   useEffect(() => {
     getSingleItem();
   }, []);
+
+  const handleAddToCart = () => {
+    const newItemObj = {
+      id: item.id,
+      quantity: quantity,
+    };
+
+    addToCart(newItemObj);
+    setSuccessMessage(true);
+    setTimeout(() => {
+      setSuccessMessage(false);
+    }, 3000);
+  };
 
   if (!item) {
     return <Spinner />;
@@ -71,21 +87,30 @@ export const ItemDetails = () => {
                 </Button>
               </div>
             </div>
-            <Button
-              className="mt-5"
-              style={{ width: '40%' }}
-            >
-              Add to cart
-            </Button>
-            <div className='mt-5'>
-                Also consider section placeholder
-            </div>
+            {successMessage ? (
+              <Button
+                className="mt-5"
+                disabled
+                style={{ width: '40%' }}
+              >
+                Added to cart!
+              </Button>
+            ) : (
+              <Button
+                onClick={() => handleAddToCart()}
+                className="mt-5"
+                style={{ width: '40%' }}
+              >
+                Add to cart
+              </Button>
+            )}
+            <div className="mt-5">Also consider section placeholder</div>
           </Col>
         </Row>
         <Row>
-            <Col className='d-flex justify-content-center mt-5'>
+          <Col className="d-flex justify-content-center mt-5">
             <div>Review section placeholder</div>
-            </Col>
+          </Col>
         </Row>
       </Container>
     </>
