@@ -6,11 +6,12 @@ export const Home = () => {
     <>
       <div className="container">
         <div className="d-flex mt-5 justify-content-center">
-          <img
+          <h1>Welcome to PokeDokeMart!</h1>
+          {/* <img
             className="w-75"
             src={PDMWelcome}
             alt="Welcome to PokeDokeMart!"
-          />
+          /> */}
         </div>
       </div>
     </>
