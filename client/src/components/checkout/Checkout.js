@@ -25,7 +25,7 @@ export const Checkout = () => {
             return (
               <ListGroupItem
                 key={index}
-                className="text-bg-dark d-flex justify-content-between"
+                className="text-bg-dark d-flex justify-content-between rounded-0"
               >
                 <img
                   src={item.image}
@@ -37,7 +37,10 @@ export const Checkout = () => {
                   type="number"
                   min={1}
                   value={item.quantity}
-                  onChange={(e) => alterCartQuantity(item, parseInt(e.target.value))}
+                  onChange={(e) =>
+                    alterCartQuantity(item, parseInt(e.target.value))
+                  }
+                  className="rounded-0"
                   style={{ width: '20%' }}
                 />
                 <AiOutlineClose

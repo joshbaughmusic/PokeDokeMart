@@ -58,15 +58,14 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink
-                  
-                  >
+                  <NavLink>
                     <Cart />
                   </NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
             <Button
+              className="rounded-0"
               color="primary"
               onClick={(e) => {
                 e.preventDefault();

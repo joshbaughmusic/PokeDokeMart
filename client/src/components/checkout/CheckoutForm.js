@@ -1,81 +1,57 @@
-import { useState } from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { useEffect, useState } from 'react';
+import {
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  Spinner,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from 'reactstrap';
+import { fetchAllRegions } from '../../managers/RegionManager.js';
+import { fetchCitiesByRegionId } from '../../managers/CityManager.js';
+import { fetchCreateNewOrder } from '../../managers/OrderManager.js';
+import { useNavigate } from 'react-router-dom';
 
 export const CheckoutForm = ({ cartItems }) => {
+  const [regions, setRegions] = useState();
+  const [cities, setCities] = useState();
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+  const [newOrderUrl, setNewOrderUrl] = useState()
+  const navigate = useNavigate()
   const [info, setInfo] = useState({
-    billingFirstName: '',
-    billingMiddleInitial: '',
-    billingLastName: '',
-    billingAddress: '',
-    billingCity: '',
-    billingState: '',
-    billingZip: '',
+    firstName: '',
+    middleInitial: '',
+    lastName: '',
+    address: '',
+    regionId: '',
+    cityId: '',
     cardNumber: '',
     cardMonth: '',
     cardYear: '',
     cardCVC: '',
   });
-  const stateCodes = [
-    'AL',
-    'AK',
-    'AS',
-    'AZ',
-    'AR',
-    'CA',
-    'CO',
-    'CT',
-    'DE',
-    'DC',
-    'FM',
-    'FL',
-    'GA',
-    'GU',
-    'HI',
-    'ID',
-    'IL',
-    'IN',
-    'IA',
-    'KS',
-    'KY',
-    'LA',
-    'ME',
-    'MH',
-    'MD',
-    'MA',
-    'MI',
-    'MN',
-    'MS',
-    'MO',
-    'MT',
-    'NE',
-    'NV',
-    'NH',
-    'NJ',
-    'NM',
-    'NY',
-    'NC',
-    'ND',
-    'MP',
-    'OH',
-    'OK',
-    'OR',
-    'PW',
-    'PA',
-    'PR',
-    'RI',
-    'SC',
-    'SD',
-    'TN',
-    'TX',
-    'UT',
-    'VT',
-    'VI',
-    'VA',
-    'WA',
-    'WV',
-    'WI',
-    'WY',
-  ];
+
+  const getAllRegions = () => {
+    fetchAllRegions().then(setRegions);
+  };
+
+  const getCitiesByRegionId = (id) => {
+    fetchCitiesByRegionId(id).then(setCities);
+  };
+
+  useEffect(() => {
+    getAllRegions();
+  }, []);
+
+  useEffect(() => {
+    if (info.regionId && info.regionId !== null) {
+      getCitiesByRegionId(info.regionId);
+    }
+  }, [info.regionId]);
 
   const handleChange = (e) => {
     setInfo({
@@ -85,76 +61,135 @@ export const CheckoutForm = ({ cartItems }) => {
   };
 
   const handleCompleteOrder = () => {
+    const newOrderItems = cartItems.map((i) => {
+      return {
+        itemId: i.id,
+        quantity: i.quantity,
+      };
+    });
     const orderObject = {
-        ...info,
-        orderItems: [...cartItems]
-    }
-    
-  }
+      ...info,
+      orderItems: newOrderItems,
+    };
+    fetchCreateNewOrder(orderObject).then(res => {
+        toggle();
+        setNewOrderUrl(`/order/${res.id}`);
+    });
+  };
 
+  if (!regions) {
+    return <Spinner />;
+  }
   return (
     <>
       <div>
+        <Modal
+          isOpen={modal}
+          toggle={toggle}
+          onClosed={() => navigate(newOrderUrl)}
+          className="rounded-0"
+        >
+          <ModalHeader toggle={toggle}>Success!</ModalHeader>
+          <ModalBody>Order placed successfully!</ModalBody>
+        </Modal>
+      </div>
+      <div>
         <Form>
-          <p>Billing Info:</p>
+          <p> Info:</p>
           <FormGroup className="d-flex gap-2">
             <Input
-              name="billingFirstName"
-              value={info.billingFirstName}
+              name="firstName"
+              value={info.firstName}
               onChange={handleChange}
               placeholder="First Name"
+              className="rounded-0"
             />
             <Input
-              name="billingMiddleInitial"
-              value={info.billingMiddleInitial}
+              name="middleInitial"
+              value={info.middleInitial}
               onChange={handleChange}
               placeholder="MI (optional)"
+              maxLength="1"
+              className="rounded-0"
             />
             <Input
-              name="billingLastName"
-              value={info.billingLastName}
+              name="lastName"
+              value={info.lastName}
               onChange={handleChange}
               placeholder="Last Name"
+              className="rounded-0"
             />
           </FormGroup>
           <FormGroup>
             <Input
-              name="billingAddres"
-              value={info.billingAddres}
+              name="Addres"
+              value={info.Addres}
               onChange={handleChange}
-              placeholder="Billing Address"
+              placeholder=" address"
+              className="rounded-0"
             />
           </FormGroup>
           <FormGroup className="d-flex gap-2">
             <Input
-              name="billingCity"
-              value={info.billingCity}
-              onChange={handleChange}
-              placeholder="City"
-            />
-            <Input
-              name="billingState"
-              value={info.billingState}
+              name="regionId"
+              value={info.regionId}
               onChange={handleChange}
               type="select"
-              placeholder="State"
+              placeholder="Region"
+              className="rounded-0"
             >
-              <option value={null}>State</option>
-              {stateCodes.map((s, index) => (
+              <option
+                value={null}
+                disabled={info.regionId !== ''}
+              >
+                Region
+              </option>
+              {regions.map((r, index) => (
                 <option
                   key={index}
-                  value={s}
+                  value={r.id}
                 >
-                  {s}
+                  {r.name}
                 </option>
               ))}
             </Input>
-            <Input
-              name="billingZip"
-              value={info.billingZip}
-              onChange={handleChange}
-              placeholder="Zip Code"
-            />
+            {info.regionId && cities ? (
+              <Input
+                name="cityId"
+                type="select"
+                value={info.cityId}
+                onChange={handleChange}
+                placeholder="City"
+                className="rounded-0"
+              >
+                <option
+                  value={null}
+                  disabled={info.cityId !== ''}
+                >
+                  City
+                </option>
+                {cities.map((c, index) => (
+                  <option
+                    key={index}
+                    value={c.id}
+                  >
+                    {c.name}
+                  </option>
+                ))}
+              </Input>
+            ) : (
+              <Input
+                name="cityId"
+                type="select"
+                value={info.cityId}
+                onChange={handleChange}
+                placeholder="City"
+                className="rounded-0"
+                disabled
+              >
+                <option value={null}>City</option>
+              </Input>
+            )}
           </FormGroup>
         </Form>
       </div>
@@ -167,6 +202,7 @@ export const CheckoutForm = ({ cartItems }) => {
               value={info.careNumber}
               onChange={handleChange}
               placeholder="Card Number"
+              className="rounded-0"
               maxLength="16"
             />
           </FormGroup>
@@ -176,6 +212,7 @@ export const CheckoutForm = ({ cartItems }) => {
               value={info.cardMonth}
               onChange={handleChange}
               placeholder="MM"
+              className="rounded-0"
               maxLength="2"
             />
             <Input
@@ -183,6 +220,7 @@ export const CheckoutForm = ({ cartItems }) => {
               value={info.cardYear}
               onChange={handleChange}
               placeholder="YY"
+              className="rounded-0"
               maxLength="2"
             />
             <Input
@@ -190,12 +228,18 @@ export const CheckoutForm = ({ cartItems }) => {
               value={info.cardCVC}
               onChange={handleChange}
               placeholder="CVC"
+              className="rounded-0"
               maxLength="3"
             />
           </FormGroup>
         </Form>
       </div>
-      <Button onClick={handleCompleteOrder}>Complete Purchase</Button>
+      <Button
+        className="rounded-0"
+        onClick={handleCompleteOrder}
+      >
+        Complete Purchase
+      </Button>
     </>
   );
 };

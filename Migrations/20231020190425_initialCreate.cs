@@ -103,6 +103,19 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Regions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Regions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -287,21 +300,21 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "Cities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserProfileId = table.Column<int>(type: "integer", nullable: false),
-                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    RegionId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_Cities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_UserProfiles_UserProfileId",
-                        column: x => x.UserProfileId,
-                        principalTable: "UserProfiles",
+                        name: "FK_Cities_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -392,28 +405,39 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItems",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    OrderId = table.Column<int>(type: "integer", nullable: false),
-                    ItemId = table.Column<int>(type: "integer", nullable: false),
-                    Quantity = table.Column<int>(type: "integer", nullable: false)
+                    UserProfileId = table.Column<int>(type: "integer", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    MiddleInitial = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    CityId = table.Column<int>(type: "integer", nullable: false),
+                    RegionId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Items_ItemId",
-                        column: x => x.ItemId,
-                        principalTable: "Items",
+                        name: "FK_Orders_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
+                        name: "FK_Orders_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_UserProfiles_UserProfileId",
+                        column: x => x.UserProfileId,
+                        principalTable: "UserProfiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -447,6 +471,33 @@ namespace PokeDokeMartRedux.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    OrderId = table.Column<int>(type: "integer", nullable: false),
+                    ItemId = table.Column<int>(type: "integer", nullable: false),
+                    Quantity = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Items_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Items",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -455,7 +506,7 @@ namespace PokeDokeMartRedux.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "0a67899c-6a88-4dd8-85b3-e23ce3029372", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEKHIONurwfssfYT7nH361NA4jiaipOkTijNnwnC+d/elRqSd77h8KXVhY3Hv3SoPvg==", null, false, "e4f243c9-02cf-4c5c-862c-83be52e98cb4", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "7f852af4-0a6c-4564-84c6-7f150e615eea", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEOvNyViDOCIUpgyqcN3haV8NBsfZO5yBAVpwZm5OoDfXIhvV+ac2syM/y2dTfPMccw==", null, false, "d79a426c-b5e1-465a-a988-d9d8ff5780ff", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -672,9 +723,172 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Kanto" },
+                    { 2, "Johto" },
+                    { 3, "Hoenn" },
+                    { 4, "Sinnoh" },
+                    { 5, "Unova" },
+                    { 6, "Kalos" },
+                    { 7, "Alola" },
+                    { 8, "Galar" },
+                    { 9, "Paldea" },
+                    { 10, "Hisui" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f" });
+
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "Id", "Name", "RegionId" },
+                values: new object[,]
+                {
+                    { 1, "Accumula Town", 5 },
+                    { 2, "Alfornada", 9 },
+                    { 3, "Ambrette Town", 6 },
+                    { 4, "Anistar City", 6 },
+                    { 5, "Anville Town", 5 },
+                    { 6, "Aquacorde Town", 6 },
+                    { 7, "Artazon", 9 },
+                    { 8, "Aspertia City", 5 },
+                    { 9, "Azalea Town", 2 },
+                    { 10, "Ballonlea", 8 },
+                    { 11, "Black City", 5 },
+                    { 12, "Blackthorn City", 2 },
+                    { 13, "Cabo Poco", 9 },
+                    { 14, "Camphrier Town", 6 },
+                    { 15, "Canalave City", 4 },
+                    { 16, "Cascarrafa", 9 },
+                    { 17, "Castelia City", 5 },
+                    { 18, "Celadon City", 1 },
+                    { 19, "Celestic Town", 4 },
+                    { 20, "Cerulean City", 1 },
+                    { 21, "Cherrygrove City", 2 },
+                    { 22, "Cianwood City", 2 },
+                    { 23, "Circhester", 8 },
+                    { 24, "Cinnabar Island", 1 },
+                    { 25, "Cortondo", 9 },
+                    { 26, "Coumarine City", 6 },
+                    { 27, "Couriway Town", 6 },
+                    { 28, "Cyllage City", 6 },
+                    { 29, "Dendemille Town", 6 },
+                    { 30, "Dewford Town", 3 },
+                    { 31, "Diamond Settlement", 10 },
+                    { 32, "Driftveil City", 5 },
+                    { 33, "Ecruteak City", 2 },
+                    { 34, "Eterna City", 4 },
+                    { 35, "Ever Grande City", 3 },
+                    { 36, "Fallarbor Town", 3 },
+                    { 37, "Fight Area", 4 },
+                    { 38, "Five Island", 7 },
+                    { 39, "Floaroma Town", 4 },
+                    { 40, "Floccesy Town", 5 },
+                    { 41, "Fortree City", 3 },
+                    { 42, "Four Island", 7 },
+                    { 43, "Freezington", 8 },
+                    { 44, "Frontier Access", 2 },
+                    { 45, "Fuchsia City", 1 },
+                    { 46, "Geosenge Town", 6 },
+                    { 47, "Goldenrod City", 2 },
+                    { 48, "Hammerlocke", 8 },
+                    { 49, "Hau'oli City", 7 },
+                    { 50, "Heahea City", 7 },
+                    { 51, "Hearthome City", 4 },
+                    { 52, "Hulbury", 8 },
+                    { 53, "Humilau City", 5 },
+                    { 54, "Icirrus City", 5 },
+                    { 55, "Iki Town", 7 },
+                    { 56, "Jubilife City", 4 },
+                    { 57, "Jubilife Village", 10 },
+                    { 58, "Kiloude City", 6 },
+                    { 59, "Konikoni City", 7 },
+                    { 60, "Lacunosa Town", 5 },
+                    { 61, "Lavaridge Town", 3 },
+                    { 62, "Lavender Town", 1 },
+                    { 63, "Laverre City", 6 },
+                    { 64, "Lentimas Town", 5 },
+                    { 65, "Levincia", 9 },
+                    { 66, "Littleroot Town", 3 },
+                    { 67, "Lilycove City", 3 },
+                    { 68, "Los Platos", 9 },
+                    { 69, "Lumiose City", 6 },
+                    { 70, "Mahogany Town", 2 },
+                    { 71, "Malie City", 7 },
+                    { 72, "Mauville City", 3 },
+                    { 73, "Medali", 9 },
+                    { 74, "Mesagoza", 9 },
+                    { 75, "Mistralton City", 5 },
+                    { 76, "Montenevera", 9 },
+                    { 77, "Mossdeep City", 3 },
+                    { 78, "Motostoke", 8 },
+                    { 79, "Nacrene City", 5 },
+                    { 80, "New Bark Town", 2 },
+                    { 81, "Nimbasa City", 5 },
+                    { 82, "Nuvema Town", 5 },
+                    { 83, "Oldale Town", 3 },
+                    { 84, "Olivine City", 2 },
+                    { 85, "One Island", 7 },
+                    { 86, "Opelucid City", 5 },
+                    { 87, "Oreburgh City", 4 },
+                    { 88, "Pacifidlog Town", 3 },
+                    { 89, "Pallet Town", 1 },
+                    { 90, "Paniola Town", 7 },
+                    { 91, "Pastoria City", 4 },
+                    { 92, "Pearl Settlement", 10 },
+                    { 93, "Pewter City", 1 },
+                    { 94, "Phenac City", 7 },
+                    { 95, "Pompona", 9 },
+                    { 96, "Prairie", 9 },
+                    { 97, "Profanity", 10 },
+                    { 98, "Pueblo", 10 },
+                    { 99, "Pueblo Soledad", 7 },
+                    { 100, "Punta Brigal", 9 },
+                    { 101, "Punto Isla", 9 },
+                    { 102, "Punta Sonorama", 9 },
+                    { 103, "Quicksand Castle", 10 },
+                    { 104, "Raihon", 9 },
+                    { 105, "Relic Town", 3 },
+                    { 106, "Revive Town", 10 },
+                    { 107, "Rustboro City", 3 },
+                    { 108, "Santalune City", 6 },
+                    { 109, "Saraltar", 9 },
+                    { 110, "Seafoam Islands", 1 },
+                    { 111, "Sootopolis City", 3 },
+                    { 112, "Snowbelle City", 6 },
+                    { 113, "Solaceon Town", 4 },
+                    { 114, "Spearmint", 9 },
+                    { 115, "Slateport City", 3 },
+                    { 116, "Snowpoint City", 4 },
+                    { 117, "Snowy City", 10 },
+                    { 118, "Spikemuth", 8 },
+                    { 119, "Spindle", 9 },
+                    { 120, "Spikestown", 10 },
+                    { 121, "Stark Mountain", 4 },
+                    { 122, "Striaton City", 5 },
+                    { 123, "Sunyshore City", 4 },
+                    { 124, "Tarroco", 9 },
+                    { 125, "Tempo Tiempo", 9 },
+                    { 126, "Three Island", 7 },
+                    { 127, "Twinleaf Town", 4 },
+                    { 128, "Undella Town", 5 },
+                    { 129, "Vaniville Town", 6 },
+                    { 130, "Veilstone City", 4 },
+                    { 131, "Verdanturf Town", 3 },
+                    { 132, "Vermilion City", 1 },
+                    { 133, "Violet City", 2 },
+                    { 134, "Virbank City", 5 },
+                    { 135, "Viridian City", 1 },
+                    { 136, "Wedgehurst", 8 },
+                    { 137, "White Forest", 5 },
+                    { 138, "Wyndon", 8 },
+                    { 139, "Zapapico", 9 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Items",
@@ -1210,8 +1424,8 @@ namespace PokeDokeMartRedux.Migrations
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "Date", "UserProfileId" },
-                values: new object[] { 1, new DateTime(2023, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 });
+                columns: new[] { "Id", "Address", "CityId", "Date", "FirstName", "LastName", "MiddleInitial", "RegionId", "UserProfileId" },
+                values: new object[] { 1, "101 Poke St", 62, new DateTime(2023, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admina", "Strator", null, 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "PokemonLearnableMoves",
@@ -3676,6 +3890,11 @@ namespace PokeDokeMartRedux.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cities_RegionId",
+                table: "Cities",
+                column: "RegionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Items_CategoryId",
                 table: "Items",
                 column: "CategoryId");
@@ -3704,6 +3923,16 @@ namespace PokeDokeMartRedux.Migrations
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CityId",
+                table: "Orders",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_RegionId",
+                table: "Orders",
+                column: "RegionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserProfileId",
@@ -3801,6 +4030,9 @@ namespace PokeDokeMartRedux.Migrations
                 name: "Pokemon");
 
             migrationBuilder.DropTable(
+                name: "Cities");
+
+            migrationBuilder.DropTable(
                 name: "UserProfiles");
 
             migrationBuilder.DropTable(
@@ -3808,6 +4040,9 @@ namespace PokeDokeMartRedux.Migrations
 
             migrationBuilder.DropTable(
                 name: "Moves");
+
+            migrationBuilder.DropTable(
+                name: "Regions");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

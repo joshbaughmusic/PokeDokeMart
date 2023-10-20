@@ -20,6 +20,8 @@ public class PokeDokeMartReduxDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Review> Reviews { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<Region> Regions { get; set; }
+    public DbSet<City> Cities { get; set; }
 
     public PokeDokeMartReduxDbContext(DbContextOptions<PokeDokeMartReduxDbContext> context, IConfiguration config) : base(context)
     {
@@ -50,7 +52,7 @@ public class PokeDokeMartReduxDbContext : IdentityDbContext<IdentityUser>
             RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
             UserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f"
         });
-        
+
         modelBuilder.Entity<UserProfile>().HasData(new UserProfile
         {
             Id = 1,
@@ -63,9 +65,904 @@ public class PokeDokeMartReduxDbContext : IdentityDbContext<IdentityUser>
         {
             Id = 1,
             Date = new DateTime(2023, 06, 28),
-            UserProfileId = 1
-
+            UserProfileId = 1,
+            FirstName = "Admina",
+            LastName = "Strator",
+            Address = "101 Poke St",
+            RegionId = 1,
+            CityId = 62,
         });
+
+        modelBuilder.Entity<Region>().HasData(
+            new Region
+            {
+                Id = 1,
+                Name = "Kanto"
+            },
+            new Region
+            {
+                Id = 2,
+                Name = "Johto"
+            },
+            new Region
+            {
+                Id = 3,
+                Name = "Hoenn"
+            },
+            new Region
+            {
+                Id = 4,
+                Name = "Sinnoh"
+            },
+            new Region
+            {
+                Id = 5,
+                Name = "Unova"
+            },
+            new Region
+            {
+                Id = 6,
+                Name = "Kalos"
+            },
+            new Region
+            {
+                Id = 7,
+                Name = "Alola"
+            },
+            new Region
+            {
+                Id = 8,
+                Name = "Galar"
+            },
+            new Region
+            {
+                Id = 9,
+                Name = "Paldea"
+            },
+            new Region
+            {
+                Id = 10,
+                Name = "Hisui"
+            }
+        );
+
+        modelBuilder.Entity<City>().HasData(
+            new City
+            {
+                Id = 1,
+                Name = "Accumula Town",
+                RegionId = 5 // Unova
+            },
+    new City
+    {
+        Id = 2,
+        Name = "Alfornada",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 3,
+        Name = "Ambrette Town",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 4,
+        Name = "Anistar City",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 5,
+        Name = "Anville Town",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 6,
+        Name = "Aquacorde Town",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 7,
+        Name = "Artazon",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 8,
+        Name = "Aspertia City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 9,
+        Name = "Azalea Town",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 10,
+        Name = "Ballonlea",
+        RegionId = 8 // Galar
+    },
+    new City
+    {
+        Id = 11,
+        Name = "Black City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 12,
+        Name = "Blackthorn City",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 13,
+        Name = "Cabo Poco",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 14,
+        Name = "Camphrier Town",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 15,
+        Name = "Canalave City",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 16,
+        Name = "Cascarrafa",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 17,
+        Name = "Castelia City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 18,
+        Name = "Celadon City",
+        RegionId = 1 // Kanto
+    },
+    new City
+    {
+        Id = 19,
+        Name = "Celestic Town",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 20,
+        Name = "Cerulean City",
+        RegionId = 1 // Kanto
+    },
+    new City
+    {
+        Id = 21,
+        Name = "Cherrygrove City",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 22,
+        Name = "Cianwood City",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 23,
+        Name = "Circhester",
+        RegionId = 8 // Galar
+    },
+    new City
+    {
+        Id = 24,
+        Name = "Cinnabar Island",
+        RegionId = 1 // Kanto
+    },
+    new City
+    {
+        Id = 25,
+        Name = "Cortondo",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 26,
+        Name = "Coumarine City",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 27,
+        Name = "Couriway Town",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 28,
+        Name = "Cyllage City",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 29,
+        Name = "Dendemille Town",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 30,
+        Name = "Dewford Town",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 31,
+        Name = "Diamond Settlement",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 32,
+        Name = "Driftveil City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 33,
+        Name = "Ecruteak City",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 34,
+        Name = "Eterna City",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 35,
+        Name = "Ever Grande City",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 36,
+        Name = "Fallarbor Town",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 37,
+        Name = "Fight Area",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 38,
+        Name = "Five Island",
+        RegionId = 7 // Sevii Islands
+    },
+    new City
+    {
+        Id = 39,
+        Name = "Floaroma Town",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 40,
+        Name = "Floccesy Town",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 41,
+        Name = "Fortree City",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 42,
+        Name = "Four Island",
+        RegionId = 7 // Sevii Islands
+    },
+    new City
+    {
+        Id = 43,
+        Name = "Freezington",
+        RegionId = 8 // Galar
+    },
+    new City
+    {
+        Id = 44,
+        Name = "Frontier Access",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 45,
+        Name = "Fuchsia City",
+        RegionId = 1 // Kanto
+    },
+    new City
+    {
+        Id = 46,
+        Name = "Geosenge Town",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 47,
+        Name = "Goldenrod City",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 48,
+        Name = "Hammerlocke",
+        RegionId = 8 // Galar
+    },
+    new City
+    {
+        Id = 49,
+        Name = "Hau'oli City",
+        RegionId = 7 // Alola
+    },
+    new City
+    {
+        Id = 50,
+        Name = "Heahea City",
+        RegionId = 7 // Alola
+    },
+    new City
+    {
+        Id = 51,
+        Name = "Hearthome City",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 52,
+        Name = "Hulbury",
+        RegionId = 8 // Galar
+    },
+    new City
+    {
+        Id = 53,
+        Name = "Humilau City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 54,
+        Name = "Icirrus City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 55,
+        Name = "Iki Town",
+        RegionId = 7 // Alola
+    },
+    new City
+    {
+        Id = 56,
+        Name = "Jubilife City",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 57,
+        Name = "Jubilife Village",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 58,
+        Name = "Kiloude City",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 59,
+        Name = "Konikoni City",
+        RegionId = 7 // Alola
+    },
+    new City
+    {
+        Id = 60,
+        Name = "Lacunosa Town",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 61,
+        Name = "Lavaridge Town",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 62,
+        Name = "Lavender Town",
+        RegionId = 1 // Kanto
+    },
+    new City
+    {
+        Id = 63,
+        Name = "Laverre City",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 64,
+        Name = "Lentimas Town",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 65,
+        Name = "Levincia",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 66,
+        Name = "Littleroot Town",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 67,
+        Name = "Lilycove City",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 68,
+        Name = "Los Platos",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 69,
+        Name = "Lumiose City",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 70,
+        Name = "Mahogany Town",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 71,
+        Name = "Malie City",
+        RegionId = 7 // Alola
+    },
+    new City
+    {
+        Id = 72,
+        Name = "Mauville City",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 73,
+        Name = "Medali",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 74,
+        Name = "Mesagoza",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 75,
+        Name = "Mistralton City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 76,
+        Name = "Montenevera",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 77,
+        Name = "Mossdeep City",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 78,
+        Name = "Motostoke",
+        RegionId = 8 // Galar
+    },
+    new City
+    {
+        Id = 79,
+        Name = "Nacrene City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 80,
+        Name = "New Bark Town",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 81,
+        Name = "Nimbasa City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 82,
+        Name = "Nuvema Town",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 83,
+        Name = "Oldale Town",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 84,
+        Name = "Olivine City",
+        RegionId = 2 // Johto
+    },
+    new City
+    {
+        Id = 85,
+        Name = "One Island",
+        RegionId = 7 // Sevii Islands
+    },
+    new City
+    {
+        Id = 86,
+        Name = "Opelucid City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 87,
+        Name = "Oreburgh City",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 88,
+        Name = "Pacifidlog Town",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 89,
+        Name = "Pallet Town",
+        RegionId = 1 // Kanto
+    },
+    new City
+    {
+        Id = 90,
+        Name = "Paniola Town",
+        RegionId = 7 // Alola
+    },
+    new City
+    {
+        Id = 91,
+        Name = "Pastoria City",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 92,
+        Name = "Pearl Settlement",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 93,
+        Name = "Pewter City",
+        RegionId = 1 // Kanto
+    },
+    new City
+    {
+        Id = 94,
+        Name = "Phenac City",
+        RegionId = 7 // Orre
+    },
+    new City
+    {
+        Id = 95,
+        Name = "Pompona",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 96,
+        Name = "Prairie",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 97,
+        Name = "Profanity",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 98,
+        Name = "Pueblo",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 99,
+        Name = "Pueblo Soledad",
+        RegionId = 7 // Orre
+    },
+    new City
+    {
+        Id = 100,
+        Name = "Punta Brigal",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 101,
+        Name = "Punto Isla",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 102,
+        Name = "Punta Sonorama",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 103,
+        Name = "Quicksand Castle",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 104,
+        Name = "Raihon",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 105,
+        Name = "Relic Town",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 106,
+        Name = "Revive Town",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 107,
+        Name = "Rustboro City",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 108,
+        Name = "Santalune City",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 109,
+        Name = "Saraltar",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 110,
+        Name = "Seafoam Islands",
+        RegionId = 1 // Kanto
+    },
+    new City
+    {
+        Id = 111,
+        Name = "Sootopolis City",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 112,
+        Name = "Snowbelle City",
+        RegionId = 6 // Kalos
+    },
+    new City
+    {
+        Id = 113,
+        Name = "Solaceon Town",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 114,
+        Name = "Spearmint",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 115,
+        Name = "Slateport City",
+        RegionId = 3 // Hoenn
+    },
+    new City
+    {
+        Id = 116,
+        Name = "Snowpoint City",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 117,
+        Name = "Snowy City",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 118,
+        Name = "Spikemuth",
+        RegionId = 8 // Galar
+    },
+    new City
+    {
+        Id = 119,
+        Name = "Spindle",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 120,
+        Name = "Spikestown",
+        RegionId = 10 // Hisui
+    },
+    new City
+    {
+        Id = 121,
+        Name = "Stark Mountain",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 122,
+        Name = "Striaton City",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 123,
+        Name = "Sunyshore City",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 124,
+        Name = "Tarroco",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 125,
+        Name = "Tempo Tiempo",
+        RegionId = 9 // Paldea
+    },
+    new City
+    {
+        Id = 126,
+        Name = "Three Island",
+        RegionId = 7 // Sevii Islands
+    },
+    new City
+    {
+        Id = 127,
+        Name = "Twinleaf Town",
+        RegionId = 4 // Sinnoh
+    },
+    new City
+    {
+        Id = 128,
+        Name = "Undella Town",
+        RegionId = 5 // Unova
+    },
+    new City
+    {
+        Id = 129,
+        Name = "Vaniville Town",
+        RegionId = 6 // Kalos
+    },
+        new City
+        {
+            Id = 130,
+            Name = "Veilstone City",
+            RegionId = 4 // Sinnoh
+        },
+        new City
+        {
+            Id = 131,
+            Name = "Verdanturf Town",
+            RegionId = 3 // Hoenn
+        },
+        new City
+        {
+            Id = 132,
+            Name = "Vermilion City",
+            RegionId = 1 // Kanto
+        },
+        new City
+        {
+            Id = 133,
+            Name = "Violet City",
+            RegionId = 2 // Johto
+        },
+        new City
+        {
+            Id = 134,
+            Name = "Virbank City",
+            RegionId = 5 // Unova
+        },
+        new City
+        {
+            Id = 135,
+            Name = "Viridian City",
+            RegionId = 1 // Kanto
+        },
+        new City
+        {
+            Id = 136,
+            Name = "Wedgehurst",
+            RegionId = 8 // Galar
+        },
+        new City
+        {
+            Id = 137,
+            Name = "White Forest",
+            RegionId = 5 // Unova
+        },
+        new City
+        {
+            Id = 138,
+            Name = "Wyndon",
+            RegionId = 8 // Galar
+        },
+        new City
+        {
+            Id = 139,
+            Name = "Zapapico",
+            RegionId = 9 // Paldea
+        }
+
+        );
 
         modelBuilder.Entity<OrderItem>().HasData(new OrderItem
         {
@@ -75,14 +972,14 @@ public class PokeDokeMartReduxDbContext : IdentityDbContext<IdentityUser>
             Quantity = 3,
 
         },
-        new OrderItem
-        {
-            Id = 2,
-            OrderId = 1,
-            ItemId = 3,
-            Quantity = 2,
+       new OrderItem
+       {
+           Id = 2,
+           OrderId = 1,
+           ItemId = 3,
+           Quantity = 2,
 
-        });
+       });
 
         modelBuilder.Entity<Review>().HasData(new Review
         {

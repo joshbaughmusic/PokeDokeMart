@@ -58,6 +58,7 @@ export default function Register({ setLoggedInUser }) {
       <FormGroup>
         <Label>First Name</Label>
         <Input
+          className="rounded-0"
           type="text"
           value={firstName}
           onChange={(e) => {
@@ -68,6 +69,7 @@ export default function Register({ setLoggedInUser }) {
       <FormGroup>
         <Label>Last Name</Label>
         <Input
+          className="rounded-0"
           type="text"
           value={lastName}
           onChange={(e) => {
@@ -78,6 +80,7 @@ export default function Register({ setLoggedInUser }) {
       <FormGroup>
         <Label>Email</Label>
         <Input
+          className="rounded-0"
           type="email"
           value={email}
           onChange={(e) => {
@@ -88,6 +91,7 @@ export default function Register({ setLoggedInUser }) {
       <FormGroup>
         <Label>User Name</Label>
         <Input
+          className="rounded-0"
           type="text"
           value={userName}
           onChange={(e) => {
@@ -98,6 +102,7 @@ export default function Register({ setLoggedInUser }) {
       <FormGroup>
         <Label>Address</Label>
         <Input
+          className="rounded-0"
           type="text"
           value={address}
           onChange={(e) => {
@@ -108,6 +113,7 @@ export default function Register({ setLoggedInUser }) {
       <FormGroup>
         <Label>Password</Label>
         <Input
+          className="rounded-0"
           invalid={passwordMismatch}
           type="password"
           value={password}
@@ -120,6 +126,7 @@ export default function Register({ setLoggedInUser }) {
       <FormGroup>
         <Label> Confirm Password</Label>
         <Input
+          className="rounded-0"
           invalid={passwordMismatch}
           type="password"
           value={confirmPassword}
@@ -131,6 +138,7 @@ export default function Register({ setLoggedInUser }) {
         <FormFeedback>Passwords do not match!</FormFeedback>
       </FormGroup>
       <Button
+        className="rounded-0"
         color="primary"
         onClick={handleSubmit}
         disabled={passwordMismatch}

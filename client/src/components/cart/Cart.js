@@ -67,6 +67,7 @@ export const Cart = () => {
                       type="number"
                       min={1}
                       value={item.quantity}
+                      className="rounded-0"
                       onChange={(e) =>
                         alterCartQuantity(item, parseInt(e.target.value))
                       }
@@ -94,9 +95,10 @@ export const Cart = () => {
                 )}
               </h5>
               <Button
+                className="rounded-0"
                 onClick={() => {
                   navigate('/checkout');
-                  toggle()
+                  toggle();
                 }}
               >
                 Checkout
