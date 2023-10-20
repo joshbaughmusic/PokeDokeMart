@@ -13,6 +13,7 @@ import {
 import { logout } from '../../managers/authManager';
 import "./NavBar.css"
 import PDMNav from '../../images/PDMNav.png';
+import { Cart } from '../cart/Cart.js';
 
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
@@ -54,6 +55,13 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                     to="/items"
                   >
                     Items
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                  
+                  >
+                    <Cart />
                   </NavLink>
                 </NavItem>
               </Nav>

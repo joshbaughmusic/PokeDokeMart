@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchSingleItem } from '../../../managers/ItemsManager.js';
 import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
+import { Cart } from '../../cart/Cart.js';
 
 export const ItemDetails = () => {
   const [item, setItem] = useState();
@@ -22,6 +23,10 @@ export const ItemDetails = () => {
   const handleAddToCart = () => {
     const newItemObj = {
       id: item.id,
+      name: item.name,
+      cost: item.cost,
+      description: item.description,
+      image: item.image,
       quantity: quantity,
     };
 
@@ -47,7 +52,7 @@ export const ItemDetails = () => {
               alt=""
               style={{
                 width: '50%',
-                border: '2px solid white',
+                // border: '2px solid white',
               }}
             />
             <div
