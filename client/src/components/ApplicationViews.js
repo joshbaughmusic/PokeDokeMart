@@ -6,6 +6,7 @@ import Register from './auth/Register';
 import { Home } from './home/Home.js';
 import { AllItems } from './items/allItems/AllItems.js';
 import { ItemDetails } from './items/itemDetails/ItemDetails.js';
+import { Checkout } from './checkout/Checkout.js';
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -32,11 +33,15 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             path=":id"
             element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
-                <ItemDetails loggedInUser={loggedInUser}/>
+                <ItemDetails loggedInUser={loggedInUser} />
               </AuthorizedRoute>
             }
           />
         </Route>
+        <Route
+          path="checkout"
+          element={<Checkout />}
+        />
         <Route
           path="login"
           element={<Login setLoggedInUser={setLoggedInUser} />}
