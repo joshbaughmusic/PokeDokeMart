@@ -25,7 +25,7 @@ export const PaginationTool = ({
         </PaginationItem> */}
         <PaginationItem>
           <PaginationLink
-            className="rounded-0"
+            className="rounded-0 text-bg-dark"
             onClick={() => (currentPage > 1 ? paginatePrevOrNext('prev') : '')}
             previous
           />
@@ -36,17 +36,27 @@ export const PaginationTool = ({
               active
               key={index}
             >
-              <PaginationLink onClick={() => paginate(p)}>{p}</PaginationLink>
+              <PaginationLink
+                className="text-bg-dark"
+                onClick={() => paginate(p)}
+              >
+                {p}
+              </PaginationLink>
             </PaginationItem>
           ) : (
             <PaginationItem key={index}>
-              <PaginationLink onClick={() => paginate(p)}>{p}</PaginationLink>
+              <PaginationLink
+                className="text-bg-dark"
+                onClick={() => paginate(p)}
+              >
+                {p}
+              </PaginationLink>
             </PaginationItem>
           )
         )}
         <PaginationItem>
           <PaginationLink
-            className="rounded-0"
+            className="rounded-0 text-bg-dark"
             onClick={() =>
               currentPage < pageNumbers.length ? paginatePrevOrNext('next') : ''
             }
