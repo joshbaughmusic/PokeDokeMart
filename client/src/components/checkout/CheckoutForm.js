@@ -125,7 +125,7 @@ export const CheckoutForm = ({ cartItems }) => {
               name="Addres"
               value={info.Addres}
               onChange={handleChange}
-              placeholder=" address"
+              placeholder="Address"
               className="rounded-0"
             />
           </FormGroup>
