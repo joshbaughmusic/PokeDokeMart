@@ -65,6 +65,7 @@ export const CheckoutForm = ({ cartItems }) => {
       return {
         itemId: i.id,
         quantity: i.quantity,
+        item: i
       };
     });
     const orderObject = {
@@ -122,7 +123,7 @@ export const CheckoutForm = ({ cartItems }) => {
           </FormGroup>
           <FormGroup>
             <Input
-              name="Addres"
+              name="address"
               value={info.Addres}
               onChange={handleChange}
               placeholder="Address"
