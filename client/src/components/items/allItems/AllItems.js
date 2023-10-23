@@ -40,16 +40,20 @@ export const AllItems = () => {
 
   return (
     <>
-      <Container>
+      <Container className="d-flex flex-column justify-content-between h-100">
         <Row>
           <Col lg="3">
-            <SortFilterCategoryShell setAllItems={setAllItems} allItems={allItems} />
+            <SortFilterCategoryShell
+              setAllItems={setAllItems}
+              allItems={allItems}
+              getAllItems={getAllItems}
+            />
           </Col>
           <Col
             md="4"
             lg="9"
           >
-            <div className="allItems-card-container d-flex  flex-wrap justify-content-around">
+            <div className="allItems-card-container d-flex  flex-wrap justify-content-around gap-1">
               {currentItems.map((i, index) => (
                 <AllItemCard
                   item={i}
