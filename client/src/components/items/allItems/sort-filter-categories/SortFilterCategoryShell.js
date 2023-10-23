@@ -7,13 +7,13 @@ export const SortFilterCategoryShell = ({ setAllItems, getAllItems, allItems }) 
   return (
     <>
       <div
-        className="text-bg-dark"
         style={{
           marginTop: '15px',
         }}
       >
         <ItemSearch
           setAllItems={setAllItems}
+          allItems={allItems}
         />
         <ItemSort
           setAllItems={setAllItems}
