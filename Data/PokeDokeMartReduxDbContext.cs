@@ -1321,7 +1321,7 @@ new Item
 {
     Id = 10,
     Name = "Premier Ball",
-    Cost = 20,
+    Cost = 2000,
     Effect = "Used in battle: Attempts to catch a wild Pokémon, using a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.",
     ShortEffect = "Tries to catch a wild Pokémon.",
     Description = "A somewhat rare Poké Ball that was made as a commemorative item used to celebrate an event of some sort.",

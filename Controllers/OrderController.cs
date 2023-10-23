@@ -58,6 +58,8 @@ public class OrderController : ControllerBase
         Order foundOrder = _dbContext.Orders
         .Include(o => o.OrderItems)
         .ThenInclude(oi => oi.Item)
+        .Include(oi => oi.City)
+        .Include(oi => oi.Region)
         .Include(o => o.UserProfile).SingleOrDefault(o => o.Id == id);
 
         if (foundOrder == null)
@@ -79,8 +81,9 @@ public class OrderController : ControllerBase
         List<OrderItem> newOrderItems = incomingOrder.OrderItems.Select(oi => new OrderItem()
         {
             ItemId = _dbContext.Items.Single(i => i.Id == oi.ItemId).Id,
+            Item = _dbContext.Items.Single(i => i.Id == oi.ItemId),
             Quantity = oi.Quantity
-            
+
         }).ToList();
              
         var newOrder = new Order()
@@ -93,7 +96,7 @@ public class OrderController : ControllerBase
             Address = incomingOrder.Address,
             RegionId = _dbContext.Regions.Single(r => r.Id == incomingOrder.RegionId).Id,
             CityId = _dbContext.Cities.Single(r => r.Id == incomingOrder.CityId).Id,
-            OrderItems = newOrderItems
+            OrderItems = newOrderItems,
         };
 
         _dbContext.Orders.Add(newOrder);

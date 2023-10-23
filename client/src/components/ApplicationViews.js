@@ -7,6 +7,7 @@ import { Home } from './home/Home.js';
 import { AllItems } from './items/allItems/AllItems.js';
 import { ItemDetails } from './items/itemDetails/ItemDetails.js';
 import { Checkout } from './checkout/Checkout.js';
+import { OrderDetails } from './orders/OrderDetails.js';
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -40,7 +41,19 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         </Route>
         <Route
           path="checkout"
-          element={<Checkout />}
+          element={
+            <AuthorizedRoute loggedInUser={loggedInUser}>
+              <Checkout />
+            </AuthorizedRoute>
+          }
+        />
+        <Route
+          path="order/:id"
+          element={
+            <AuthorizedRoute loggedInUser={loggedInUser}>
+              <OrderDetails />
+            </AuthorizedRoute>
+          }
         />
         <Route
           path="login"

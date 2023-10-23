@@ -6,6 +6,13 @@ public class Order
     public UserProfile UserProfile { get; set; }
     public DateTime Date { get; set; }
     public List<OrderItem> OrderItems { get; set; }
+    public decimal Total
+    {
+        get
+        {
+            return OrderItems.Select(oi => oi.Quantity * oi.Item.Cost).Sum();
+        }
+    }
     public string FirstName { get; set; }
     public string MiddleInitial { get; set; }
     public string LastName { get; set; }
