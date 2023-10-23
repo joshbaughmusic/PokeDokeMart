@@ -6,17 +6,23 @@ using PokeDokeMartRedux.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
+
 namespace PokeDokeMartRedux.Controllers;
+
 
 [ApiController]
 [Route("api/[controller]")]
 public class UserProfileController : ControllerBase
 {
     private PokeDokeMartReduxDbContext _dbContext;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public UserProfileController(PokeDokeMartReduxDbContext context)
+
+    public UserProfileController(PokeDokeMartReduxDbContext context, UserManager<IdentityUser> userManager)
     {
         _dbContext = context;
+        _userManager = userManager;
+
     }
 
     [HttpGet]
@@ -57,40 +63,72 @@ public class UserProfileController : ControllerBase
              .UserProfiles
              .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
+
         if (loggedInUser != null)
         {
 
-        UserProfile foundUserProfile = _dbContext.UserProfiles
-        .Include(up => up.IdentityUser)
-        .Include(up => up.Region)
-        .Include(up => up.City)
-        .Include(up => up.UserPokemon)
-        .ThenInclude(up => up.Pokemon)
-        .Include(up => up.Orders)
-        .ThenInclude(o => o.OrderItems)
-        .ThenInclude(oi => oi.Item)
-        .Select(up => new UserProfile
-        {
-            Id = up.Id,
-            ProfilePictureUrl = up.ProfilePictureUrl,
-            FirstName = up.FirstName,
-            LastName = up.LastName,
-            Address = up.Address,
-            RegionId = up.RegionId,
-            Region = up.Region,
-            CityId = up.CityId,
-            City = up.City,
-            Email = up.IdentityUser.Email,
-            UserName = up.IdentityUser.UserName,
-            UserPokemon = up.UserPokemon,
-            Orders = up.Orders
-        })
-        .SingleOrDefault(up => up.Id == loggedInUser.Id);
+            UserProfile foundUserProfile = _dbContext.UserProfiles
+            .Include(up => up.IdentityUser)
+            .Include(up => up.Region)
+            .Include(up => up.City)
+            .Include(up => up.UserPokemon)
+            .ThenInclude(up => up.Pokemon)
+            .Include(up => up.Orders)
+            .ThenInclude(o => o.OrderItems)
+            .ThenInclude(oi => oi.Item)
+            .Select(up => new UserProfile
+            {
+                Id = up.Id,
+                ProfilePictureUrl = up.ProfilePictureUrl,
+                FirstName = up.FirstName,
+                LastName = up.LastName,
+                Address = up.Address,
+                RegionId = up.RegionId,
+                Region = up.Region,
+                CityId = up.CityId,
+                City = up.City,
+                Email = up.IdentityUser.Email,
+                UserName = up.IdentityUser.UserName,
+                UserPokemon = up.UserPokemon,
+                Orders = up.Orders
+            })
+            .SingleOrDefault(up => up.Id == loggedInUser.Id);
 
-        return Ok(foundUserProfile);
+            return Ok(foundUserProfile);
         }
-        return NotFound();     
+        return NotFound();
     }
+
+    [HttpPut("update")]
+    [Authorize]
+
+    public IActionResult UpdateUserProfile(UserProfile updatedUserProfile)
+    {
+        var loggedInUser = _dbContext
+            .UserProfiles
+            .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+        UserProfile foundUserProfile = _dbContext.UserProfiles.SingleOrDefault(up => up.Id == loggedInUser.Id);
+
+        var idUser = _dbContext.Users.Single(u => u.Id == foundUserProfile.IdentityUserId);
+
+        if (foundUserProfile == null)
+        {
+            return NotFound();
+        }
+
+        idUser.Email = updatedUserProfile.Email;
+        foundUserProfile.FirstName = updatedUserProfile.FirstName;
+        foundUserProfile.LastName = updatedUserProfile.LastName;
+        foundUserProfile.Address = updatedUserProfile.Address;
+        foundUserProfile.RegionId = updatedUserProfile.RegionId;
+        foundUserProfile.CityId = updatedUserProfile.CityId;
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
+
 
     [HttpPost("promote/{id}")]
     [Authorize(Roles = "Admin")]
@@ -112,7 +150,7 @@ public class UserProfileController : ControllerBase
     public IActionResult Demote(string id)
     {
         IdentityRole role = _dbContext.Roles
-            .SingleOrDefault(r => r.Name == "Admin"); 
+            .SingleOrDefault(r => r.Name == "Admin");
         IdentityUserRole<string> userRole = _dbContext
             .UserRoles
             .SingleOrDefault(ur =>

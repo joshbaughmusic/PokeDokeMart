@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchCurrentUserProfile } from '../../managers/ProfileManager.js';
 import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import { MyOrders } from './MyOrders.js';
+import { EditUserDetails } from './EditUserDetails.js';
 
 export const Profile = () => {
   const [profile, setProfile] = useState();
@@ -39,7 +40,10 @@ export const Profile = () => {
             <div>
               <div className="d-flex justify-content-between align-items-baseline">
                 <h5>Details:</h5>
-                <Button>Edit</Button>
+                <EditUserDetails
+                  profile={profile}
+                  getCurrentUserProfile={getCurrentUserProfile}
+                />
               </div>
               <div className="border border-light">
                 <p>{profile.email}</p>
