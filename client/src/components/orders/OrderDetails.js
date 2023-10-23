@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchSingleOrder } from '../../managers/OrderManager.js';
 import {
   Container,
@@ -49,7 +49,7 @@ export const OrderDetails = () => {
                       src={oi.item.image}
                       alt=""
                     />
-                    {oi.item.name}{' '}
+                    <Link to={`/items/${oi.item.id}`}>{oi.item.name}</Link>
                   </td>
                   <td className="text-bg-dark">P{oi.item.cost}</td>
                   <td className="text-bg-dark">{oi.quantity}</td>
