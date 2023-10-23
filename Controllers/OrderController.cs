@@ -60,7 +60,8 @@ public class OrderController : ControllerBase
         .ThenInclude(oi => oi.Item)
         .Include(oi => oi.City)
         .Include(oi => oi.Region)
-        .Include(o => o.UserProfile).SingleOrDefault(o => o.Id == id);
+        .Include(o => o.UserProfile)
+        .SingleOrDefault(o => o.Id == id);
 
         if (foundOrder == null)
         {

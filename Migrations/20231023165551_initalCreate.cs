@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PokeDokeMartRedux.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class initalCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -222,28 +222,6 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserProfiles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "text", nullable: true),
-                    LastName = table.Column<string>(type: "text", nullable: true),
-                    Address = table.Column<string>(type: "text", nullable: true),
-                    ProfilePictureUrl = table.Column<string>(type: "text", nullable: true),
-                    IdentityUserId = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserProfiles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserProfiles_AspNetUsers_IdentityUserId",
-                        column: x => x.IdentityUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Moves",
                 columns: table => new
                 {
@@ -320,34 +298,6 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserPokemon",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    NickName = table.Column<string>(type: "text", nullable: true),
-                    PokemonId = table.Column<int>(type: "integer", nullable: false),
-                    UserProfileId = table.Column<int>(type: "integer", nullable: false),
-                    Level = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserPokemon", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserPokemon_Pokemon_PokemonId",
-                        column: x => x.PokemonId,
-                        principalTable: "Pokemon",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserPokemon_UserProfiles_UserProfileId",
-                        column: x => x.UserProfileId,
-                        principalTable: "UserProfiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
                 {
@@ -400,6 +350,42 @@ namespace PokeDokeMartRedux.Migrations
                         name: "FK_PokemonLearnableMoves_Pokemon_PokemonId",
                         column: x => x.PokemonId,
                         principalTable: "Pokemon",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserProfiles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    RegionId = table.Column<int>(type: "integer", nullable: false),
+                    CityId = table.Column<int>(type: "integer", nullable: false),
+                    ProfilePictureUrl = table.Column<string>(type: "text", nullable: true),
+                    IdentityUserId = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserProfiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserProfiles_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_UserProfiles_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserProfiles_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -472,6 +458,34 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserPokemon",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NickName = table.Column<string>(type: "text", nullable: true),
+                    PokemonId = table.Column<int>(type: "integer", nullable: false),
+                    UserProfileId = table.Column<int>(type: "integer", nullable: false),
+                    Level = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPokemon", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserPokemon_Pokemon_PokemonId",
+                        column: x => x.PokemonId,
+                        principalTable: "Pokemon",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserPokemon_UserProfiles_UserProfileId",
+                        column: x => x.UserProfileId,
+                        principalTable: "UserProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
                 {
@@ -506,7 +520,7 @@ namespace PokeDokeMartRedux.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "7f852af4-0a6c-4564-84c6-7f150e615eea", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEOvNyViDOCIUpgyqcN3haV8NBsfZO5yBAVpwZm5OoDfXIhvV+ac2syM/y2dTfPMccw==", null, false, "d79a426c-b5e1-465a-a988-d9d8ff5780ff", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "9f29fbdb-abba-495f-8a45-f17d303378e3", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEDQt4MvpNAwMib7yc1BjCPU60pff87cYge/ZgQn51ZedXOxBKzGnXlx94ubdzULuOw==", null, false, "e2ed2f3f-f3ea-4fda-b44c-b79c43c7e2d7", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -904,7 +918,7 @@ namespace PokeDokeMartRedux.Migrations
                     { 7, 2, 1000m, "A somewhat different Poké Ball that works especially well on a Pokémon species that has been caught before.", "Used in battle: Attempts to catch a wild Pokémon. If the wild Pokémon's species is marked as caught in the trainer's Pokédex, this ball has a catch rate of 3×. Otherwise, it has a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/repeat-ball.png", null, "Repeat Ball", "Tries to catch a wild Pokémon. Success rate is 3× for previously-caught Pokémon." },
                     { 8, 2, 1000m, "A somewhat different Poké Ball that becomes progressively more effective at catching Pokémon the more turns that are taken in battle.", "Used in battle: Attempts to catch a wild Pokémon. Has a catch rate of 1.1× on the first turn of the battle and increases by 0.1× every turn, to a maximum of 4× on turn 30. If used in a trainer battle, nothing happens and the ball is lost.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/timer-ball.png", null, "Timer Ball", "Tries to catch a wild Pokémon. Success rate increases by 0.1× (Gen V: 0.3×) every turn, to a max of 4×." },
                     { 9, 2, 3000m, "A particularly comfortable Poké Ball that makes a wild Pokémon quickly grow friendlier after being caught.", "Used in battle: Attempts to catch a wild Pokémon, using a catch rate of 1×. Whenever the caught Pokémon's happiness increases, it increases by one extra point. If used in a trainer battle, nothing happens and the ball is lost.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/luxury-ball.png", null, "Luxury Ball", "Tries to catch a wild Pokémon. Caught Pokémon start with 200 happiness." },
-                    { 10, 2, 20m, "A somewhat rare Poké Ball that was made as a commemorative item used to celebrate an event of some sort.", "Used in battle: Attempts to catch a wild Pokémon, using a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png", null, "Premier Ball", "Tries to catch a wild Pokémon." },
+                    { 10, 2, 2000m, "A somewhat rare Poké Ball that was made as a commemorative item used to celebrate an event of some sort.", "Used in battle: Attempts to catch a wild Pokémon, using a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png", null, "Premier Ball", "Tries to catch a wild Pokémon." },
                     { 11, 2, 1000m, "A somewhat different Poké Ball that makes it easier to catch wild Pokémon at night or in dark places such as caves.", "Used in battle: Attempts to catch a wild Pokémon. If it's currently nighttime or the wild Pokémon was encountered while walking in a cave, this ball has a catch rate of 3.5×. Otherwise, it has a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-ball.png", null, "Dusk Ball", "Tries to catch a wild Pokémon. Success rate is 3.5× at night and in caves." },
                     { 12, 3, 300m, "A remedial Poké Ball that restores the HP of a Pokémon caught with it and eliminates any status conditions.", "Used in battle: Attempts to catch a wild Pokémon, using a catch rate of 1×. The caught Pokémon's HP is immediately restored, PP for all its moves is restored, and any status ailment is cured. If used in a trainer battle, nothing happens and the ball is lost.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heal-ball.png", null, "Heal Ball", "Tries to catch a wild Pokémon. Caught Pokémon are immediately healed." },
                     { 13, 2, 1000m, "A somewhat different Poké Ball that has a more successful catch rate if used at the start of a wild encounter.", "Used in battle: Attempts to catch a wild Pokémon, using a catch rate of 4× on the first turn of a battle, but 1× any other time. If used in a trainer battle, nothing happens and the ball is lost.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-ball.png", null, "Quick Ball", "Tries to catch a wild Pokémon. Success rate is 4× (Gen V: 5×), but only on the first turn." },
@@ -1322,11 +1336,6 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "UserProfiles",
-                columns: new[] { "Id", "Address", "FirstName", "IdentityUserId", "LastName", "ProfilePictureUrl" },
-                values: new object[] { 1, "101 Main Street", "Admina", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", "Strator", null });
-
-            migrationBuilder.InsertData(
                 table: "Items",
                 columns: new[] { "Id", "CategoryId", "Cost", "Description", "Effect", "Image", "MoveId", "Name", "ShortEffect" },
                 values: new object[,]
@@ -1421,11 +1430,6 @@ namespace PokeDokeMartRedux.Migrations
                     { 190, 11, 20000m, "This protects Pokémon on the ground from status conditions and halves damage from Dragon-type moves for five turns.", "Teaches U-Turn to a compatible Pokémon.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png", 89, "TM89", "Teaches U-turn to a compatible Pokémon." },
                     { 191, 11, 20000m, "The user electrifies the ground for five turns, powering up Electric-type moves. Pokémon on the ground no longer fall asleep.", "Teaches Substitute to a compatible Pokémon.", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png", 90, "TM90", "Teaches Substitute to a compatible Pokémon." }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Orders",
-                columns: new[] { "Id", "Address", "CityId", "Date", "FirstName", "LastName", "MiddleInitial", "RegionId", "UserProfileId" },
-                values: new object[] { 1, "101 Poke St", 62, new DateTime(2023, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admina", "Strator", null, 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "PokemonLearnableMoves",
@@ -2341,7 +2345,8 @@ namespace PokeDokeMartRedux.Migrations
                     { 907, 26, 61 },
                     { 908, 27, 61 },
                     { 909, 28, 61 },
-                    { 910, 6, 61 }
+                    { 910, 6, 61 },
+                    { 911, 29, 61 }
                 });
 
             migrationBuilder.InsertData(
@@ -2349,7 +2354,6 @@ namespace PokeDokeMartRedux.Migrations
                 columns: new[] { "Id", "MoveId", "PokemonId" },
                 values: new object[,]
                 {
-                    { 911, 29, 61 },
                     { 912, 20, 61 },
                     { 913, 31, 61 },
                     { 914, 34, 61 },
@@ -3348,7 +3352,8 @@ namespace PokeDokeMartRedux.Migrations
                     { 1907, 30, 122 },
                     { 1908, 31, 122 },
                     { 1909, 33, 122 },
-                    { 1910, 34, 122 }
+                    { 1910, 34, 122 },
+                    { 1911, 35, 122 }
                 });
 
             migrationBuilder.InsertData(
@@ -3356,7 +3361,6 @@ namespace PokeDokeMartRedux.Migrations
                 columns: new[] { "Id", "MoveId", "PokemonId" },
                 values: new object[,]
                 {
-                    { 1911, 35, 122 },
                     { 1912, 70, 122 },
                     { 1913, 46, 122 },
                     { 1914, 44, 122 },
@@ -3826,6 +3830,16 @@ namespace PokeDokeMartRedux.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "UserProfiles",
+                columns: new[] { "Id", "Address", "CityId", "FirstName", "IdentityUserId", "LastName", "ProfilePictureUrl", "RegionId" },
+                values: new object[] { 1, "101 Poke St", 89, "Ash", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", "Ketchum", "https://i.pinimg.com/474x/55/30/81/5530812c4d781a3c13cf47184ec3c0ec.jpg", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "Id", "Address", "CityId", "Date", "FirstName", "LastName", "MiddleInitial", "RegionId", "UserProfileId" },
+                values: new object[] { 1, "101 Poke St", 89, new DateTime(2023, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ash", "Ketchum", null, 1, 1 });
+
+            migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "Body", "Date", "ItemId", "Rating", "UserProfileId" },
                 values: new object[,]
@@ -3980,9 +3994,19 @@ namespace PokeDokeMartRedux.Migrations
                 column: "UserProfileId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserProfiles_CityId",
+                table: "UserProfiles",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_IdentityUserId",
                 table: "UserProfiles",
                 column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserProfiles_RegionId",
+                table: "UserProfiles",
+                column: "RegionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -4030,9 +4054,6 @@ namespace PokeDokeMartRedux.Migrations
                 name: "Pokemon");
 
             migrationBuilder.DropTable(
-                name: "Cities");
-
-            migrationBuilder.DropTable(
                 name: "UserProfiles");
 
             migrationBuilder.DropTable(
@@ -4042,16 +4063,19 @@ namespace PokeDokeMartRedux.Migrations
                 name: "Moves");
 
             migrationBuilder.DropTable(
-                name: "Regions");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Cities");
 
             migrationBuilder.DropTable(
                 name: "DamageClasses");
 
             migrationBuilder.DropTable(
                 name: "PokeTypes");
+
+            migrationBuilder.DropTable(
+                name: "Regions");
         }
     }
 }
