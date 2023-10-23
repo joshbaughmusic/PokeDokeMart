@@ -1,9 +1,15 @@
-import { Container } from 'reactstrap';
+import { Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
-export const ItemSearch = ({ setAllItems, allItems }) => {
+export const ItemSearch = ({ setAllItems }) => {
   return (
     <>
-      <div>item search placeholder</div>
+      <div>
+        <Form>
+          <FormGroup>
+            <Input />
+          </FormGroup>
+        </Form>
+      </div>
     </>
   );
 };

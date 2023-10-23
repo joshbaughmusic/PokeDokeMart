@@ -4,16 +4,18 @@ import {
   AccordionBody,
   AccordionHeader,
   AccordionItem,
+  Button,
   Form,
   FormGroup,
   Input,
   Label,
-  Spinner,
 } from 'reactstrap';
 import { fetchAllCategories } from '../../../../managers/CategoryManager.js';
-import { fetchItemsByCategoryId } from '../../../../managers/ItemsManager.js';
+import {
+  fetchItemsByCategoryId,
+} from '../../../../managers/ItemsManager.js';
 
-export const ItemCategories = ({ setAllItems, allItems }) => {
+export const ItemCategories = ({ setAllItems, getAllItems }) => {
   const [categories, setCategories] = useState();
   const [open, setOpen] = useState();
   const toggle = (id) => {
@@ -33,7 +35,11 @@ export const ItemCategories = ({ setAllItems, allItems }) => {
   }, []);
 
   const handleCategorySelect = (e) => {
-    fetchItemsByCategoryId(e.target.value).then(setAllItems)
+      fetchItemsByCategoryId(e.target.value).then(setAllItems);
+  };
+
+  const handleReset = () => {
+    getAllItems();
   }
 
   if (!categories) {
@@ -61,7 +67,7 @@ export const ItemCategories = ({ setAllItems, allItems }) => {
           open={open}
           toggle={toggle}
           style={{
-            borderRadius: "0px"
+            borderRadius: '0px',
           }}
         >
           <AccordionItem>
@@ -72,21 +78,20 @@ export const ItemCategories = ({ setAllItems, allItems }) => {
             >
               <Form>
                 {categories.map((c, index) => (
-                  <>
-                    <FormGroup
-                      key={index}
-                      check
-                    >
-                      <Label>{c.name}</Label>
-                      <Input
-                        name="categoryId"
-                        type="radio"
-                        value={c.id}
-                        onChange={handleCategorySelect}
-                      />
-                    </FormGroup>
-                  </>
+                  <FormGroup
+                    key={index}
+                    check
+                  >
+                    <Label>{c.name}</Label>
+                    <Input
+                      name="categoryId"
+                      type="radio"
+                      value={c.id}
+                      onChange={handleCategorySelect}
+                    />
+                  </FormGroup>
                 ))}
+                <Button onClick={handleReset}>Reset</Button>
               </Form>
             </AccordionBody>
           </AccordionItem>

@@ -3,7 +3,7 @@ import { ItemSearch } from './ItemSearch.js';
 import { ItemSort } from './ItemSort.js';
 import { ItemCategories } from './ItemCategories.js';
 
-export const SortFilterCategoryShell = ({ setAllItems, allItems }) => {
+export const SortFilterCategoryShell = ({ setAllItems, getAllItems, allItems }) => {
   return (
     <>
       <div
@@ -12,20 +12,17 @@ export const SortFilterCategoryShell = ({ setAllItems, allItems }) => {
           marginTop: '15px',
         }}
       >
-        {' '}
         <ItemSearch
           setAllItems={setAllItems}
-          allItems={allItems}
         />
-        <br />
         <ItemSort
           setAllItems={setAllItems}
           allItems={allItems}
+          getAllItems={getAllItems}
         />
-        <br />
         <ItemCategories
           setAllItems={setAllItems}
-          allItems={allItems}
+          getAllItems={getAllItems}
         />
       </div>
     </>
