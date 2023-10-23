@@ -4,6 +4,7 @@ using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
 using PokeDokeMartRedux.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -45,6 +46,50 @@ public class UserProfileController : ControllerBase
             .Select(ur => _dbContext.Roles.SingleOrDefault(r => r.Id == ur.RoleId).Name)
             .ToList()
         }));
+    }
+
+    [HttpGet("me")]
+    [Authorize]
+    public IActionResult GetCurrentUserProfile()
+    {
+
+        var loggedInUser = _dbContext
+             .UserProfiles
+             .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+        if (loggedInUser != null)
+        {
+
+        UserProfile foundUserProfile = _dbContext.UserProfiles
+        .Include(up => up.IdentityUser)
+        .Include(up => up.Region)
+        .Include(up => up.City)
+        .Include(up => up.UserPokemon)
+        .ThenInclude(up => up.Pokemon)
+        .Include(up => up.Orders)
+        .ThenInclude(o => o.OrderItems)
+        .ThenInclude(oi => oi.Item)
+        .Select(up => new UserProfile
+        {
+            Id = up.Id,
+            ProfilePictureUrl = up.ProfilePictureUrl,
+            FirstName = up.FirstName,
+            LastName = up.LastName,
+            Address = up.Address,
+            RegionId = up.RegionId,
+            Region = up.Region,
+            CityId = up.CityId,
+            City = up.City,
+            Email = up.IdentityUser.Email,
+            UserName = up.IdentityUser.UserName,
+            UserPokemon = up.UserPokemon,
+            Orders = up.Orders
+        })
+        .SingleOrDefault(up => up.Id == loggedInUser.Id);
+
+        return Ok(foundUserProfile);
+        }
+        return NotFound();     
     }
 
     [HttpPost("promote/{id}")]

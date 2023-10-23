@@ -43,7 +43,7 @@ public class PokeDokeMartReduxDbContext : IdentityDbContext<IdentityUser>
         {
             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
             UserName = "Administrator",
-            Email = "admina@strator.comx",
+            Email = "ash@pokenet.com",
             PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])
         });
 
@@ -57,20 +57,23 @@ public class PokeDokeMartReduxDbContext : IdentityDbContext<IdentityUser>
         {
             Id = 1,
             IdentityUserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
-            FirstName = "Admina",
-            LastName = "Strator",
-            Address = "101 Main Street",
+            FirstName = "Ash",
+            LastName = "Ketchum",
+            ProfilePictureUrl = "https://i.pinimg.com/474x/55/30/81/5530812c4d781a3c13cf47184ec3c0ec.jpg",
+            Address = "101 Poke St",
+            RegionId = 1,
+            CityId = 89,
         });
         modelBuilder.Entity<Order>().HasData(new Order
         {
             Id = 1,
             Date = new DateTime(2023, 06, 28),
             UserProfileId = 1,
-            FirstName = "Admina",
-            LastName = "Strator",
+            FirstName = "Ash",
+            LastName = "Ketchum",
             Address = "101 Poke St",
             RegionId = 1,
-            CityId = 62,
+            CityId = 89,
         });
 
         modelBuilder.Entity<Region>().HasData(

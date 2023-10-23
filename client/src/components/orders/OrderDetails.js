@@ -28,7 +28,7 @@ export const OrderDetails = () => {
   }
   return (
     <>
-      <Container>
+      <Container className="text-bg-dark mt-5">
         <div className="d-flex justify-content-between align-items-baseline">
           <h2 className="mt-3">Order Details</h2>
           <h5 className="mt-3">{dateFormatter(order.date)}</h5>
@@ -66,15 +66,20 @@ export const OrderDetails = () => {
           <h5>P{order.total}</h5>
         </div>
         <div>
-            <h4>Billing Info</h4>
-            {
-                order.middleInitial ? 
-                <p>{order.firstName} {order.middleInital} {order.lastName}</p>
-                :
-                <p>{order.firstName} {order.lastName}</p>
-            }
-            <p>{order.address}</p>
-            <p>{order.city.name}, {order.region.name}</p>
+          <h4>Billing Info</h4>
+          {order.middleInitial ? (
+            <p>
+              {order.firstName} {order.middleInital} {order.lastName}
+            </p>
+          ) : (
+            <p>
+              {order.firstName} {order.lastName}
+            </p>
+          )}
+          <p>{order.address}</p>
+          <p>
+            {order.city.name}, {order.region.name}
+          </p>
         </div>
       </Container>
     </>

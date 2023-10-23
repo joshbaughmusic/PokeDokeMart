@@ -149,13 +149,13 @@ namespace PokeDokeMartRedux.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7f852af4-0a6c-4564-84c6-7f150e615eea",
+                            ConcurrencyStamp = "9f29fbdb-abba-495f-8a45-f17d303378e3",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOvNyViDOCIUpgyqcN3haV8NBsfZO5yBAVpwZm5OoDfXIhvV+ac2syM/y2dTfPMccw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDQt4MvpNAwMib7yc1BjCPU60pff87cYge/ZgQn51ZedXOxBKzGnXlx94ubdzULuOw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d79a426c-b5e1-465a-a988-d9d8ff5780ff",
+                            SecurityStamp = "e2ed2f3f-f3ea-4fda-b44c-b79c43c7e2d7",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -1361,7 +1361,7 @@ namespace PokeDokeMartRedux.Migrations
                         {
                             Id = 10,
                             CategoryId = 2,
-                            Cost = 20m,
+                            Cost = 2000m,
                             Description = "A somewhat rare Poké Ball that was made as a commemorative item used to celebrate an event of some sort.",
                             Effect = "Used in battle: Attempts to catch a wild Pokémon, using a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png",
@@ -4374,10 +4374,10 @@ namespace PokeDokeMartRedux.Migrations
                         {
                             Id = 1,
                             Address = "101 Poke St",
-                            CityId = 62,
+                            CityId = 89,
                             Date = new DateTime(2023, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Admina",
-                            LastName = "Strator",
+                            FirstName = "Ash",
+                            LastName = "Ketchum",
                             RegionId = 1,
                             UserProfileId = 1
                         });
@@ -21268,6 +21268,9 @@ namespace PokeDokeMartRedux.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("text");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
 
@@ -21280,9 +21283,16 @@ namespace PokeDokeMartRedux.Migrations
                     b.Property<string>("ProfilePictureUrl")
                         .HasColumnType("text");
 
+                    b.Property<int>("RegionId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
                     b.HasIndex("IdentityUserId");
+
+                    b.HasIndex("RegionId");
 
                     b.ToTable("UserProfiles");
 
@@ -21290,10 +21300,13 @@ namespace PokeDokeMartRedux.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "101 Main Street",
-                            FirstName = "Admina",
+                            Address = "101 Poke St",
+                            CityId = 89,
+                            FirstName = "Ash",
                             IdentityUserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
-                            LastName = "Strator"
+                            LastName = "Ketchum",
+                            ProfilePictureUrl = "https://i.pinimg.com/474x/55/30/81/5530812c4d781a3c13cf47184ec3c0ec.jpg",
+                            RegionId = 1
                         });
                 });
 
@@ -21507,7 +21520,7 @@ namespace PokeDokeMartRedux.Migrations
                         .IsRequired();
 
                     b.HasOne("PokeDokeMartRedux.Models.UserProfile", "UserProfile")
-                        .WithMany()
+                        .WithMany("UserPokemon")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -21519,11 +21532,27 @@ namespace PokeDokeMartRedux.Migrations
 
             modelBuilder.Entity("PokeDokeMartRedux.Models.UserProfile", b =>
                 {
+                    b.HasOne("PokeDokeMartRedux.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
 
+                    b.HasOne("PokeDokeMartRedux.Models.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+
                     b.Navigation("IdentityUser");
+
+                    b.Navigation("Region");
                 });
 
             modelBuilder.Entity("PokeDokeMartRedux.Models.Item", b =>
@@ -21551,6 +21580,8 @@ namespace PokeDokeMartRedux.Migrations
             modelBuilder.Entity("PokeDokeMartRedux.Models.UserProfile", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("UserPokemon");
                 });
 #pragma warning restore 612, 618
         }
