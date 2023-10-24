@@ -139,7 +139,6 @@ export default function Register({ setLoggedInUser }) {
       </FormGroup>
       <Button
         className="rounded-0"
-        color="primary"
         onClick={handleSubmit}
         disabled={passwordMismatch}
       >

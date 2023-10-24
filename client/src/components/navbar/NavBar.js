@@ -69,7 +69,6 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
             </Collapse>
             <Button
               className="rounded-0"
-              color="primary"
               onClick={(e) => {
                 e.preventDefault();
                 setOpen(false);

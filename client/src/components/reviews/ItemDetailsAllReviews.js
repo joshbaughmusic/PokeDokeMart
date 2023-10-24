@@ -52,8 +52,10 @@ export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
         </div>
         {allReviewsByItem.map((review, index) => (
           <ItemDetailsSingleReview
+            loggedInUser={loggedInUser}
             key={index}
             review={review}
+            getAllReviewsByItem={getAllReviewsByItem}
           />
         ))}
       </div>
