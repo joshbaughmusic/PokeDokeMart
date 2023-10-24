@@ -26,7 +26,8 @@ public class ReviewController : ControllerBase
             //return all reviews
             return Ok(_dbContext.Reviews
             .Include(r => r.UserProfile)
-            .Include(r => r.Item));        }
+            .Include(r => r.Item));
+        }
         else
         {
             int convUserProfileId = int.Parse(userProfileId);
@@ -108,5 +109,24 @@ public class ReviewController : ControllerBase
         _dbContext.SaveChanges();
 
         return Created($"/api/review/{newReview.Id}", newReview);
+    }
+
+    [HttpPut]
+    // [Authorize]
+    public IActionResult UpdateReview(Review incomingReview)
+    {
+        Review foundReview = _dbContext.Reviews.SingleOrDefault(r => r.Id == incomingReview.Id);
+
+        if (foundReview == null)
+        {
+            return NotFound();
+        }
+
+        foundReview.Rating = incomingReview.Rating;
+        foundReview.Body = incomingReview.Body;
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
     }
 }

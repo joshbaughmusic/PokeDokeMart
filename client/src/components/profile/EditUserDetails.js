@@ -100,8 +100,14 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
           setVisibleSuccess(false);
           setVisibleError(false);
         }}
+        backdrop='static'
       >
-        <ModalHeader toggle={toggle}>Edit Your Details:</ModalHeader>
+        <ModalHeader
+          toggle={toggle}
+          close={<span></span>}
+        >
+          Edit Your Details:
+        </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
@@ -195,12 +201,6 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
               </>
             </FormGroup>
           </Form>
-          <Button
-            onClick={handleSubmit}
-            className="rounded-0"
-          >
-            Submit
-          </Button>
           <Alert
             color="danger"
             isOpen={visibleError}
@@ -217,6 +217,30 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
             Details changed!
           </Alert>
         </ModalBody>
+        <ModalFooter>
+          <Button
+            onClick={handleSubmit}
+            className="rounded-0"
+          >
+            Submit
+          </Button>
+          <Button
+            onClick={() => {
+              toggle()
+              setUpdatedUserProfile({
+                email: profile.email,
+                firstName: profile.firstName,
+                lastName: profile.lastName,
+                address: profile.address,
+                cityId: profile.cityId,
+                regionId: profile.regionId,
+              });
+            }}
+            className="rounded-0"
+          >
+            Cancel
+          </Button>
+        </ModalFooter>
       </Modal>
     </>
   );
