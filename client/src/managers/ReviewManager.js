@@ -31,3 +31,9 @@ export const fetchUpdateReview = (reviewObj) => {
     body: JSON.stringify(reviewObj),
   })
 };
+
+export const fetchDeleteReview = (id) => {
+  return fetch(`${_apiUrl}/${id}`, {
+    method: 'DELETE',
+  })
+};

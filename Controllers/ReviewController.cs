@@ -129,4 +129,22 @@ public class ReviewController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpDelete("{id}")]
+    // [Authorize]
+    public IActionResult DeleteReview(int id)
+    {
+        Review foundReview = _dbContext.Reviews.SingleOrDefault(r => r.Id == id);
+
+        if (foundReview == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.Reviews.Remove(foundReview);
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
 }
