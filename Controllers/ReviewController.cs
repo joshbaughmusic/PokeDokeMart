@@ -47,6 +47,26 @@ public class ReviewController : ControllerBase
         }
     }
 
+    [HttpGet("item/{id}")]
+    // [Authorize]
+    public IActionResult GetAllReviewsForItem(int id)
+    {
+        Item foundItem = _dbContext.Items.SingleOrDefault(i => i.Id == id);
+
+        if (foundItem == null)
+        {
+            return NotFound();
+        }
+
+        List<Review> reviewsForItem = _dbContext.Reviews
+        .Include(r => r.UserProfile)
+        .Include(r => r.Item)
+        .Where(r => r.ItemId == id)
+        .ToList();
+
+        return Ok(reviewsForItem);
+    }
+
     [HttpGet("{id}")]
     // [Authorize]
     public IActionResult GetSingleReview(int id)

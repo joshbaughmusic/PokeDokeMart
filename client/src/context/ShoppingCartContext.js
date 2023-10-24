@@ -51,6 +51,10 @@ export const ShoppingCartProvider = ({ children }) => {
     });
   };
 
+  const clearCart = () => {
+    setCartItems([])
+  }
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -59,6 +63,7 @@ export const ShoppingCartProvider = ({ children }) => {
         removeFromCart,
         getUniqueItemCount,
         alterCartQuantity,
+        clearCart,
         cartItems,
       }}
     >

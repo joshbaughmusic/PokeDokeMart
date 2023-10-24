@@ -4,6 +4,7 @@ import { fetchSingleItem } from '../../../managers/ItemsManager.js';
 import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
 import { Cart } from '../../cart/Cart.js';
+import { ItemDetailsAllReviews } from '../../reviews/ItemDetailsAllReviews.js';
 
 export const ItemDetails = () => {
   const [item, setItem] = useState();
@@ -113,8 +114,8 @@ export const ItemDetails = () => {
           </Col>
         </Row>
         <Row>
-          <Col className="d-flex justify-content-center mt-5">
-            <div>Review section placeholder</div>
+          <Col className="mt-5">
+            <ItemDetailsAllReviews itemId={id}/>
           </Col>
         </Row>
       </Container>
