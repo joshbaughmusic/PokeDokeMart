@@ -15,7 +15,7 @@ import {
   fetchItemsByCategoryId,
 } from '../../../../managers/ItemsManager.js';
 
-export const ItemCategories = ({ setAllItems, getAllItems }) => {
+export const ItemCategories = ({ setAllItems }) => {
   const [categories, setCategories] = useState();
   const [open, setOpen] = useState();
   const toggle = (id) => {
@@ -37,10 +37,6 @@ export const ItemCategories = ({ setAllItems, getAllItems }) => {
   const handleCategorySelect = (e) => {
       fetchItemsByCategoryId(e.target.value).then(setAllItems);
   };
-
-  const handleReset = () => {
-    getAllItems();
-  }
 
   if (!categories) {
     return (
@@ -91,7 +87,6 @@ export const ItemCategories = ({ setAllItems, getAllItems }) => {
                     />
                   </FormGroup>
                 ))}
-                <Button onClick={handleReset}>Reset</Button>
               </Form>
             </AccordionBody>
           </AccordionItem>

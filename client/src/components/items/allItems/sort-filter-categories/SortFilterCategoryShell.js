@@ -1,9 +1,14 @@
-import { Container } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 import { ItemSearch } from './ItemSearch.js';
 import { ItemSort } from './ItemSort.js';
 import { ItemCategories } from './ItemCategories.js';
 
 export const SortFilterCategoryShell = ({ setAllItems, getAllItems, allItems }) => {
+
+  const handleReset = () => {
+    getAllItems();
+  };
+  
   return (
     <>
       <div
@@ -24,6 +29,7 @@ export const SortFilterCategoryShell = ({ setAllItems, getAllItems, allItems }) 
           setAllItems={setAllItems}
           getAllItems={getAllItems}
         />
+        <Button onClick={handleReset}>Reset</Button>
       </div>
     </>
   );

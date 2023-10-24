@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import "./sortFilterCategory.css"
 
-export const ItemSearch = ({ allItems, setAllItems }) => {
+export const ItemSearch = ({ allItems }) => {
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate()
   const handleSearch = (e) => {

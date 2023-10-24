@@ -30,7 +30,7 @@ const sortValues = [
   },
 ];
 
-export const ItemSort = ({ setAllItems, allItems, getAllItems }) => {
+export const ItemSort = ({ setAllItems, allItems }) => {
   const [open, setOpen] = useState();
   const toggle = (id) => {
     if (open === id) {
@@ -51,10 +51,6 @@ export const ItemSort = ({ setAllItems, allItems, getAllItems }) => {
     } else if (e.target.value === 'plth') {
       setAllItems(copy.sort((a, b) => a.cost - b.cost));
     }
-  };
-
-  const handleReset = () => {
-    getAllItems();
   };
 
   return (
@@ -88,8 +84,6 @@ export const ItemSort = ({ setAllItems, allItems, getAllItems }) => {
                     />
                   </FormGroup>
                 ))}
-
-                <Button onClick={handleReset}>Reset</Button>
               </Form>
             </AccordionBody>
           </AccordionItem>
