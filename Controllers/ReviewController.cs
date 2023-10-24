@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -84,5 +85,28 @@ public class ReviewController : ControllerBase
         }
 
         return Ok(foundReview);
+    }
+
+    [HttpPost]
+    // [Authorize]
+    public IActionResult CreateNewReview(Review incomingReview)
+    {
+        var loggedInUser = _dbContext
+             .UserProfiles
+             .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+        Review newReview = new()
+        {
+            UserProfileId = loggedInUser.Id,
+            ItemId = incomingReview.ItemId,
+            Rating = incomingReview.Rating,
+            Body = incomingReview.Body,
+            Date = DateTime.Now
+        };
+
+        _dbContext.Reviews.Add(newReview);
+        _dbContext.SaveChanges();
+
+        return Created($"/api/review/{newReview.Id}", newReview);
     }
 }

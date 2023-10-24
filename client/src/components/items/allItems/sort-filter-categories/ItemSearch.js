@@ -37,11 +37,15 @@ export const ItemSearch = ({ allItems }) => {
                 backgroundColor: 'white',
                 color: 'black',
                 width: '100%',
+                boxShadow: '8px 8px 20px rgba(0, 0, 0, 1)'
               }}
             >
               {searchResults.length > 0
                 ? searchResults.map((i, index) => (
-                    <p className='searchResultItem' onClick={() => navigate(`/items/${i.id}`)}>
+                    <p
+                      className="searchResultItem"
+                      onClick={() => navigate(`/items/${i.id}`)}
+                    >
                       {i.name}
                     </p>
                   ))

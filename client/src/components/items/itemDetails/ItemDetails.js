@@ -6,7 +6,7 @@ import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
 import { Cart } from '../../cart/Cart.js';
 import { ItemDetailsAllReviews } from '../../reviews/ItemDetailsAllReviews.js';
 
-export const ItemDetails = () => {
+export const ItemDetails = ({ loggedInUser }) => {
   const [item, setItem] = useState();
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
@@ -115,7 +115,7 @@ export const ItemDetails = () => {
         </Row>
         <Row>
           <Col className="mt-5">
-            <ItemDetailsAllReviews itemId={id}/>
+            <ItemDetailsAllReviews itemId={id} loggedInUser={loggedInUser} />
           </Col>
         </Row>
       </Container>
