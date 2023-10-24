@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { fetchCurrentUserProfile } from '../../managers/ProfileManager.js';
-import { Button, Col, Container, Row, Spinner } from 'reactstrap';
+import { Col, Container, Row, Spinner } from 'reactstrap';
 import { MyOrders } from './MyOrders.js';
 import { EditUserDetails } from './EditUserDetails.js';
+import { ProfileAllReviews } from '../reviews/ProfileAllReviews.js';
 
-export const Profile = () => {
+export const Profile = ({ loggedInUser }) => {
   const [profile, setProfile] = useState();
 
   const getCurrentUserProfile = () => [
@@ -45,12 +46,12 @@ export const Profile = () => {
                   getCurrentUserProfile={getCurrentUserProfile}
                 />
               </div>
-              <div className="border border-light">
+              <Container className="border border-light ">
                 <p>{profile.email}</p>
                 <p>{profile.address}</p>
                 <p>{profile.city.name}</p>
                 <p>{profile.region.name}</p>
-              </div>
+              </Container>
             </div>
           </Col>
           <Col>
@@ -64,9 +65,7 @@ export const Profile = () => {
         </Row>
         <Row>
           <Col>
-            <div className="mt-5 border border-light">
-              My Reviews placeholder
-            </div>
+            <ProfileAllReviews loggedInUser={loggedInUser}/>
           </Col>
         </Row>
       </Container>

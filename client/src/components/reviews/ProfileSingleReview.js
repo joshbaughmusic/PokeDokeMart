@@ -8,23 +8,41 @@ import {
 } from 'reactstrap';
 import { dateFormatter } from '../utilities/dateFormatter.js';
 import { ConvertRatingToIcons } from '../utilities/CovertRatingToIcons.js';
-import { ItemDetailsEditReview } from './ItemDetailsEditReview.js';
 import { fetchDeleteReview } from '../../managers/ReviewManager.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ProfileEditReview } from './ProfileEditReview.js';
+import { fetchSingleItem } from '../../managers/ItemsManager.js';
+import { useNavigate } from 'react-router-dom';
+import "./ProfileSingleReview.css"
 
-export const ItemDetailsSingleReview = ({
+export const ProfileSingleReview = ({
   review,
   loggedInUser,
-  getAllReviewsByItem,
+  getAllReviewsByUser,
 }) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+  const navigate = useNavigate()
+  const [item, setItem] = useState();
+
+  const getSingleItem = () => {
+    fetchSingleItem(review.itemId).then(setItem);
+  };
+
+  useEffect(() => {
+    getSingleItem();
+  }, []);
 
   const handleDelete = () => {
     fetchDeleteReview(review.id).then(() => {
-      getAllReviewsByItem();
+      getAllReviewsByUser();
+      toggle();
     });
   };
+
+  if(!item) {
+    return null
+  }
 
   return (
     <>
@@ -59,32 +77,29 @@ export const ItemDetailsSingleReview = ({
           </Button>
         </ModalFooter>
       </Modal>
+
       <Container className="mt-4 border">
+        <div className='d-flex align-items-center gap-1 my-3'>
+          <h5 className='profile_review_name_link' onClick={() => navigate(`/items/${item.id}`)}>{item.name}</h5>
+          <img
+            src={item.image}
+            alt=""
+          />
+        </div>
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex gap-1 align-items-center">
             Rating: <ConvertRatingToIcons rating={review.rating} />
           </div>
           <div className="d-flex gap-3 align-items-center">
             <div>{dateFormatter(review.date)}</div>
-            <div>{`${review.userProfile.firstName} ${review.userProfile.lastName}`}</div>
-            <img
-              src={review.userProfile.profilePictureUrl}
-              alt=""
-              style={{
-                width: '30px',
-                height: '30px',
-                objectFit: 'cover',
-              }}
-              className="my-3"
-            />
           </div>
         </div>
         <div className="my-3">{`"${review.body}"`}</div>
         {review.userProfileId === loggedInUser.id ? (
           <>
-            <ItemDetailsEditReview
+            <ProfileEditReview
               review={review}
-              getAllReviewsByItem={getAllReviewsByItem}
+              getAllReviewsByUser={getAllReviewsByUser}
             />
             <Button
               className="rounded-0"

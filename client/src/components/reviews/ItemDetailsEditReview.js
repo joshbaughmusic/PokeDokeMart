@@ -13,7 +13,7 @@ import {
 import { PokeRating } from '../utilities/PokeRating.js';
 import { fetchUpdateReview } from '../../managers/ReviewManager.js';
 
-export const EditReview = ({ review, getAllReviewsByItem }) => {
+export const ItemDetailsEditReview = ({ review, getAllReviewsByItem }) => {
   const [updatedReviewBody, setUpdatedReviewBody] = useState(review.body);
   const [rating, setRating] = useState(review.rating);
 
