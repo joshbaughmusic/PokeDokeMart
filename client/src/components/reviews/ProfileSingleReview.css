@@ -1,0 +1,5 @@
+.profile_review_name_link:hover {
+    color: lightgrey;
+    cursor: pointer;
+    transition: 0.2s;
+}
