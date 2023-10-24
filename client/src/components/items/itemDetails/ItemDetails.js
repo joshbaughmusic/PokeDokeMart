@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { fetchSingleItem } from '../../../managers/ItemsManager.js';
 import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
-import { Cart } from '../../cart/Cart.js';
 import { ItemDetailsAllReviews } from '../../reviews/ItemDetailsAllReviews.js';
+import { AlsoConsiderSection } from '../alsoConsider/AlsoConsiderSection.js';
 
 export const ItemDetails = ({ loggedInUser }) => {
   const [item, setItem] = useState();
@@ -19,7 +19,7 @@ export const ItemDetails = ({ loggedInUser }) => {
 
   useEffect(() => {
     getSingleItem();
-  }, []);
+  }, [id]);
 
   const handleAddToCart = () => {
     const newItemObj = {
@@ -71,6 +71,7 @@ export const ItemDetails = ({ loggedInUser }) => {
           <Col className="d-flex flex-column align-content-center mt-5">
             <div className="item-heading">
               <h1>{item.name}</h1>
+              {item.move ? <div>Move: {item.move.name}</div> : ''}
               <p className="fs-4">P{item.cost}</p>
             </div>
             <div>
@@ -104,18 +105,21 @@ export const ItemDetails = ({ loggedInUser }) => {
             ) : (
               <Button
                 onClick={() => handleAddToCart()}
-                className="mt-5 rounded-0"
+                className="mt-3 rounded-0"
                 style={{ width: '40%' }}
               >
                 Add to cart
               </Button>
             )}
-            <div className="mt-5">Also consider section placeholder</div>
+            <AlsoConsiderSection item={item} />
           </Col>
         </Row>
         <Row>
           <Col className="mt-5">
-            <ItemDetailsAllReviews itemId={id} loggedInUser={loggedInUser} />
+            <ItemDetailsAllReviews
+              itemId={id}
+              loggedInUser={loggedInUser}
+            />
           </Col>
         </Row>
       </Container>

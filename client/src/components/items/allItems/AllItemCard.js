@@ -4,7 +4,7 @@ import {
   CardSubtitle,
   CardTitle,
 } from 'reactstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 export const AllItemCard = ({ item, index }) => {
@@ -31,6 +31,12 @@ export const AllItemCard = ({ item, index }) => {
         <CardBody>
           <CardTitle tag="h5">
             <span>{item.name}</span>
+            {
+              item.move ?
+              <div className='small' >{item.move.name}</div>
+              :
+              ''
+            }
           </CardTitle>
           <CardSubtitle
             className="mb-2"
