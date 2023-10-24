@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -60,5 +61,72 @@ public class ItemController : ControllerBase
         }
 
         return Ok(foundItem);
+    }
+
+    [HttpGet("{id}/related")]
+    // [Authorize]
+    public IActionResult GetRelatedItems(int id, int amount)
+    {
+        Item foundItem = _dbContext.Items
+        .Include(i => i.Category)
+        .Include(i => i.Move)
+        .SingleOrDefault(i => i.Id == id);
+
+        if (foundItem == null)
+        {
+            return NotFound();
+        }
+
+        int amountToReturn = 0;
+
+        if (amount == 0)
+        {
+            amountToReturn = 3;
+        }
+        else
+        {
+            amountToReturn = amount;
+        }
+
+        List<Item> relatedItems = new List<Item>();
+
+        if (foundItem.CategoryId == 11)
+        {
+            relatedItems = _dbContext.Items
+            .Include(i => i.Category)
+            .Include(i => i.Move)
+            .ThenInclude(m => m.DamageClass)
+            .Where(i => i.Move.PokeTypeId == foundItem.Move.PokeTypeId && i.CategoryId == foundItem.CategoryId && i.Id != foundItem.Id)
+            .ToList();
+        }
+        else if (foundItem.CategoryId == 1 || foundItem.CategoryId == 2)
+        {
+            relatedItems = _dbContext.Items
+            .Include(i => i.Category)
+            .Where(i => i.CategoryId == 1 || i.CategoryId == 2 && i.Id != foundItem.Id)
+            .ToList();
+        }
+        else
+        {
+            relatedItems = _dbContext.Items
+            .Include(i => i.Category)
+            .Where(i => i.CategoryId == foundItem.CategoryId && i.Id != foundItem.Id)
+            .ToList();
+        }
+
+        var random = new Random();
+        int n = relatedItems.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = random.Next(n + 1);
+            var temp = relatedItems[k];
+            relatedItems[k] = relatedItems[n];
+            relatedItems[n] = temp;
+        }
+
+        var randomizedSubset = relatedItems.Take(amountToReturn).ToList();
+
+        return Ok(randomizedSubset);
     }
 }
