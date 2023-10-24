@@ -89,7 +89,7 @@ public class OrderController : ControllerBase
              
         var newOrder = new Order()
         {
-            Date = new DateTime(),
+            Date = DateTime.Now,
             UserProfileId = _dbContext.UserProfiles.Single(up => up.Id == loggedInUser.Id).Id,
             FirstName = incomingOrder.FirstName,
             MiddleInitial = incomingOrder.MiddleInitial,

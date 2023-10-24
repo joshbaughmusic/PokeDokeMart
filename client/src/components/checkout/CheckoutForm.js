@@ -8,20 +8,20 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
 } from 'reactstrap';
 import { fetchAllRegions } from '../../managers/RegionManager.js';
 import { fetchCitiesByRegionId } from '../../managers/CityManager.js';
 import { fetchCreateNewOrder } from '../../managers/OrderManager.js';
 import { useNavigate } from 'react-router-dom';
+import { useShoppingCart } from '../../context/ShoppingCartContext.js';
 
 export const CheckoutForm = ({ cartItems }) => {
   const [regions, setRegions] = useState();
   const [cities, setCities] = useState();
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-  const [newOrderUrl, setNewOrderUrl] = useState()
-  const navigate = useNavigate()
+  const [newOrderUrl, setNewOrderUrl] = useState();
+  const navigate = useNavigate();
   const [info, setInfo] = useState({
     firstName: '',
     middleInitial: '',
@@ -34,6 +34,7 @@ export const CheckoutForm = ({ cartItems }) => {
     cardYear: '',
     cardCVC: '',
   });
+  const { clearCart } = useShoppingCart();
 
   const getAllRegions = () => {
     fetchAllRegions().then(setRegions);
@@ -65,16 +66,16 @@ export const CheckoutForm = ({ cartItems }) => {
       return {
         itemId: i.id,
         quantity: i.quantity,
-        item: i
+        item: i,
       };
     });
     const orderObject = {
       ...info,
       orderItems: newOrderItems,
     };
-    fetchCreateNewOrder(orderObject).then(res => {
-        toggle();
-        setNewOrderUrl(`/order/${res.id}`);
+    fetchCreateNewOrder(orderObject).then((res) => {
+      toggle();
+      setNewOrderUrl(`/order/${res.id}`);
     });
   };
 
@@ -87,7 +88,10 @@ export const CheckoutForm = ({ cartItems }) => {
         <Modal
           isOpen={modal}
           toggle={toggle}
-          onClosed={() => navigate(newOrderUrl)}
+          onClosed={() => {
+            navigate(newOrderUrl);
+            clearCart();
+          }}
           className="rounded-0"
         >
           <ModalHeader toggle={toggle}>Success!</ModalHeader>

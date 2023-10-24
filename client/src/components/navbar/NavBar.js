@@ -12,7 +12,6 @@ import {
 } from 'reactstrap';
 import { logout } from '../../managers/authManager';
 import "./NavBar.css"
-import PDMNav from '../../images/PDMNav.png';
 import { Cart } from '../cart/Cart.js';
 
 
@@ -35,11 +34,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
           to="/"
         >
           PokeDokeMart
-          {/* <img
-            className="w-50 m-2"
-            src={PDMNav}
-            alt=""
-          /> */}
+        
         </NavbarBrand>
         {loggedInUser ? (
           <>
