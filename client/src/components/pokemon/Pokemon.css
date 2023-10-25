@@ -1,0 +1,16 @@
+.myPokemon_listItem:hover {
+  color: lightgray;
+  transition: 0.2s;
+}
+
+.pokemon-edit-icon:hover {
+  cursor: pointer;
+  color: lightgray;
+  transition: 0.2s;
+}
+
+.pokemon-delete-icon:hover {
+  cursor: pointer;
+  color: lightgray;
+  transition: 0.2s;
+}

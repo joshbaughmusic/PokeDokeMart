@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FiEdit } from 'react-icons/fi';
 import {
   Button,
   Modal,
@@ -11,42 +12,44 @@ import {
   Input,
   Alert,
 } from 'reactstrap';
-import { fetchCreateNewUserPokemon } from '../../managers/PokemonManager.js';
+import { fetchUpdateUserPokemon } from '../../managers/PokemonManager.js';
 
-export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
-  const [newUserPokemon, setNewUserPokemon] = useState({
-    nickName: '',
-    pokemonId: null,
-    level: null,
+export const EditPokemon = ({ getMyPokemon, allPokemon, userPokemon }) => {
+  const [updatedUserPokemon, setUpdatedUserPokemon] = useState({
+    id: userPokemon.id,
+    userProfileId: userPokemon.userProfileId,
+    nickName: userPokemon.nickName,
+    pokemonId: userPokemon.pokemonId,
+    level: userPokemon.level,
   });
   const [visibleError, setVisibleError] = useState(false);
   const [visibleSuccess, setVisibleSuccess] = useState(false);
-  const [disabled, setDisabled] = useState(false);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+  const [disabled, setDisabled] = useState(false);
   const onDismissError = () => setVisibleError(false);
 
   const handleChange = (e) => {
-    setNewUserPokemon({
-      ...newUserPokemon,
+    setUpdatedUserPokemon({
+      ...updatedUserPokemon,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = () => {
     if (
-      newUserPokemon.nickName &&
-      newUserPokemon.pokemonId &&
-      parseInt(newUserPokemon.level) > 0 &&
-      parseInt(newUserPokemon.level) <= 100
+      updatedUserPokemon.nickName &&
+      updatedUserPokemon.pokemonId &&
+      parseInt(updatedUserPokemon.level) > 0 &&
+      parseInt(updatedUserPokemon.level) <= 100
     ) {
-      fetchCreateNewUserPokemon(newUserPokemon).then(() => {
+      fetchUpdateUserPokemon(updatedUserPokemon).then(() => {
         getMyPokemon();
-        setDisabled(true)
         setVisibleSuccess(true);
+        setDisabled(true);
         setTimeout(() => {
-            toggle();
-            setDisabled(false)
+          toggle();
+          setDisabled(false);
         }, 2000);
       });
     } else {
@@ -56,31 +59,27 @@ export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
 
   return (
     <>
-      {myPokemon.length === 6 ? (
-        <div>Your party is full!</div>
-      ) : (
-        <Button
+      <div>
+        <FiEdit
+          className="pokemon-edit-icon"
           onClick={toggle}
-          className="rounded-0 mb-2"
-        >
-          Add Pokemon
-        </Button>
-      )}
+        />
+      </div>
       <Modal
         isOpen={modal}
         toggle={toggle}
         className="rounded-0"
+        backdrop="static"
         onClosed={() => {
           setVisibleSuccess(false);
           setVisibleError(false);
         }}
-        backdrop="static"
       >
         <ModalHeader
           toggle={toggle}
           close={<span></span>}
         >
-          Add a pokemon to your party:
+          Edit Pokemon
         </ModalHeader>
         <ModalBody>
           <Form>
@@ -88,8 +87,9 @@ export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
               <Label>Nickname</Label>
               <Input
                 name="nickName"
-                maxLength="20"
                 onChange={handleChange}
+                value={updatedUserPokemon.nickName}
+                maxLength="20"
               />
             </FormGroup>
             <FormGroup>
@@ -98,6 +98,7 @@ export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
                 type="select"
                 name="pokemonId"
                 onChange={handleChange}
+                value={updatedUserPokemon.pokemonId}
               >
                 <option value="null">-species-</option>
                 {allPokemon.map((p, index) => (
@@ -118,6 +119,7 @@ export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
                 min="1"
                 name="level"
                 onChange={handleChange}
+                value={updatedUserPokemon.level}
               />
             </FormGroup>
           </Form>
@@ -134,7 +136,7 @@ export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
             isOpen={visibleSuccess}
             className="rounded-0 mt-3"
           >
-            Pokemon added successfully!
+            Pokemon edited successfully!
           </Alert>
         </ModalBody>
         <ModalFooter>
@@ -159,10 +161,12 @@ export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
               disabled
               onClick={() => {
                 toggle();
-                setNewUserPokemon({
-                  nickName: '',
-                  pokemonId: null,
-                  level: null,
+                setUpdatedUserPokemon({
+                  id: userPokemon.id,
+                  nickName: userPokemon.nickName,
+                  userProfileId: userPokemon.userProfileId,
+                  pokemonId: userPokemon.pokemonId,
+                  level: userPokemon.level,
                 });
               }}
               className="rounded-0"
@@ -173,10 +177,12 @@ export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
             <Button
               onClick={() => {
                 toggle();
-                setNewUserPokemon({
-                  nickName: '',
-                  pokemonId: null,
-                  level: null,
+                setUpdatedUserPokemon({
+                  id: userPokemon.id,
+                  nickName: userPokemon.nickName,
+                  userProfileId: userPokemon.userProfileId,
+                  pokemonId: userPokemon.pokemonId,
+                  level: userPokemon.level,
                 });
               }}
               className="rounded-0"

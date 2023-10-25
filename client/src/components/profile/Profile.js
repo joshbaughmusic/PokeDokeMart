@@ -27,7 +27,7 @@ export const Profile = ({ loggedInUser }) => {
           {profile.firstName} {profile.lastName}
         </h1>
         <Row>
-          <Col className="d-flex gap-5">
+          <Col className="d-flex gap-5 align-items-center">
             <div>
               <img
                 src={profile.profilePictureUrl}
@@ -36,6 +36,7 @@ export const Profile = ({ loggedInUser }) => {
                   width: '200px',
                   height: '200px',
                   objectFit: 'cover',
+                  border: 'solid lightgrey 3px'
                 }}
               />
             </div>
@@ -47,13 +48,13 @@ export const Profile = ({ loggedInUser }) => {
                   getCurrentUserProfile={getCurrentUserProfile}
                 />
               </div>
-              <Container className="border border-light p-3 ">
+              <div className='pt-3'>
                 <p>{profile.email}</p>
                 <p>{profile.address}</p>
                 <p>
                   {profile.city.name}, {profile.region.name}
                 </p>
-              </Container>
+              </div>
             </div>
           </Col>
           <Col>

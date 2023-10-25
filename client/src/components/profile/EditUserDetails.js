@@ -30,6 +30,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
   const [regions, setRegions] = useState();
   const [visibleError, setVisibleError] = useState(false);
   const [visibleSuccess, setVisibleSuccess] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const onDismissError = () => setVisibleError(false);
@@ -70,9 +71,11 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
     ) {
       fetchUpdateUserProfile(updatedUserProfile).then(() => {
         getCurrentUserProfile();
+        setDisabled(true)
         setVisibleSuccess(true);
         setTimeout(() => {
           toggle();
+          setDisabled(false)
         }, 2000);
       });
     } else {
@@ -100,7 +103,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
           setVisibleSuccess(false);
           setVisibleError(false);
         }}
-        backdrop='static'
+        backdrop="static"
       >
         <ModalHeader
           toggle={toggle}
@@ -218,15 +221,30 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
           </Alert>
         </ModalBody>
         <ModalFooter>
+          {
+            disabled ?
+          <Button
+          disabled
+            onClick={handleSubmit}
+            className="rounded-0"
+          >
+            Submit
+          </Button>
+:
           <Button
             onClick={handleSubmit}
             className="rounded-0"
           >
             Submit
           </Button>
+
+          }
+          {
+            disabled ?
           <Button
+          disabled
             onClick={() => {
-              toggle()
+              toggle();
               setUpdatedUserProfile({
                 email: profile.email,
                 firstName: profile.firstName,
@@ -240,6 +258,25 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
           >
             Cancel
           </Button>
+          :
+          <Button
+            onClick={() => {
+              toggle();
+              setUpdatedUserProfile({
+                email: profile.email,
+                firstName: profile.firstName,
+                lastName: profile.lastName,
+                address: profile.address,
+                cityId: profile.cityId,
+                regionId: profile.regionId,
+              });
+            }}
+            className="rounded-0"
+          >
+            Cancel
+          </Button>
+
+          }
         </ModalFooter>
       </Modal>
     </>
