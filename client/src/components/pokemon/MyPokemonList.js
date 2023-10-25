@@ -3,9 +3,11 @@ import { Container, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
 import { fetchMyPokemon } from '../../managers/PokemonManager.js';
 import { FiEdit } from 'react-icons/fi';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 export const MyPokemonList = () => {
   const [myPokemon, setMyPokemon] = useState();
+  const navigate = useNavigate()
 
   const getMyPokemon = () => {
     fetchMyPokemon().then(setMyPokemon);
@@ -33,7 +35,7 @@ export const MyPokemonList = () => {
                   height: '30px',
                 }}
               />
-              <div>
+              <div role="button" onClick={() => navigate(`/mypokemon/${userPokemon.id}`)}>
                 {userPokemon.nickName}
                 {/* <div className="small">{userPokemon.pokemon.name}</div> */}
               </div>
