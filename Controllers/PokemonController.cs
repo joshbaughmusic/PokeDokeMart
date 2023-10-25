@@ -89,4 +89,37 @@ public class PokemonController : ControllerBase
 
         return Ok(foundUserPokemon);
     }
+
+    [HttpPost]
+    // [Authorize]
+    public IActionResult CreateNewUserPokemon(UserPokemon incomingUserPokemon)
+    {
+
+        var loggedInUser = _dbContext
+             .UserProfiles
+             .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        
+        List<UserPokemon> currentUserPokemon = _dbContext.UserPokemon.Where( up => up.UserProfileId == loggedInUser.Id).ToList();
+
+        if (incomingUserPokemon.Level > 0 && incomingUserPokemon.Level <= 100 && currentUserPokemon.Count <= 6)
+        {
+            UserPokemon newUserPokemon = new()
+            {
+                NickName = incomingUserPokemon.NickName,
+                UserProfileId = loggedInUser.Id,
+                PokemonId = incomingUserPokemon.PokemonId,
+                Level = incomingUserPokemon.Level
+            };
+
+            _dbContext.UserPokemon.Add(newUserPokemon);
+            _dbContext.SaveChanges();
+
+            return Created($"/api/pokemon/{newUserPokemon.Id}", newUserPokemon);
+        }
+        else
+        {
+            return BadRequest();
+        }
+
+    }
 }

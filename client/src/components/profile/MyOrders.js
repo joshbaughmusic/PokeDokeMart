@@ -6,6 +6,7 @@ export const MyOrders = ({ orders }) => {
   return (
     <>
       <Container className="mt-5">
+        <h4 className='mb-3'>My Orders:</h4>
         <Table>
           <thead>
             <th>Order ID</th>
