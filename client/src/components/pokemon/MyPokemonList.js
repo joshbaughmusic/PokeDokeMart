@@ -4,11 +4,12 @@ import { fetchMyPokemon } from '../../managers/PokemonManager.js';
 import { FiEdit } from 'react-icons/fi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
-import "./MyPokemonList.css"
+import './MyPokemonList.css';
+import { AddPokemon } from './AddPokemon.js';
 
 export const MyPokemonList = () => {
   const [myPokemon, setMyPokemon] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getMyPokemon = () => {
     fetchMyPokemon().then(setMyPokemon);
@@ -24,10 +25,19 @@ export const MyPokemonList = () => {
   return (
     <>
       <Container>
-        <h4>My Pokemon</h4>
+        <div className="d-flex justify-content-between align-items-baseline">
+          <h4>My Pokemon</h4>
+          <AddPokemon
+            myPokemon={myPokemon}
+            getMyPokemon={getMyPokemon}
+          />
+        </div>
         <ListGroup>
           {myPokemon.map((userPokemon, index) => (
-            <ListGroupItem className="text-bg-dark rounded-0 d-flex justify-content-between align-items-center">
+            <ListGroupItem
+              className="text-bg-dark rounded-0 d-flex justify-content-between align-items-center"
+              key={index}
+            >
               <img
                 src={userPokemon.pokemon.image}
                 alt=""
@@ -36,7 +46,11 @@ export const MyPokemonList = () => {
                   height: '30px',
                 }}
               />
-              <div role="button" className='myPokemon_listItem' onClick={() => navigate(`/mypokemon/${userPokemon.id}`)}>
+              <div
+                role="button"
+                className="myPokemon_listItem"
+                onClick={() => navigate(`/mypokemon/${userPokemon.id}`)}
+              >
                 {userPokemon.nickName}
                 {/* <div className="small">{userPokemon.pokemon.name}</div> */}
               </div>
