@@ -15,7 +15,7 @@ export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
 
   useEffect(() => {
     getAllReviewsByItem();
-  }, []);
+  }, [itemId]);
 
   if (!allReviewsByItem) {
     return <Spinner />;
