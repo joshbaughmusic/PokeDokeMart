@@ -27,10 +27,7 @@ export const PokemonDetails = () => {
               src={userPokemon.pokemon.image}
               alt=""
             />
-            <ButtonGroup>
-              <Button className="rounded-0">Edit</Button>
-              <Button className="rounded-0">Delete</Button>
-            </ButtonGroup>
+            
           </Col>
           <Col className="d-flex flex-column justify-content-center py-5">
             <h1>{userPokemon.nickName}</h1>

@@ -78,7 +78,7 @@ export const ProfileSingleReview = ({
         </ModalFooter>
       </Modal>
 
-      <Container className="mt-4 border">
+      <Container className="mt-4 border px-3 pb-3">
         <div className='d-flex align-items-center gap-1 my-3'>
           <h5 className='profile_review_name_link' onClick={() => navigate(`/items/${item.id}`)}>{item.name}</h5>
           <img

@@ -1,25 +1,34 @@
 import { useEffect, useState } from 'react';
 import { Container, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
-import { fetchMyPokemon } from '../../managers/PokemonManager.js';
-import { FiEdit } from 'react-icons/fi';
+import {
+  fetchAllPokemon,
+  fetchMyPokemon,
+} from '../../managers/PokemonManager.js';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
-import './MyPokemonList.css';
+import './Pokemon.css';
 import { AddPokemon } from './AddPokemon.js';
+import { EditPokemon } from './EditPokemon.js';
 
 export const MyPokemonList = () => {
   const [myPokemon, setMyPokemon] = useState();
+  const [allPokemon, setAllPokemon] = useState();
   const navigate = useNavigate();
 
   const getMyPokemon = () => {
     fetchMyPokemon().then(setMyPokemon);
   };
 
+  const getAllPokemon = () => {
+    fetchAllPokemon().then(setAllPokemon);
+  };
+
   useEffect(() => {
     getMyPokemon();
+    getAllPokemon();
   }, []);
 
-  if (!myPokemon) {
+  if (!myPokemon || !allPokemon) {
     return <Spinner />;
   }
   return (
@@ -30,6 +39,7 @@ export const MyPokemonList = () => {
           <AddPokemon
             myPokemon={myPokemon}
             getMyPokemon={getMyPokemon}
+            allPokemon={allPokemon}
           />
         </div>
         <ListGroup>
@@ -57,7 +67,11 @@ export const MyPokemonList = () => {
               <div>Lvl. {userPokemon.level}</div>
               <div className="d-flex gap-1">
                 <div>
-                  <FiEdit />
+                  <EditPokemon
+                    userPokemon={userPokemon}
+                    allPokemon={allPokemon}
+                    getMyPokemon={getMyPokemon}
+                  />
                 </div>
                 <div>
                   <AiOutlineClose />

@@ -98,8 +98,8 @@ public class PokemonController : ControllerBase
         var loggedInUser = _dbContext
              .UserProfiles
              .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
-        
-        List<UserPokemon> currentUserPokemon = _dbContext.UserPokemon.Where( up => up.UserProfileId == loggedInUser.Id).ToList();
+
+        List<UserPokemon> currentUserPokemon = _dbContext.UserPokemon.Where(up => up.UserProfileId == loggedInUser.Id).ToList();
 
         if (incomingUserPokemon.Level > 0 && incomingUserPokemon.Level <= 100 && currentUserPokemon.Count <= 6)
         {
@@ -115,6 +115,35 @@ public class PokemonController : ControllerBase
             _dbContext.SaveChanges();
 
             return Created($"/api/pokemon/{newUserPokemon.Id}", newUserPokemon);
+        }
+        else
+        {
+            return BadRequest();
+        }
+
+    }
+
+    [HttpPut]
+    // [Authorize]
+    public IActionResult UpdateUserPokemon(UserPokemon incomingUserPokemon)
+    {
+        UserPokemon foundUserPokemon = _dbContext.UserPokemon.SingleOrDefault(up => up.Id == incomingUserPokemon.Id);
+
+        if (foundUserPokemon == null)
+        {
+            return NotFound();
+        }
+
+        if (incomingUserPokemon.Level > 0 && incomingUserPokemon.Level <= 100)
+        {
+
+            foundUserPokemon.NickName = incomingUserPokemon.NickName;
+            foundUserPokemon.PokemonId = incomingUserPokemon.PokemonId;
+            foundUserPokemon.Level = incomingUserPokemon.Level;
+
+            _dbContext.SaveChanges();
+
+            return NoContent();
         }
         else
         {

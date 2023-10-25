@@ -19,3 +19,11 @@ export const fetchCreateNewUserPokemon = (userPokemon) => {
     body: JSON.stringify(userPokemon),
   }).then((res) => res.json());
 };
+
+export const fetchUpdateUserPokemon = (userPokemon) => {
+  return fetch(_apiUrl, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userPokemon),
+  })
+};
