@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -19,7 +20,7 @@ public class PokemonController : ControllerBase
     // [Authorize]
     public IActionResult GetAllPokemon()
     {
-            return Ok(_dbContext.Pokemon);
+        return Ok(_dbContext.Pokemon);
     }
 
     [HttpGet("{id}")]
@@ -43,5 +44,22 @@ public class PokemonController : ControllerBase
         }
 
         return Ok(foundPokemon);
+    }
+
+    [HttpGet("mypokemon")]
+    // [Authorize]
+    public IActionResult GetMyPokemon()
+    {
+        var loggedInUser = _dbContext
+             .UserProfiles
+             .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+        List<UserPokemon> myPokemon = _dbContext.UserPokemon
+        .Include(up => up.Pokemon)
+        .Where(up => up.UserProfileId == loggedInUser.Id)
+        .ToList();
+
+        return Ok(myPokemon);
+
     }
 }
