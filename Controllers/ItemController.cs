@@ -129,4 +129,111 @@ public class ItemController : ControllerBase
 
         return Ok(randomizedSubset);
     }
+
+
+    [HttpGet("suggested/userpokemon/{id}")]
+    // [Authorize]
+    public IActionResult GetSuggestedItemsBySingleUserPokemon (int id, int amount)
+    {
+        UserPokemon foundUserPokemon = _dbContext.UserPokemon
+        .Include(up => up.Pokemon)
+        .ThenInclude(p => p.PokemonLearnableMoves)
+        .ThenInclude(plm => plm.Move)
+        .ThenInclude(m => m.PokeType)
+        .Include(up => up.Pokemon)
+        .ThenInclude(p => p.PokemonLearnableMoves)
+        .ThenInclude(plm => plm.Move)
+        .ThenInclude(m => m.DamageClass)
+        .Include(up => up.Pokemon)
+        .ThenInclude(p => p.PokemonTypes)
+        .ThenInclude(p => p.PokeType)
+        .SingleOrDefault(p => p.Id == id);
+
+
+        if (foundUserPokemon == null)
+        {
+            return NotFound();
+        }
+
+        int amountToReturn = 0;
+
+        if (amount == 0)
+        {
+            amountToReturn = 3;
+        }
+        else
+        {
+            amountToReturn = amount;
+        }
+
+        var random = new Random();
+
+        List<Item> relatedItems = new List<Item>();
+
+        List<Item> relatedTMs = new List<Item>();
+
+        foreach (PokemonLearnableMove plm in foundUserPokemon.Pokemon.PokemonLearnableMoves)
+        {
+            Item matchedTM = _dbContext.Items.FirstOrDefault(i => i.MoveId == plm.MoveId);
+
+            if (matchedTM != null)
+            {
+                relatedTMs.Add(matchedTM);
+            }
+        }
+
+        int t = relatedTMs.Count;
+        while (t > 1)
+        {
+            t--;
+            int k = random.Next(t + 1);
+            var temp = relatedTMs[k];
+            relatedTMs[k] = relatedTMs[t];
+            relatedTMs[t] = temp;
+        }
+
+        // adjust take number to control how many tms are included in the pool of suggested items to pick from ranadomly
+        var randomizedTMSubset = relatedTMs.Take(8).ToList();
+
+        relatedItems.AddRange(randomizedTMSubset);
+
+        List<Item> matchedOtherItems = new List<Item>();
+
+        if (foundUserPokemon.Level == 100)
+        {
+            matchedOtherItems = _dbContext.Items
+            .Where(i => i.Name == "Hyper Potion" || i.Name == "Max Potion" || i.Name == "Full Restore"  || i.Name == "Max Revive" || i.Name == "Max Ether" || i.Name == "Max Elixir").ToList();
+        }
+        else if (foundUserPokemon.Level < 100 && foundUserPokemon.Level >= 40)
+        {
+            matchedOtherItems = _dbContext.Items
+            .Where(i => i.Name == "Hyper Potion" || i.Name == "Max Potion" || i.Name == "Full Restore" || i.Name == "Max Revive" || i.Name == "Max Ether" || i.Name == "Max Elixir" || i.Name == "Full Heal" || i.Name == "Rare Candy").ToList();
+        } 
+        else if (foundUserPokemon.Level < 40 && foundUserPokemon.Level >= 20)
+        {
+            matchedOtherItems = _dbContext.Items
+            .Where(i => i.Name == "Super Potion" || i.Name == "Revive" || i.Name == "Lemonade" || i.Name == "Fresh Water" || i.Name == "Soda Pop" || i.Name == "Ether" || i.Name == "Elixir" || i.Name == "Moomoo Milk" || i.Name == "Full Heal" || i.Name == "Rare Candy").ToList();
+        }
+        else if (foundUserPokemon.Level < 20)
+        {
+            matchedOtherItems = _dbContext.Items
+            .Where(i => i.Name == "Potion" || i.Name == "Revive" || i.Name == "Fresh Water" || i.Name == "Full Heal" || i.Name == "Full Heal" || i.Name == "Ether" || i.Name == "Rare Candy" || i.Name == "Berry Juice").ToList();
+        }
+
+        relatedItems.AddRange(matchedOtherItems);
+
+        int n = relatedItems.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = random.Next(n + 1);
+            var temp = relatedItems[k];
+            relatedItems[k] = relatedItems[n];
+            relatedItems[n] = temp;
+        }
+
+        var randomizedSubset = relatedItems.Take(amountToReturn).ToList();
+
+        return Ok(randomizedSubset);
+    }
 }
