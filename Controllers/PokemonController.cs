@@ -23,28 +23,29 @@ public class PokemonController : ControllerBase
         return Ok(_dbContext.Pokemon);
     }
 
-    [HttpGet("{id}")]
-    // [Authorize]
-    public IActionResult GetSinglePokemon(int id)
-    {
-        Pokemon foundPokemon = _dbContext.Pokemon
-        .Include(p => p.PokemonLearnableMoves)
-        .ThenInclude(plm => plm.Move)
-        .ThenInclude(m => m.PokeType)
-        .Include(p => p.PokemonLearnableMoves)
-        .ThenInclude(plm => plm.Move)
-        .ThenInclude(m => m.DamageClass)
-        .Include(p => p.PokemonTypes)
-        .ThenInclude(pt => pt.PokeType)
-        .SingleOrDefault(o => o.Id == id);
+    // [HttpGet("{id}")]
+    // // [Authorize]
+    // public IActionResult GetSinglePokemon(int id)
+    // {
+    //     Pokemon foundPokemon = _dbContext.Pokemon
+    //     .Include(p => p.PokemonLearnableMoves)
+    //     .ThenInclude(plm => plm.Move)
+    //     .ThenInclude(m => m.PokeType)
+    //     .Include(p => p.PokemonLearnableMoves)
+    //     .ThenInclude(plm => plm.Move)
+    //     .ThenInclude(m => m.DamageClass)
+    //     .Include(p => p.PokemonTypes)
+    //     .ThenInclude(pt => pt.PokeType)
+    //     .SingleOrDefault(o => o.Id == id);
 
-        if (foundPokemon == null)
-        {
-            return NotFound();
-        }
+    //     if (foundPokemon == null)
+    //     {
+    //         return NotFound();
+    //     }
 
-        return Ok(foundPokemon);
-    }
+    //     return Ok(foundPokemon);
+    // }
+
 
     [HttpGet("mypokemon")]
     // [Authorize]
@@ -61,5 +62,31 @@ public class PokemonController : ControllerBase
 
         return Ok(myPokemon);
 
+    }
+
+    [HttpGet("mypokemon/{id}")]
+    // [Authorize]
+    public IActionResult GetSingleUserPokemon(int id)
+    {
+        UserPokemon foundUserPokemon = _dbContext.UserPokemon
+        .Include(up => up.Pokemon)
+        .ThenInclude(p => p.PokemonLearnableMoves)
+        .ThenInclude(plm => plm.Move)
+        .ThenInclude(m => m.PokeType)
+        .Include(up => up.Pokemon)
+        .ThenInclude(p => p.PokemonLearnableMoves)
+        .ThenInclude(plm => plm.Move)
+        .ThenInclude(m => m.DamageClass)
+        .Include(up => up.Pokemon)
+        .ThenInclude(p => p.PokemonTypes)
+        .ThenInclude(p => p.PokeType)
+        .SingleOrDefault(p => p.Id == id);
+
+        if (foundUserPokemon == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(foundUserPokemon);
     }
 }

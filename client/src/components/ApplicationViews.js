@@ -9,6 +9,7 @@ import { ItemDetails } from './items/itemDetails/ItemDetails.js';
 import { Checkout } from './checkout/Checkout.js';
 import { OrderDetails } from './orders/OrderDetails.js';
 import { Profile } from './profile/Profile.js';
+import { PokemonDetails } from './pokemon/PokemonDetails.js';
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -61,6 +62,14 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
               <Profile loggedInUser={loggedInUser} />
+            </AuthorizedRoute>
+          }
+        />
+        <Route
+          path="myPokemon/:id"
+          element={
+            <AuthorizedRoute loggedInUser={loggedInUser}>
+              <PokemonDetails loggedInUser={loggedInUser} />
             </AuthorizedRoute>
           }
         />
