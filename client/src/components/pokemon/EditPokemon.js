@@ -61,7 +61,7 @@ export const EditPokemon = ({ getMyPokemon, allPokemon, userPokemon }) => {
     <>
       <div>
         <FiEdit
-          className="pokemon-edit-icon"
+          className="pokemon-list-icon"
           onClick={toggle}
         />
       </div>

@@ -151,4 +151,22 @@ public class PokemonController : ControllerBase
         }
 
     }
+
+    [HttpDelete("{id}")]
+    // [Authorize]
+    public IActionResult DeleteUserPokemon(int id)
+    {
+        UserPokemon foundUserPokemon = _dbContext.UserPokemon.SingleOrDefault(up => up.Id == id);
+
+        if (foundUserPokemon == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.UserPokemon.Remove(foundUserPokemon);
+        _dbContext.SaveChanges();
+
+        return NoContent();
+
+    }
 }

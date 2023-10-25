@@ -4,11 +4,11 @@ import {
   fetchAllPokemon,
   fetchMyPokemon,
 } from '../../managers/PokemonManager.js';
-import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import './Pokemon.css';
 import { AddPokemon } from './AddPokemon.js';
 import { EditPokemon } from './EditPokemon.js';
+import { DeletePokemon } from './DeletePokemon.js';
 
 export const MyPokemonList = () => {
   const [myPokemon, setMyPokemon] = useState();
@@ -74,7 +74,7 @@ export const MyPokemonList = () => {
                   />
                 </div>
                 <div>
-                  <AiOutlineClose />
+                  <DeletePokemon getMyPokemon={getMyPokemon} userPokemon={userPokemon} />
                 </div>
               </div>
             </ListGroupItem>

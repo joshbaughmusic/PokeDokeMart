@@ -27,3 +27,9 @@ export const fetchUpdateUserPokemon = (userPokemon) => {
     body: JSON.stringify(userPokemon),
   })
 };
+
+export const fetchDeleteUserPokemon = (userPokemonId) => {
+  return fetch(`${_apiUrl}/${userPokemonId}`, {
+    method: 'DELETE',
+  })
+};
