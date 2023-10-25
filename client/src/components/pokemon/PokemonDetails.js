@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { fetchSingleUserPokemon } from '../../managers/PokemonManager.js';
 import { Button, ButtonGroup, Col, Container, Row, Spinner } from 'reactstrap';
 import { useEffect, useState } from 'react';
+import { SuggestedItemsPokeDetails } from '../items/suggestedItems/SuggestedItemsPokeDetails.js';
 
 export const PokemonDetails = () => {
   const [userPokemon, setUserPokemon] = useState();
@@ -27,7 +28,6 @@ export const PokemonDetails = () => {
               src={userPokemon.pokemon.image}
               alt=""
             />
-            
           </Col>
           <Col className="d-flex flex-column justify-content-center py-5">
             <h1>{userPokemon.nickName}</h1>
@@ -52,8 +52,8 @@ export const PokemonDetails = () => {
           </Col>
         </Row>
         <Row>
-          <Col className="text-center mt-5 border p-5">
-            suggested items by pokemon placeholder
+          <Col>
+            <SuggestedItemsPokeDetails userPokemon={userPokemon} />
           </Col>
         </Row>
       </Container>
