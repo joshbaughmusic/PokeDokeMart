@@ -34,3 +34,14 @@ export const fetchSuggestedItemsBySingleUserPokemon = (userPokemonId, amount = n
   return fetch(apiUrl).then((res) => res.json());
 };
 
+export const fetchSuggestedItemsByUser = (userId, amount = null) => {
+  let apiUrl = `${_apiUrl}/suggested/user/${userId}`;
+
+  // Check if the "amount" parameter is provided and add it to the URL if it's not null
+  if (amount !== null) {
+    apiUrl += `?amount=${amount}`;
+  }
+
+  return fetch(apiUrl).then((res) => res.json());
+};
+
