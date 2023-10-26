@@ -25,6 +25,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
     address: profile.address,
     cityId: profile.cityId,
     regionId: profile.regionId,
+    profilePictureUrl: profile.profilePictureUrl
   });
   const [cities, setCities] = useState();
   const [regions, setRegions] = useState();
@@ -203,6 +204,15 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
                 </Input>
               </>
             </FormGroup>
+            <FormGroup>
+              <Label>Profile Picture Url</Label>
+              <Input
+                name="profilePictureUrl"
+                value={updatedUserProfile.profilePictureUrl}
+                onChange={handleChange}
+                className="rounded-0"
+              />
+            </FormGroup>
           </Form>
           <Alert
             color="danger"
@@ -221,62 +231,58 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
           </Alert>
         </ModalBody>
         <ModalFooter>
-          {
-            disabled ?
-          <Button
-          disabled
-            onClick={handleSubmit}
-            className="rounded-0"
-          >
-            Submit
-          </Button>
-:
-          <Button
-            onClick={handleSubmit}
-            className="rounded-0"
-          >
-            Submit
-          </Button>
-
-          }
-          {
-            disabled ?
-          <Button
-          disabled
-            onClick={() => {
-              toggle();
-              setUpdatedUserProfile({
-                email: profile.email,
-                firstName: profile.firstName,
-                lastName: profile.lastName,
-                address: profile.address,
-                cityId: profile.cityId,
-                regionId: profile.regionId,
-              });
-            }}
-            className="rounded-0"
-          >
-            Cancel
-          </Button>
-          :
-          <Button
-            onClick={() => {
-              toggle();
-              setUpdatedUserProfile({
-                email: profile.email,
-                firstName: profile.firstName,
-                lastName: profile.lastName,
-                address: profile.address,
-                cityId: profile.cityId,
-                regionId: profile.regionId,
-              });
-            }}
-            className="rounded-0"
-          >
-            Cancel
-          </Button>
-
-          }
+          {disabled ? (
+            <Button
+              disabled
+              onClick={handleSubmit}
+              className="rounded-0"
+            >
+              Submit
+            </Button>
+          ) : (
+            <Button
+              onClick={handleSubmit}
+              className="rounded-0"
+            >
+              Submit
+            </Button>
+          )}
+          {disabled ? (
+            <Button
+              disabled
+              onClick={() => {
+                toggle();
+                setUpdatedUserProfile({
+                  email: profile.email,
+                  firstName: profile.firstName,
+                  lastName: profile.lastName,
+                  address: profile.address,
+                  cityId: profile.cityId,
+                  regionId: profile.regionId,
+                });
+              }}
+              className="rounded-0"
+            >
+              Cancel
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                toggle();
+                setUpdatedUserProfile({
+                  email: profile.email,
+                  firstName: profile.firstName,
+                  lastName: profile.lastName,
+                  address: profile.address,
+                  cityId: profile.cityId,
+                  regionId: profile.regionId,
+                });
+              }}
+              className="rounded-0"
+            >
+              Cancel
+            </Button>
+          )}
         </ModalFooter>
       </Modal>
     </>

@@ -7,9 +7,7 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
   const [suggestedItems, setSuggestedItems] = useState();
 
   const getSuggestedItemsByUser = () => {
-    fetchSuggestedItemsByUser(loggedInUser.id, 14).then(
-      setSuggestedItems
-    );
+    fetchSuggestedItemsByUser(loggedInUser.id, 12).then(setSuggestedItems);
   };
 
   useEffect(() => {
@@ -23,16 +21,20 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
   return (
     <>
       <Container>
-        <h3 className="text-center mt-3">
-          Suggested items for you:
-        </h3>
         <div className="d-flex justify-content-center flex-wrap gap-3">
-          {suggestedItems.map((i, index) => (
-            <SuggestedItemsCardHome
-              item={i}
-              index={index}
-            />
-          ))}
+          {suggestedItems.length === 0 ? (
+            <div>
+              Add some pokemon to your profile to receive personalized item
+              suggestions!
+            </div>
+          ) : (
+            suggestedItems.map((i, index) => (
+              <SuggestedItemsCardHome
+                item={i}
+                key={index}
+              />
+            ))
+          )}
         </div>
       </Container>
     </>

@@ -5,6 +5,7 @@ import { MyOrders } from './MyOrders.js';
 import { EditUserDetails } from './EditUserDetails.js';
 import { ProfileAllReviews } from '../reviews/ProfileAllReviews.js';
 import { MyPokemonList } from '../pokemon/MyPokemonList.js';
+import PersonSprite from '../../images/personsprite.png'
 
 export const Profile = ({ loggedInUser }) => {
   const [profile, setProfile] = useState();
@@ -29,16 +30,45 @@ export const Profile = ({ loggedInUser }) => {
         <Row>
           <Col className="d-flex gap-5 align-items-center">
             <div>
-              <img
-                src={profile.profilePictureUrl}
-                alt=""
-                style={{
-                  width: '200px',
-                  height: '200px',
-                  objectFit: 'cover',
-                  border: 'solid lightgrey 3px'
-                }}
-              />
+              {profile.profilePictureUrl ? (
+                <img
+                  src={profile.profilePictureUrl}
+                  alt=""
+                  style={{
+                    width: '200px',
+                    height: '200px',
+                    objectFit: 'cover',
+                    border: 'solid lightgrey 3px',
+                  }}
+                />
+                ) : (
+                <img
+                  src={PersonSprite}
+                  alt=""
+                  style={{
+                    width: '200px',
+                    height: '200px',
+                    objectFit: 'cover',
+                    border: 'solid lightgrey 3px',
+                  }}
+                />
+                //code for initials if blank pic instead
+                
+                // <div className='d-flex justify-content-center align-items-center'
+                //   alt=""
+                //   style={{
+                //     width: '200px',
+                //     height: '200px',
+                //     objectFit: 'cover',
+                //     border: 'solid lightgrey 3px',
+                //   }}
+                // >
+                //   <h1 className='display-3'>
+                //     {profile.firstName.slice(0, 1)}.
+                //     {profile.lastName.slice(0, 1)}.
+                //   </h1>
+                // </div>
+              )}
             </div>
             <div>
               <div className="d-flex justify-content-between align-items-baseline">
@@ -48,7 +78,7 @@ export const Profile = ({ loggedInUser }) => {
                   getCurrentUserProfile={getCurrentUserProfile}
                 />
               </div>
-              <div className='pt-3'>
+              <div className="pt-3">
                 <p>{profile.email}</p>
                 <p>{profile.address}</p>
                 <p>

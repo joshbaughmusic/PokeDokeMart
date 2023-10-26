@@ -15,7 +15,7 @@ export const SuggestedItemsCardPokeDetails = ({ item, index }) => {
         inverse
         className="rounded-0"
         style={{
-          width: '10em',
+          width: '12em',
           marginTop: '15px',
           cursor: 'pointer',
         }}

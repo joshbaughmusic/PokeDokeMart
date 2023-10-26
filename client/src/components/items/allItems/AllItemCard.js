@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { calculateAverageReviewScore } from '../../utilities/averageReviewScore.js';
 import { ConvertRatingToIcons } from '../../utilities/CovertRatingToIcons.js';
 
-export const AllItemCard = ({ item, index }) => {
+export const AllItemCard = ({ item }) => {
   const navigate = useNavigate();
 
   return (
@@ -11,7 +11,6 @@ export const AllItemCard = ({ item, index }) => {
       <Card
         onClick={() => navigate(`${item.id}`)}
         color="dark"
-        key={index}
         inverse
         className="rounded-0"
         style={{

@@ -5,7 +5,7 @@ export const fetchAllReviews = () => {
 };
 
 export const fetchAllReviewsByUser = (userId) => {
-  return fetch(`${_apiUrl}?userId=${userId}`).then((res) => res.json());
+  return fetch(`${_apiUrl}?userProfileId=${userId}`).then((res) => res.json());
 };
 
 export const fetchAllReviewsForItem = (itemId) => {

@@ -12,7 +12,7 @@ public class UserProfile
     public Region Region { get; set; }
     public int CityId { get; set; }
     public City City { get; set; }
-    public string ProfilePictureUrl { get; set; }
+    public string? ProfilePictureUrl { get; set; }
     [NotMapped]
     public string Email { get; set; }
     [NotMapped]

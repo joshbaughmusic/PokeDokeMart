@@ -301,7 +301,7 @@ public class ItemController : ControllerBase
             {
                 Item matchedTM = _dbContext.Items.FirstOrDefault(i => i.MoveId == plm.MoveId);
 
-                if (matchedTM != null && relatedItems.Any(ri => ri.Id != matchedTM.Id))
+                if (matchedTM != null)
                 {
                     relatedTMs.Add(matchedTM);
                 }
@@ -396,6 +396,6 @@ public class ItemController : ControllerBase
             i.Reviews = _dbContext.Reviews.Where(r => r.ItemId == i.Id).ToList();
         }
 
-        return Ok(randomizedSubset.OrderBy(i => i.CategoryId));
+        return Ok(randomizedSubset);
     }
 }

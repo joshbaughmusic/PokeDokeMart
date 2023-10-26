@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ConvertRatingToIcons } from '../../utilities/CovertRatingToIcons.js';
 import { calculateAverageReviewScore } from '../../utilities/averageReviewScore.js';
 
-export const SuggestedItemsCardHome = ({ item, index }) => {
+export const SuggestedItemsCardHome = ({ item }) => {
   const navigate = useNavigate();
 
   return (
@@ -11,11 +11,10 @@ export const SuggestedItemsCardHome = ({ item, index }) => {
       <Card
         onClick={() => navigate(`/items/${item.id}`)}
         color="dark"
-        key={index}
         inverse
         className="rounded-0"
         style={{
-          width: '10em',
+          width: '12em',
           marginTop: '15px',
           cursor: 'pointer',
         }}

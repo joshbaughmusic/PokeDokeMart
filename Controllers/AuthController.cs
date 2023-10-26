@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -97,7 +98,16 @@ public class AuthController : ControllerBase
     public IActionResult Me()
     {
         var identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        var profile = _dbContext.UserProfiles.SingleOrDefault(up => up.IdentityUserId == identityUserId);
+        var profile = _dbContext.UserProfiles
+        .Include(up => up.IdentityUser)
+        .Include(up => up.Region)
+        .Include(up => up.City)
+        .Include(up => up.UserPokemon)
+        .ThenInclude(up => up.Pokemon)
+        .Include(up => up.Orders)
+        .ThenInclude(o => o.OrderItems)
+        .ThenInclude(oi => oi.Item)
+        .SingleOrDefault(up => up.IdentityUserId == identityUserId);
         var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
         if (profile != null)
         {
@@ -130,6 +140,8 @@ public class AuthController : ControllerBase
                 FirstName = registration.FirstName,
                 LastName = registration.LastName,
                 Address = registration.Address,
+                RegionId = registration.RegionId,
+                CityId = registration.CityId,
                 IdentityUserId = user.Id,
             });
             _dbContext.SaveChanges();
