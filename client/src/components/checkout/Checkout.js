@@ -9,7 +9,7 @@ import { useShoppingCart } from '../../context/ShoppingCartContext.js';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CheckoutForm } from './CheckoutForm.js';
 
-export const Checkout = () => {
+export const Checkout = ({loggedInUser}) => {
   const { cartItems, alterCartQuantity, removeFromCart } = useShoppingCart();
 
   if (!cartItems) {
@@ -66,7 +66,12 @@ export const Checkout = () => {
             )}
           </h5>
         ) : null}
-        {cartItems.length > 0 ? <CheckoutForm cartItems={cartItems} /> : null}
+        {cartItems.length > 0 ? (
+          <CheckoutForm
+            loggedInUser={loggedInUser}
+            cartItems={cartItems}
+          />
+        ) : null}
       </div>
     </Container>
   );

@@ -64,9 +64,8 @@ export const ItemDetails = ({ loggedInUser }) => {
             >
               {item.move ? (
                 <>
-                 
-                    <h4 className='mb-4'>{item.move.name}</h4>
-               
+                  <h4 className="mb-4">{item.move.name}</h4>
+
                   <h5 className="mb-2">Description:</h5>
                   <p>{item.description}</p>
                   <h5 className="mt-4 mb-3">Details:</h5>
