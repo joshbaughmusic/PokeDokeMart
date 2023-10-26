@@ -8,7 +8,10 @@ export const Home = ({loggedInUser}) => {
       <Container>
         <div className="d-flex flex-column mt-5 align-items-center">
           <h1 className="display-1 text-center">Welcome to PokeDokeMart!</h1>
-          <SuggestedItemsHome loggedInUser={loggedInUser} />
+          <h3 className="text-center mt-3">Suggested items for you:</h3>
+          
+            <SuggestedItemsHome loggedInUser={loggedInUser} />
+      
         </div>
       </Container>
     </>

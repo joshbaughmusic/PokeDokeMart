@@ -5,6 +5,7 @@ import { calculateAverageReviewScore } from '../utilities/averageReviewScore.js'
 import { ItemDetailsSingleReview } from './ItemDetailsSingleReview.js';
 import { ConvertRatingToIcons } from '../utilities/CovertRatingToIcons.js';
 import { NewReview } from './NewReview.js';
+import { SortReviews } from './SortReviews.js';
 
 export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
   const [allReviewsByItem, setAllReviewsByItem] = useState();
@@ -42,12 +43,19 @@ export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
         allReviewsByItem={allReviewsByItem}
         itemId={itemId}
       />
+
       <h5>Reviews:</h5>
       <div className="mt-3">
-        <div className="d-flex gap-1">
-          <div>{`(${allReviewsByItem.length})`}</div>
-          <ConvertRatingToIcons
-            rating={calculateAverageReviewScore(allReviewsByItem)}
+        <div className="d-flex justify-content-between">
+          <div className="d-flex gap-1">
+            <div>{`(${allReviewsByItem.length})`}</div>
+            <ConvertRatingToIcons
+              rating={calculateAverageReviewScore(allReviewsByItem)}
+            />
+          </div>
+          <SortReviews
+            allReviewsByItem={allReviewsByItem}
+            setAllReviewsByItem={setAllReviewsByItem}
           />
         </div>
         {allReviewsByItem.map((review, index) => (

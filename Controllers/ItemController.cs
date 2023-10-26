@@ -396,6 +396,6 @@ public class ItemController : ControllerBase
             i.Reviews = _dbContext.Reviews.Where(r => r.ItemId == i.Id).ToList();
         }
 
-        return Ok(randomizedSubset.OrderBy(i => i.CategoryId));
+        return Ok(randomizedSubset);
     }
 }
