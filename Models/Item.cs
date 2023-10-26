@@ -14,4 +14,5 @@ public class Item
     public Category Category { get; set; }
     public string Image { get; set; }
     public List<OrderItem> OrderItems { get; set; }
+    public List<Review> Reviews { get; set; }
 }

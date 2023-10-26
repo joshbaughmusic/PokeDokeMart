@@ -1,5 +1,7 @@
 import { Card, CardBody, CardSubtitle, CardTitle } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
+import { ConvertRatingToIcons } from '../../utilities/CovertRatingToIcons.js';
+import { calculateAverageReviewScore } from '../../utilities/averageReviewScore.js';
 
 export const SuggestedItemsCardHome = ({ item, index }) => {
   const navigate = useNavigate();
@@ -33,6 +35,16 @@ export const SuggestedItemsCardHome = ({ item, index }) => {
           >
             P{item.cost}
           </CardSubtitle>
+          {item.reviews.length > 0 ? (
+            <div className="d-flex gap-1">
+              <div>{`(${item.reviews.length})`}</div>
+              <ConvertRatingToIcons
+                rating={calculateAverageReviewScore(item.reviews)}
+              />
+            </div>
+          ) : (
+            <div>No Reviews</div>
+          )}
         </CardBody>
       </Card>
     </>

@@ -1,6 +1,6 @@
 import { Container } from 'reactstrap';
 import './Home.css';
-import { SuggestedItemsHome } from './suggestedItems/SuggestedItemsHome.js';
+import { SuggestedItemsHome } from '../items/suggestedItems/SuggestedItemsHome.js';
 
 export const Home = ({loggedInUser}) => {
   return (

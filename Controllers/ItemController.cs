@@ -22,9 +22,15 @@ public class ItemController : ControllerBase
     {
         if (categoryId == null)
         {
+            List<Item> allItems = _dbContext.Items
+            .Include(i => i.Move).ToList();
+
+            foreach (Item i in allItems)
+            {
+                i.Reviews = _dbContext.Reviews.Where(r => r.ItemId == i.Id).ToList();
+            }
             //return all items
-            return Ok(_dbContext.Items
-            .Include(i => i.Move));
+            return Ok(allItems);
         }
         //return items by category
         int convCategoryId = int.Parse(categoryId);
@@ -43,6 +49,11 @@ public class ItemController : ControllerBase
         .OrderBy(i => i.Id)
         .ToList();
 
+        foreach (Item i in itemsByCategory)
+        {
+            i.Reviews = _dbContext.Reviews.Where(r => r.ItemId == i.Id).ToList();
+        }
+
         return Ok(itemsByCategory);
     }
 
@@ -59,6 +70,8 @@ public class ItemController : ControllerBase
         {
             return NotFound();
         }
+
+        foundItem.Reviews = _dbContext.Reviews.Where(r => r.ItemId == foundItem.Id).ToList();
 
         return Ok(foundItem);
     }
@@ -126,6 +139,11 @@ public class ItemController : ControllerBase
         }
 
         var randomizedSubset = relatedItems.Take(amountToReturn).ToList();
+
+        foreach (Item i in randomizedSubset)
+        {
+            i.Reviews = _dbContext.Reviews.Where(r => r.ItemId == i.Id).ToList();
+        }
 
         return Ok(randomizedSubset);
     }
@@ -233,6 +251,11 @@ public class ItemController : ControllerBase
         }
 
         var randomizedSubset = relatedItems.Take(amountToReturn).ToList();
+
+        foreach (Item i in randomizedSubset)
+        {
+            i.Reviews = _dbContext.Reviews.Where(r => r.ItemId == i.Id).ToList();
+        }
 
         return Ok(randomizedSubset);
     }
@@ -368,8 +391,11 @@ public class ItemController : ControllerBase
 
         var randomizedSubset = uniqueItems.Take(amountToReturn).ToList();
 
+        foreach (Item i in randomizedSubset)
+        {
+            i.Reviews = _dbContext.Reviews.Where(r => r.ItemId == i.Id).ToList();
+        }
 
         return Ok(randomizedSubset.OrderBy(i => i.CategoryId));
-
     }
 }

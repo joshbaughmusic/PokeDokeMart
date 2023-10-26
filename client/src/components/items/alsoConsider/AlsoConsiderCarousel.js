@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardBody, CardSubtitle, CardTitle, Carousel, CarouselControl, CarouselIndicators, CarouselItem } from "reactstrap";
+import { calculateAverageReviewScore } from "../../utilities/averageReviewScore.js";
+import { ConvertRatingToIcons } from "../../utilities/CovertRatingToIcons.js";
 
 export const AlsoConsiderCarousel = ({ relatedItems }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -39,8 +41,8 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
           color="dark"
           key={index}
           inverse
-          className="rounded-0 w-100 mt-2"
-          role='button'
+          className="rounded-0 w-100 mt-2 pb-4"
+          role="button"
         >
           <img
             alt="Sample"
@@ -54,10 +56,20 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
             </CardTitle>
             <CardSubtitle
               className="mb-4"
-              style={{fontSize: "15px"}}
+              style={{ fontSize: '15px' }}
             >
               P{item.cost}
             </CardSubtitle>
+            {item.reviews.length > 0 ? (
+              <div className="d-flex gap-1">
+                <div>{`(${item.reviews.length})`}</div>
+                <ConvertRatingToIcons
+                  rating={calculateAverageReviewScore(item.reviews)}
+                />
+              </div>
+            ) : (
+              <div>No Reviews</div>
+            )}
           </CardBody>
         </Card>
       </CarouselItem>

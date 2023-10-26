@@ -10,6 +10,7 @@ import {
   Input,
   Label,
 } from 'reactstrap';
+import { calculateAverageReviewScore } from '../../../utilities/averageReviewScore.js';
 
 const sortValues = [
   {
@@ -27,6 +28,14 @@ const sortValues = [
   {
     name: 'Price (High to Low)',
     value: 'phtl',
+  },
+  {
+    name: 'Avg Reviews (High to Low)',
+    value: 'rhtl',
+  },
+  {
+    name: 'Avg Reviews (Low to High)',
+    value: 'rlth',
   },
 ];
 
@@ -50,6 +59,22 @@ export const ItemSort = ({ setAllItems, allItems }) => {
       setAllItems(copy.sort((a, b) => b.cost - a.cost));
     } else if (e.target.value === 'plth') {
       setAllItems(copy.sort((a, b) => a.cost - b.cost));
+    } else if (e.target.value === 'rhtl') {
+      setAllItems(
+        copy.sort(
+          (a, b) =>
+            calculateAverageReviewScore(b.reviews) -
+            calculateAverageReviewScore(a.reviews)
+        )
+      );
+    } else if (e.target.value === 'rlth') {
+      setAllItems(
+        copy.sort(
+          (a, b) =>
+            calculateAverageReviewScore(a.reviews) -
+            calculateAverageReviewScore(b.reviews)
+        )
+      );
     }
   };
 
