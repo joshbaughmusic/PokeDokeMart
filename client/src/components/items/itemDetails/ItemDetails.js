@@ -62,16 +62,39 @@ export const ItemDetails = ({ loggedInUser }) => {
                 width: '50%',
               }}
             >
-              <p className="mb-1">
-                <b>Item Description:</b>
-              </p>
-              <p>{item.description}</p>
+              {item.move ? (
+                <>
+                 
+                    <h4 className='mb-4'>{item.move.name}</h4>
+               
+                  <h5 className="mb-2">Description:</h5>
+                  <p>{item.description}</p>
+                  <h5 className="mt-4 mb-3">Details:</h5>
+                  <div className="d-flex gap-2">
+                    <p>
+                      <b>Type:</b>
+                    </p>
+                    <p>{item.move.pokeType.name}</p>
+                  </div>
+                  <div className="d-flex gap-2">
+                    <p>
+                      <b>D.Class:</b>
+                    </p>
+                    <p>{item.move.damageClass.name}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h5 className="mb-2">Description:</h5>
+                  <p>{item.description}</p>
+                </>
+              )}
             </div>
           </Col>
           <Col className="d-flex flex-column align-content-center mt-5">
             <div className="item-heading">
               <h1>{item.name}</h1>
-              {item.move ? <div>Move: {item.move.name}</div> : ''}
+
               <p className="fs-4">P{item.cost}</p>
             </div>
             <div>

@@ -64,6 +64,8 @@ public class ItemController : ControllerBase
         Item foundItem = _dbContext.Items
         .Include(i => i.Move)
         .ThenInclude(m => m.DamageClass)
+        .Include(i => i.Move)
+        .ThenInclude(m => m.PokeType)
         .Include(i => i.Category).SingleOrDefault(i => i.Id == id);
 
         if (foundItem == null)
