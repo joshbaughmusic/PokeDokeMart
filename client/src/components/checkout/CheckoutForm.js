@@ -8,6 +8,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
+  Label,
 } from 'reactstrap';
 import { fetchAllRegions } from '../../managers/RegionManager.js';
 import { fetchCitiesByRegionId } from '../../managers/CityManager.js';
@@ -15,7 +16,7 @@ import { fetchCreateNewOrder } from '../../managers/OrderManager.js';
 import { useNavigate } from 'react-router-dom';
 import { useShoppingCart } from '../../context/ShoppingCartContext.js';
 
-export const CheckoutForm = ({ cartItems }) => {
+export const CheckoutForm = ({ cartItems, loggedInUser }) => {
   const [regions, setRegions] = useState();
   const [cities, setCities] = useState();
   const [modal, setModal] = useState(false);
@@ -61,6 +62,28 @@ export const CheckoutForm = ({ cartItems }) => {
     });
   };
 
+  const handleUseDetailsOnFile = (e) => {
+    if (e.target.checked) {
+      setInfo({
+        firstName: loggedInUser.firstName,
+        middleInitial: loggedInUser.middleInitial,
+        lastName: loggedInUser.lastName,
+        address: loggedInUser.address,
+        regionId: loggedInUser.regionId,
+        cityId: loggedInUser.cityId,
+      });
+    } else {
+      setInfo({
+        firstName: '',
+        middleInitial: '',
+        lastName: '',
+        address: '',
+        regionId: '',
+        cityId: '',
+      });
+    }
+  };
+
   const handleCompleteOrder = () => {
     const newOrderItems = cartItems.map((i) => {
       return {
@@ -100,7 +123,17 @@ export const CheckoutForm = ({ cartItems }) => {
       </div>
       <div>
         <Form>
-          <p> Info:</p>
+          <div className="d-flex justify-content-between">
+            <p> Info:</p>
+            <FormGroup className="d-flex gap-2">
+              <Label>Use info on file?</Label>
+              <Input
+                type="checkbox"
+                className="rounded-0"
+                onChange={handleUseDetailsOnFile}
+              />
+            </FormGroup>
+          </div>
           <FormGroup className="d-flex gap-2">
             <Input
               name="firstName"
@@ -128,7 +161,7 @@ export const CheckoutForm = ({ cartItems }) => {
           <FormGroup>
             <Input
               name="address"
-              value={info.Addres}
+              value={info.address}
               onChange={handleChange}
               placeholder="Address"
               className="rounded-0"

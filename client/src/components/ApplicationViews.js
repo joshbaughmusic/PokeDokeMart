@@ -45,7 +45,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           path="checkout"
           element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
-              <Checkout />
+              <Checkout loggedInUser={loggedInUser} />
             </AuthorizedRoute>
           }
         />
