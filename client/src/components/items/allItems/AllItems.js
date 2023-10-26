@@ -56,9 +56,9 @@ export const AllItems = () => {
           >
             <div className="allItems-card-container d-flex  flex-wrap justify-content-around gap-1">
               {currentItems.map((i, index) => (
-                <AllItemCard
+                <AllItemCard key={index}
                   item={i}
-                  index={index}
+                 
                 />
               ))}
             </div>

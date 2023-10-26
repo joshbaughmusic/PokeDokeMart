@@ -140,6 +140,8 @@ public class AuthController : ControllerBase
                 FirstName = registration.FirstName,
                 LastName = registration.LastName,
                 Address = registration.Address,
+                RegionId = registration.RegionId,
+                CityId = registration.CityId,
                 IdentityUserId = user.Id,
             });
             _dbContext.SaveChanges();

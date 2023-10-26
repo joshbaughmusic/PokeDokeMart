@@ -6,6 +6,6 @@ export const calculateAverageReviewScore = (reviewArray) => {
     for (const r of reviewArray) {
       totalScoreSum += r.rating;
     }
-    return totalScoreSum / reviewArray.length;
+    return Math.ceil(totalScoreSum / reviewArray.length);
   }
 };

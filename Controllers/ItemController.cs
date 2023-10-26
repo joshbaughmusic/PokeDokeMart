@@ -301,7 +301,7 @@ public class ItemController : ControllerBase
             {
                 Item matchedTM = _dbContext.Items.FirstOrDefault(i => i.MoveId == plm.MoveId);
 
-                if (matchedTM != null && relatedItems.Any(ri => ri.Id != matchedTM.Id))
+                if (matchedTM != null)
                 {
                     relatedTMs.Add(matchedTM);
                 }

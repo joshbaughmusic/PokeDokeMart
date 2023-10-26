@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PokeDokeMartRedux.Migrations
 {
-    public partial class initalCreate : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -520,7 +520,7 @@ namespace PokeDokeMartRedux.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "9f29fbdb-abba-495f-8a45-f17d303378e3", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEDQt4MvpNAwMib7yc1BjCPU60pff87cYge/ZgQn51ZedXOxBKzGnXlx94ubdzULuOw==", null, false, "e2ed2f3f-f3ea-4fda-b44c-b79c43c7e2d7", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "ad3ff9c6-a61f-46cf-b41e-71258c52e1e1", "ash@pokenet.com", false, false, null, null, null, "AQAAAAIAAYagAAAAEL/g7uVOTUxSOuKpdWgoOcVOVPe74Tfpk1T8jx3bCMsUscgJMdvDcj0szApbBVb+tA==", null, false, "c8f65c6d-182c-42f6-8fbb-71f4a2806006", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "Categories",

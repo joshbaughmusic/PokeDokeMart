@@ -42,10 +42,11 @@ export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
         loggedInUser={loggedInUser}
         allReviewsByItem={allReviewsByItem}
         itemId={itemId}
+        getAllReviewsByItem={getAllReviewsByItem}
       />
 
       <h5>Reviews:</h5>
-      <div className="mt-3">
+      <div className="mt-3 mb-4">
         <div className="d-flex justify-content-between">
           <div className="d-flex gap-1">
             <div>{`(${allReviewsByItem.length})`}</div>

@@ -7,7 +7,7 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
   const [suggestedItems, setSuggestedItems] = useState();
 
   const getSuggestedItemsByUser = () => {
-    fetchSuggestedItemsByUser(loggedInUser.id, 14).then(setSuggestedItems);
+    fetchSuggestedItemsByUser(loggedInUser.id, 12).then(setSuggestedItems);
   };
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
             suggestedItems.map((i, index) => (
               <SuggestedItemsCardHome
                 item={i}
-                index={index}
+                key={index}
               />
             ))
           )}

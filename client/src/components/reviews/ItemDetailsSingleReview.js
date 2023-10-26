@@ -6,6 +6,7 @@ import {
   ModalBody,
   ModalFooter,
 } from 'reactstrap';
+import PersonSprite from '../../images/personsprite.png';
 import { dateFormatter } from '../utilities/dateFormatter.js';
 import { ConvertRatingToIcons } from '../utilities/CovertRatingToIcons.js';
 import { ItemDetailsEditReview } from './ItemDetailsEditReview.js';
@@ -67,16 +68,31 @@ export const ItemDetailsSingleReview = ({
           <div className="d-flex gap-3 align-items-center">
             <div>{dateFormatter(review.date)}</div>
             <div>{`${review.userProfile.firstName} ${review.userProfile.lastName}`}</div>
-            <img
-              src={review.userProfile.profilePictureUrl}
-              alt=""
-              style={{
-                width: '30px',
-                height: '30px',
-                objectFit: 'cover',
-              }}
-              className="my-3"
-            />
+            {review.userProfile.profilePictureUrl ? (
+              <img
+                src={review.userProfile.profilePictureUrl}
+                alt=""
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  objectFit: 'cover',
+                  border: 'solid lightgrey 1px',
+                }}
+                className="my-3"
+              />
+            ) : (
+              <img
+                src={PersonSprite}
+                alt=""
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  objectFit: 'cover',
+                  border: 'solid lightgrey 1px',
+                }}
+                className="my-3"
+              />
+            )}
           </div>
         </div>
         <div className="my-3">{`"${review.body}"`}</div>

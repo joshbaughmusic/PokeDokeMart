@@ -123,6 +123,7 @@ public class UserProfileController : ControllerBase
         foundUserProfile.Address = updatedUserProfile.Address;
         foundUserProfile.RegionId = updatedUserProfile.RegionId;
         foundUserProfile.CityId = updatedUserProfile.CityId;
+        foundUserProfile.ProfilePictureUrl = updatedUserProfile.ProfilePictureUrl;
 
         _dbContext.SaveChanges();
 

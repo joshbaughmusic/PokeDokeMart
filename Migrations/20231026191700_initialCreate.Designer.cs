@@ -12,8 +12,8 @@ using PokeDokeMartRedux.Data;
 namespace PokeDokeMartRedux.Migrations
 {
     [DbContext(typeof(PokeDokeMartReduxDbContext))]
-    [Migration("20231023165551_initalCreate")]
-    partial class initalCreate
+    [Migration("20231026191700_initialCreate")]
+    partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -151,13 +151,13 @@ namespace PokeDokeMartRedux.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9f29fbdb-abba-495f-8a45-f17d303378e3",
-                            Email = "admina@strator.comx",
+                            ConcurrencyStamp = "ad3ff9c6-a61f-46cf-b41e-71258c52e1e1",
+                            Email = "ash@pokenet.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEDQt4MvpNAwMib7yc1BjCPU60pff87cYge/ZgQn51ZedXOxBKzGnXlx94ubdzULuOw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL/g7uVOTUxSOuKpdWgoOcVOVPe74Tfpk1T8jx3bCMsUscgJMdvDcj0szApbBVb+tA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e2ed2f3f-f3ea-4fda-b44c-b79c43c7e2d7",
+                            SecurityStamp = "c8f65c6d-182c-42f6-8fbb-71f4a2806006",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -21497,7 +21497,7 @@ namespace PokeDokeMartRedux.Migrations
             modelBuilder.Entity("PokeDokeMartRedux.Models.Review", b =>
                 {
                     b.HasOne("PokeDokeMartRedux.Models.Item", "Item")
-                        .WithMany()
+                        .WithMany("Reviews")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -21560,6 +21560,8 @@ namespace PokeDokeMartRedux.Migrations
             modelBuilder.Entity("PokeDokeMartRedux.Models.Item", b =>
                 {
                     b.Navigation("OrderItems");
+
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("PokeDokeMartRedux.Models.Order", b =>

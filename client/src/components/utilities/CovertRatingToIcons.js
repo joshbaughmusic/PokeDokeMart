@@ -9,7 +9,7 @@ export const ConvertRatingToIcons = ({ rating }) => {
           .map((obj, index) => (
             <img key={index}
               className="pokeballRatingIcon"
-              src={Pokeball} style={{ width: "30px"}}
+              src={Pokeball} style={{ width: "22px"}}
             />
           ))}
       </div>
