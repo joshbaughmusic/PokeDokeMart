@@ -1,14 +1,18 @@
-import { Button, Container } from 'reactstrap';
+import { Button, Container, Input, Label } from 'reactstrap';
 import { ItemSearch } from './ItemSearch.js';
 import { ItemSort } from './ItemSort.js';
 import { ItemCategories } from './ItemCategories.js';
 
-export const SortFilterCategoryShell = ({ setAllItems, getAllItems, allItems }) => {
-
+export const SortFilterCategoryShell = ({
+  setAllItems,
+  getAllItems,
+  allItems,
+  setItemsPerPage,
+}) => {
   const handleReset = () => {
     getAllItems();
   };
-  
+
   return (
     <>
       <div
@@ -29,7 +33,23 @@ export const SortFilterCategoryShell = ({ setAllItems, getAllItems, allItems }) 
           setAllItems={setAllItems}
           getAllItems={getAllItems}
         />
-        <Button onClick={handleReset}>Reset</Button>
+        <Button
+          className="mt-4"
+          onClick={handleReset}
+        >
+          Reset
+        </Button>
+        <div className="mt-4">
+          <Label>Items Per Page:</Label>
+          <Input
+            type="select"
+            onChange={(e) => setItemsPerPage(e.target.value)}
+          >
+            <option value={12}>12</option>
+            <option value={24}>24</option>
+            <option value={36}>36</option>
+          </Input>
+        </div>
       </div>
     </>
   );
