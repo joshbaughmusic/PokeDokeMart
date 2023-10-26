@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchAllItems } from '../../../managers/ItemsManager.js';
-import { Col, Container, Row, Spinner } from 'reactstrap';
+import { Col, Container, Input, Label, Row, Spinner } from 'reactstrap';
 import { AllItemCard } from './AllItemCard.js';
 import { PaginationTool } from '../../utilities/PaginationTool.js';
 import { SortFilterCategoryShell } from './sort-filter-categories/SortFilterCategoryShell.js';
@@ -47,6 +47,7 @@ export const AllItems = () => {
               setAllItems={setAllItems}
               allItems={allItems}
               getAllItems={getAllItems}
+              setItemsPerPage={setItemsPerPage}
             />
           </Col>
           <Col
