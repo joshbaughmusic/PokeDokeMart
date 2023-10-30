@@ -40,56 +40,65 @@ export const ItemDetails = ({ loggedInUser }) => {
   };
 
   if (!item) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <Spinner />
+        </div>
+      </>
+    );
   }
 
   return (
     <>
       <Container>
         <Row>
-          <Col className="d-flex flex-column align-items-center mt-5">
-            <img
-              src={item.image}
-              alt=""
-              style={{
-                width: '50%',
-              }}
-            />
-            <div
-              className="mt-4"
-              style={{
-                width: '50%',
-              }}
-            >
-              {item.move ? (
-                <>
-                  <h4 className="mb-4">{item.move.name}</h4>
+          <Col className='d-flex justify-content-center'>
+            <div className="d-flex flex-column align-items-center justify-content-center mt-5 text-center text-bg-dark w-75 gap-5 item-details-left-panel">
+              <img
+                src={item.image}
+                alt=""
+                className='item-details-img'
+                style={{
+                  width: '60%',
+                }}
+              />
+              <div
+                className="mt-4"
+                style={{
+                  width: '70%',
+                }}
+              >
+                {item.move ? (
+                  <>
+                    <h4 className="mb-4">{item.move.name}</h4>
 
-                  <h5 className="mb-2">Description:</h5>
-                  <p>{item.description}</p>
-                  <h5 className="mt-4 mb-3">Details:</h5>
-                  <div className="d-flex gap-2">
-                    <p>
-                      <b>Type:</b>
-                    </p>
-                    <p>{item.move.pokeType.name}</p>
-                  </div>
-                  <div className="d-flex gap-2">
-                    <p>
-                      <b>D.Class:</b>
-                    </p>
-                    <p>{item.move.damageClass.name}</p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <h5 className="mb-2">Description:</h5>
-                  <p>{item.description}</p>
-                </>
-              )}
+                    <h5 className="mb-2">Description:</h5>
+                    <p>{item.description}</p>
+                    <h5 className="mt-4 mb-3">Details:</h5>
+                    <div className="d-flex gap-2">
+                      <p>
+                        <b>Type:</b>
+                      </p>
+                      <p>{item.move.pokeType.name}</p>
+                    </div>
+                    <div className="d-flex gap-2">
+                      <p>
+                        <b>D.Class:</b>
+                      </p>
+                      <p>{item.move.damageClass.name}</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h5 className="mb-2">Description:</h5>
+                    <p>{item.description}</p>
+                  </>
+                )}
+              </div>
             </div>
           </Col>
-          <Col className="d-flex flex-column align-content-center mt-5">
+          <Col className="d-flex flex-column align-items-center mt-5 text-center">
             <div className="item-heading">
               <h1>{item.name}</h1>
 
@@ -117,7 +126,7 @@ export const ItemDetails = ({ loggedInUser }) => {
             </div>
             {successMessage ? (
               <Button
-                className="mt-5 rounded-0"
+                className="mt-3 rounded-0"
                 disabled
                 style={{ width: '40%' }}
               >

@@ -1,3 +1,19 @@
 .carousel-indicators [data-bs-target] {
-    box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.item-details-left-panel {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.585);
+  border: solid rgba(0, 0, 0, 0.299) 1px;
+}
+
+.item-details-img {
+    border: 3px solid rgba(0, 0, 0, 0.297);
+  background-color: #282c34;
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.585);
+}
+
+.item-heading {
+        text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+
 }
