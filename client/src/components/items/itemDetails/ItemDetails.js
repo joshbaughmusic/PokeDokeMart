@@ -45,7 +45,6 @@ export const ItemDetails = ({ loggedInUser }) => {
   return (
     <>
       <Container>
-        <p>Breadcrumbs Placeholder</p>
         <Row>
           <Col className="d-flex flex-column align-items-center mt-5">
             <img
@@ -53,7 +52,6 @@ export const ItemDetails = ({ loggedInUser }) => {
               alt=""
               style={{
                 width: '50%',
-                // border: '2px solid white',
               }}
             />
             <div

@@ -6,9 +6,8 @@ export const Home = ({loggedInUser}) => {
   return (
     <>
       <Container>
-        <div className="d-flex flex-column mt-5 align-items-center">
-          <h1 className="display-1 text-center">Welcome to PokeDokeMart!</h1>
-          <h3 className="text-center mt-3">Suggested items for you:</h3>
+        <div className="d-flex flex-column align-items-center justify-content-between">
+          <h1 className="display-1 text-center home-heading">Welcome to PokeDokeMart!</h1>
           
             <SuggestedItemsHome loggedInUser={loggedInUser} />
       

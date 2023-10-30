@@ -27,6 +27,7 @@ export const ItemSearch = ({ allItems }) => {
             <Input
               placeholder="Search..."
               onChange={handleSearch}
+              className="rounded-0"
             />
             <div
               className="position-absolute"
@@ -37,7 +38,7 @@ export const ItemSearch = ({ allItems }) => {
                 backgroundColor: 'white',
                 color: 'black',
                 width: '100%',
-                boxShadow: '8px 8px 20px rgba(0, 0, 0, 1)'
+                boxShadow: '8px 8px 20px rgba(0, 0, 0, 1)',
               }}
             >
               {searchResults.length > 0

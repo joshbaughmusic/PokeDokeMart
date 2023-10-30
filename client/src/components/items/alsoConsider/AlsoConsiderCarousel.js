@@ -35,41 +35,56 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={index}
+        style={{
+          width: '12em',
+        }}
       >
         <Card
           onClick={() => navigate(`/items/${item.id}`)}
           color="dark"
           key={index}
           inverse
-          className="rounded-0 w-100 mt-2 pb-4"
+          className="rounded-0 mt-2 pb-4 item-card"
           role="button"
+          style={{
+            width: '14em',
+            height: '20em',
+          }}
         >
           <img
             alt="Sample"
             src={item.image}
             className="w-75 align-self-center"
           />
-          <CardBody className="d-flex flex-column align-items-center">
-            <CardTitle tag="h6">
-              <span>{item.name}</span>
-              {item.move ? <div className="small">{item.move.name}</div> : ''}
-            </CardTitle>
-            <CardSubtitle
-              className="mb-4"
-              style={{ fontSize: '15px' }}
-            >
-              P{item.cost}
-            </CardSubtitle>
-            {item.reviews.length > 0 ? (
-              <div className="d-flex gap-1">
-                <div>{`(${item.reviews.length})`}</div>
-                <ConvertRatingToIcons
-                  rating={calculateAverageReviewScore(item.reviews)}
-                />
-              </div>
-            ) : (
-              <div>No Reviews</div>
-            )}
+          <CardBody className="d-flex flex-column justify-content-between text-center">
+            <div>
+              <CardTitle tag="h5">
+                <span className="card-item-name">{item.name}</span>
+                {item.move ? (
+                  <div className="card-move-name">{item.move.name}</div>
+                ) : (
+                  ''
+                )}
+              </CardTitle>
+            </div>
+            <div>
+              <CardSubtitle
+                className="mb-2"
+                style={{}}
+              >
+                P{item.cost}
+              </CardSubtitle>
+              {item.reviews.length > 0 ? (
+                <div className="d-flex gap-1 align-items-center justify-content-center">
+                  <div>{`(${item.reviews.length})`}</div>
+                  <ConvertRatingToIcons
+                    rating={calculateAverageReviewScore(item.reviews)}
+                  />
+                </div>
+              ) : (
+                <div>No Reviews</div>
+              )}
+            </div>
           </CardBody>
         </Card>
       </CarouselItem>
@@ -82,7 +97,7 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
         next={next}
         previous={previous}
         style={{
-            width: "40%"
+            width: "14em"
         }}
         
       >
