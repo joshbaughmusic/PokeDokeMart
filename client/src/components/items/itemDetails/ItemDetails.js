@@ -53,12 +53,12 @@ export const ItemDetails = ({ loggedInUser }) => {
     <>
       <Container>
         <Row>
-          <Col className='d-flex justify-content-center'>
+          <Col className="d-flex justify-content-center">
             <div className="d-flex flex-column align-items-center justify-content-center mt-5 text-center text-bg-dark w-75 gap-5 item-details-left-panel">
               <img
                 src={item.image}
                 alt=""
-                className='item-details-img'
+                className="item-details-img"
                 style={{
                   width: '60%',
                 }}
@@ -71,18 +71,18 @@ export const ItemDetails = ({ loggedInUser }) => {
               >
                 {item.move ? (
                   <>
-                    <h4 className="mb-4">{item.move.name}</h4>
+                  <h5 className="mb-3">Move Description:</h5>
+                    <h3 className="mb-3">{item.move.name}</h3>
 
-                    <h5 className="mb-2">Description:</h5>
                     <p>{item.description}</p>
                     <h5 className="mt-4 mb-3">Details:</h5>
-                    <div className="d-flex gap-2">
+                    <div className="d-flex gap-2 justify-content-center">
                       <p>
                         <b>Type:</b>
                       </p>
                       <p>{item.move.pokeType.name}</p>
                     </div>
-                    <div className="d-flex gap-2">
+                    <div className="d-flex gap-2 justify-content-center">
                       <p>
                         <b>D.Class:</b>
                       </p>
@@ -91,7 +91,7 @@ export const ItemDetails = ({ loggedInUser }) => {
                   </>
                 ) : (
                   <>
-                    <h5 className="mb-2">Description:</h5>
+                    <h5 className="mb-2">Item Description:</h5>
                     <p>{item.description}</p>
                   </>
                 )}

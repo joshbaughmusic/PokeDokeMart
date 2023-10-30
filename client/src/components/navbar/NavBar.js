@@ -27,14 +27,14 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
         dark
         fixed="true"
         expand="lg"
+        className="d-flex align-items-center"
       >
         <NavbarBrand
-          className="mr-auto"
+          className="mr-auto fs-4"
           tag={RRNavLink}
           to="/"
         >
           PokeDokeMart
-        
         </NavbarBrand>
         {loggedInUser ? (
           <>
@@ -43,7 +43,10 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
               isOpen={open}
               navbar
             >
-              <Nav navbar>
+              <Nav
+                navbar
+                className="d-flex align-items-center"
+              >
                 <NavItem>
                   <NavLink
                     tag={RRNavLink}

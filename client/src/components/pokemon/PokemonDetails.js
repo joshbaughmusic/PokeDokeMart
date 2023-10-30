@@ -3,6 +3,7 @@ import { fetchSingleUserPokemon } from '../../managers/PokemonManager.js';
 import { Button, ButtonGroup, Col, Container, Row, Spinner } from 'reactstrap';
 import { useEffect, useState } from 'react';
 import { SuggestedItemsPokeDetails } from '../items/suggestedItems/SuggestedItemsPokeDetails.js';
+import "./PokemonDetails.css"
 
 export const PokemonDetails = () => {
   const [userPokemon, setUserPokemon] = useState();
@@ -17,7 +18,13 @@ export const PokemonDetails = () => {
   }, []);
 
   if (!userPokemon) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <Spinner />
+        </div>
+      </>
+    );
   }
   return (
     <>
@@ -29,25 +36,30 @@ export const PokemonDetails = () => {
               alt=""
             />
           </Col>
-          <Col className="d-flex flex-column justify-content-center py-5">
-            <h1>{userPokemon.nickName}</h1>
-            <h5>
-              Species: {userPokemon.pokemon.name} #{userPokemon.pokemon.id}
-            </h5>
+          <Col className="d-flex flex-column justify-content-center">
+            <div className="pokemon-details-info-container text-bg-dark p-4 w-75">
+              <div className='mb-4'>
 
-            <div className="d-flex gap-5">
-              <div>
-                <h5>Type:</h5>
-                {userPokemon.pokemon.pokemonTypes.length === 2 ? (
-                  <p>
-                    {userPokemon.pokemon.pokemonTypes[0].pokeType.name}/
-                    {userPokemon.pokemon.pokemonTypes[1].pokeType.name}
-                  </p>
-                ) : (
-                  <p>{userPokemon.pokemon.pokemonTypes[0].pokeType.name} </p>
-                )}
+              <h1 className="display-5">{userPokemon.nickName}</h1>
+                  <h5 className='pokemon-details-level'>Lvl. {userPokemon.level}</h5>
               </div>
-              <h5>Lvl. {userPokemon.level}</h5>
+              <h5>
+                Species: {userPokemon.pokemon.name} #{userPokemon.pokemon.id}
+              </h5>
+
+              <div>
+                <div className='d-flex gap-3'>
+                  <h5>Type:</h5>
+                  {userPokemon.pokemon.pokemonTypes.length === 2 ? (
+                    <p>
+                      {userPokemon.pokemon.pokemonTypes[0].pokeType.name}/
+                      {userPokemon.pokemon.pokemonTypes[1].pokeType.name}
+                    </p>
+                  ) : (
+                    <p>{userPokemon.pokemon.pokemonTypes[0].pokeType.name} </p>
+                  )}
+                </div>
+              </div>
             </div>
           </Col>
         </Row>
