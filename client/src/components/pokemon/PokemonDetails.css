@@ -1,0 +1,8 @@
+.pokemon-details-level {
+  font-size: 16px;
+}
+
+.pokemon-details-info-container {
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.585);
+  border: solid rgba(0, 0, 0, 0.299) 1px;
+}

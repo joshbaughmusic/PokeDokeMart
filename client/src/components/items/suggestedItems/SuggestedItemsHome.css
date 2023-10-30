@@ -35,3 +35,7 @@
 .card-item-name:hover {
   color: lightgray;
 }
+
+.carousel.carousel-slider .control-arrow {
+    box-shadow: none;
+}

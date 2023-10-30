@@ -17,7 +17,13 @@ export const SuggestedItemsPokeDetails = ({ userPokemon }) => {
   }, []);
 
   if (!suggestedItems) {
-    return <Spinner />;
+   return (
+     <>
+       <div className="d-flex justify-content-center h-100 align-items-center mt-5">
+         <Spinner />
+       </div>
+     </>
+   );
   }
 
   return (

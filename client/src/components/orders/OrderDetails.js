@@ -1,19 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchSingleOrder } from '../../managers/OrderManager.js';
-import {
-  Container,
-  Input,
-  ListGroup,
-  ListGroupItem,
-  Spinner,
-  Table,
-} from 'reactstrap';
+import { Container, Spinner, Table } from 'reactstrap';
 import { dateFormatter } from '../utilities/dateFormatter.js';
+import './OrderDetails.css';
 
 export const OrderDetails = () => {
   const { id } = useParams();
   const [order, setOrder] = useState();
+  const navigate = useNavigate();
 
   const getSingleOrder = () => {
     fetchSingleOrder(id).then(setOrder);
@@ -24,14 +19,20 @@ export const OrderDetails = () => {
   }, []);
 
   if (!order) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <Spinner />
+        </div>
+      </>
+    );
   }
   return (
     <>
-      <Container className="text-bg-dark mt-5">
+      <Container className="text-bg-dark my-5  p-5 order-details-container">
         <div className="d-flex justify-content-between align-items-baseline">
-          <h2 className="mt-3">Order Details</h2>
-          <h5 className="mt-3">{dateFormatter(order.date)}</h5>
+          <h2 className="mb-4 order-details-heading">Order Details</h2>
+          <h5>{dateFormatter(order.date)}</h5>
         </div>
         <Table>
           <thead>
@@ -44,12 +45,17 @@ export const OrderDetails = () => {
             {order.orderItems.map((oi, index) => {
               return (
                 <tr key={index}>
-                  <td className="text-bg-dark">
+                  <td className="text-bg-dark d-flex">
                     <img
                       src={oi.item.image}
                       alt=""
                     />
-                    <Link to={`/items/${oi.item.id}`}>{oi.item.name}</Link>
+                    <div
+                      className="order-details-item-link"
+                      onClick={() => navigate(`/items/${oi.item.id}`)}
+                    >
+                      {oi.item.name}
+                    </div>
                   </td>
                   <td className="text-bg-dark">P{oi.item.cost}</td>
                   <td className="text-bg-dark">{oi.quantity}</td>
@@ -61,26 +67,29 @@ export const OrderDetails = () => {
             })}
           </tbody>
         </Table>
-        <div className="d-flex flex-column align-items-end">
-          <h4>Total:</h4>
-          <h5>P{order.total}</h5>
-        </div>
-        <div>
-          <h4>Billing Info</h4>
-          {order.middleInitial ? (
+        <div className="d-flex justify-content-between mt-5">
+          <div className="p-3 order-details-billing-container">
+            <h4 className="mb-3">Billing Info:</h4>
+            {order.middleInitial ? (
+              <p>
+                Name: {order.firstName} {order.middleInital} {order.lastName}
+              </p>
+            ) : (
+              <p>
+                Name: {order.firstName} {order.lastName}
+              </p>
+            )}
+            <p>Street: {order.address}</p>
             <p>
-              {order.firstName} {order.middleInital} {order.lastName}
+              C/R: {order.city.name}, {order.region.name}
             </p>
-          ) : (
-            <p>
-              {order.firstName} {order.lastName}
-            </p>
-          )}
-          <p>{order.address}</p>
-          <p>
-            {order.city.name}, {order.region.name}
-          </p>
+          </div>
+          <div className="d-flex flex-column">
+            <h4>Total:</h4>
+            <h5>P{order.total}</h5>
+          </div>
         </div>
+        <div></div>
       </Container>
     </>
   );
