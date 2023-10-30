@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Container, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
+import {
+  Container,
+  ListGroup,
+  ListGroupItem,
+  Spinner,
+  Table,
+} from 'reactstrap';
 import {
   fetchAllPokemon,
   fetchMyPokemon,
@@ -29,7 +35,13 @@ export const MyPokemonList = () => {
   }, []);
 
   if (!myPokemon || !allPokemon) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="d-flex justify-content-center h-100 align-items-center">
+          <Spinner />
+        </div>
+      </>
+    );
   }
   return (
     <>
@@ -43,49 +55,56 @@ export const MyPokemonList = () => {
           />
         </div>
         {myPokemon.length === 0 ? (
-          <div className='mt-4'>No pokemon in party currently!</div>
+          <div className="mt-4">No pokemon in party currently!</div>
         ) : (
-          <ListGroup>
-            {myPokemon.map((userPokemon, index) => (
-              <ListGroupItem
-                className="text-bg-dark rounded-0 d-flex justify-content-between align-items-center"
-                key={index}
-              >
-                <img
-                  src={userPokemon.pokemon.image}
-                  alt=""
-                  style={{
-                    width: '30px',
-                    height: '30px',
-                  }}
-                />
-                <div
-                  role="button"
-                  className="myPokemon_listItem"
-                  onClick={() => navigate(`/mypokemon/${userPokemon.id}`)}
-                >
-                  {userPokemon.nickName}
-                  {/* <div className="small">{userPokemon.pokemon.name}</div> */}
-                </div>
-                <div>Lvl. {userPokemon.level}</div>
-                <div className="d-flex gap-1">
-                  <div>
-                    <EditPokemon
-                      userPokemon={userPokemon}
-                      allPokemon={allPokemon}
-                      getMyPokemon={getMyPokemon}
+          <Table>
+            <tbody>
+              {myPokemon.map((userPokemon, index) => (
+                <tr key={index}>
+                  <td className="text-bg-dark">#{index + 1}</td>
+                  <td className="text-bg-dark">
+                    <img
+                      src={userPokemon.pokemon.image}
+                      alt=""
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                      }}
                     />
-                  </div>
-                  <div>
-                    <DeletePokemon
-                      getMyPokemon={getMyPokemon}
-                      userPokemon={userPokemon}
-                    />
-                  </div>
-                </div>
-              </ListGroupItem>
-            ))}
-          </ListGroup>
+                  </td>
+                  <td className="text-bg-dark">
+                    <div
+                      role="button"
+                      className="myPokemon_listItem"
+                      onClick={() => navigate(`/mypokemon/${userPokemon.id}`)}
+                    >
+                      {userPokemon.nickName}
+                    </div>
+                  </td>
+                  <td className="text-bg-dark">
+                    <div>Lvl. {userPokemon.level}</div>
+                  </td>
+                  <td className="text-bg-dark">
+                    <div className="d-flex gap-1">
+                      <div>
+                        <EditPokemon
+                          userPokemon={userPokemon}
+                          allPokemon={allPokemon}
+                          getMyPokemon={getMyPokemon}
+                        />
+                      </div>
+                      <div>
+                        <DeletePokemon
+                          getMyPokemon={getMyPokemon}
+                          userPokemon={userPokemon}
+                        />
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         )}
       </Container>
     </>

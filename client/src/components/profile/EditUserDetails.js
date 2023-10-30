@@ -85,7 +85,14 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
   };
 
   if (!regions || !cities) {
-    return <Spinner />;
+    return (
+      <Button
+        onClick={toggle}
+        className="rounded-0"
+      >
+        Edit
+      </Button>
+    );
   }
 
   return (
