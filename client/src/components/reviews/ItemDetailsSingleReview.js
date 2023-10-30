@@ -12,7 +12,7 @@ import { ConvertRatingToIcons } from '../utilities/CovertRatingToIcons.js';
 import { ItemDetailsEditReview } from './ItemDetailsEditReview.js';
 import { fetchDeleteReview } from '../../managers/ReviewManager.js';
 import { useState } from 'react';
-import "./ReviewCard.css"
+import './ReviewCard.css';
 
 export const ItemDetailsSingleReview = ({
   review,
