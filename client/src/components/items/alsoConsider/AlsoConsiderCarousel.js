@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardBody, CardSubtitle, CardTitle, Carousel, CarouselControl, CarouselIndicators, CarouselItem } from "reactstrap";
 import { calculateAverageReviewScore } from "../../utilities/averageReviewScore.js";
 import { ConvertRatingToIcons } from "../../utilities/CovertRatingToIcons.js";
+import "./AlsoConsiderCarousel.css"
 
 export const AlsoConsiderCarousel = ({ relatedItems }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -38,17 +39,18 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
         style={{
           width: '15em',
         }}
+        className="also-consider-carousel"
       >
         <Card
           onClick={() => navigate(`/items/${item.id}`)}
           color="dark"
           key={index}
           inverse
-          className="rounded-0 mt-2 pb-4 item-card"
+          className="rounded-0 pb-4"
           role="button"
           style={{
             width: '15em',
-            height: '22em',
+            // height: '100%',
           }}
         >
           <img
@@ -99,6 +101,7 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
         style={{
             width: "15em"
         }}
+        className="also-consider-carousel"
         
       >
         <CarouselIndicators

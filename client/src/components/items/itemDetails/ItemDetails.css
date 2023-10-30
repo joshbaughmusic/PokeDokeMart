@@ -1,3 +1,8 @@
 .carousel-indicators [data-bs-target] {
-    box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.item-details-left-panel {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.585);
+  border: solid rgba(0, 0, 0, 0.299) 1px;
 }

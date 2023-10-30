@@ -21,7 +21,7 @@ export const AlsoConsiderSection = ({ item }) => {
   return (
     <>
       <div className='mt-5'>
-        <h5>Also Consider:</h5>
+        <h5 className='mb-3'>Also Consider:</h5>
           <AlsoConsiderCarousel relatedItems={relatedItems} />
       </div>
     </>
