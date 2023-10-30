@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchSuggestedItemsByUser } from '../../../managers/ItemsManager.js';
-import { Container, Spinner } from 'reactstrap';
-import { SuggestedItemsCardHome } from './SuggestedItemsCardHome.js';
+import { Spinner } from 'reactstrap';
 import { SuggestedItemsCarouselHome } from './SuggestedItemsCarouselHome.js';
 
 export const SuggestedItemsHome = ({ loggedInUser }) => {
