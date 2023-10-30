@@ -1,47 +1,60 @@
-import { Button, Container, Input, Label } from 'reactstrap';
+import { Accordion, Button, Input, Label } from 'reactstrap';
 import { ItemSearch } from './ItemSearch.js';
 import { ItemSort } from './ItemSort.js';
 import { ItemCategories } from './ItemCategories.js';
+import { useState } from 'react';
 
 export const SortFilterCategoryShell = ({
   setAllItems,
   getAllItems,
   allItems,
   setItemsPerPage,
+  setCurrentPage,
 }) => {
+  const [open, setOpen] = useState();
+  const toggle = (id) => {
+    if (open === id) {
+      setOpen();
+    } else {
+      setOpen(id);
+    }
+  };
   const handleReset = () => {
     getAllItems();
   };
 
   return (
     <>
-      <div
-        style={{
-          marginTop: '15px',
-        }}
-      >
-        <ItemSearch
-          setAllItems={setAllItems}
-          allItems={allItems}
-        />
-        <ItemSort
-          setAllItems={setAllItems}
-          allItems={allItems}
-          getAllItems={getAllItems}
-        />
-        <ItemCategories
-          setAllItems={setAllItems}
-          getAllItems={getAllItems}
-        />
-        <Button
-          className="mt-4"
-          onClick={handleReset}
-        >
-          Reset
-        </Button>
+      <div className="d-flex flex-column justify-content-between text-bg-dark p-3 filter-shell">
+        <div>
+          <ItemSearch
+            setAllItems={setAllItems}
+            allItems={allItems}
+          />
+          <Accordion
+            open={open}
+            toggle={toggle}
+          >
+            <ItemSort
+              setAllItems={setAllItems}
+              allItems={allItems}
+              getAllItems={getAllItems}
+              toggle={toggle}
+              open={open}
+            />
+            <ItemCategories
+              setAllItems={setAllItems}
+              getAllItems={getAllItems}
+              toggle={toggle}
+              open={open}
+              setCurrentPage={setCurrentPage}
+            />
+          </Accordion>
+        </div>
         <div className="mt-4">
           <Label>Items Per Page:</Label>
           <Input
+            className="rounded-0"
             type="select"
             onChange={(e) => setItemsPerPage(e.target.value)}
           >
@@ -49,6 +62,12 @@ export const SortFilterCategoryShell = ({
             <option value={24}>24</option>
             <option value={36}>36</option>
           </Input>
+          <Button
+            className="mt-4 rounded-0"
+            onClick={handleReset}
+          >
+            Reset Filters
+          </Button>
         </div>
       </div>
     </>

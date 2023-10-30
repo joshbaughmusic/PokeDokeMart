@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import {
-  Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
-  Button,
   Form,
   FormGroup,
   Input,
@@ -15,16 +13,8 @@ import {
   fetchItemsByCategoryId,
 } from '../../../../managers/ItemsManager.js';
 
-export const ItemCategories = ({ setAllItems }) => {
+export const ItemCategories = ({ setAllItems, setCurrentPage }) => {
   const [categories, setCategories] = useState();
-  const [open, setOpen] = useState();
-  const toggle = (id) => {
-    if (open === id) {
-      setOpen();
-    } else {
-      setOpen(id);
-    }
-  };
 
   const getAllCategories = () => {
     fetchAllCategories().then(setCategories);
@@ -35,63 +25,46 @@ export const ItemCategories = ({ setAllItems }) => {
   }, []);
 
   const handleCategorySelect = (e) => {
-      fetchItemsByCategoryId(e.target.value).then(setAllItems);
+    fetchItemsByCategoryId(e.target.value).then((res) => {
+      setAllItems(res)
+      setCurrentPage(1)
+    });
   };
 
   if (!categories) {
     return (
-      <div>
-        <Accordion
-          open={open}
-          toggle={toggle}
-          style={{
-            borderRadius: '0px',
-          }}
-        >
-          <AccordionItem>
-            <AccordionHeader targetId="1">Categories</AccordionHeader>
-          </AccordionItem>
-        </Accordion>
-      </div>
+      <AccordionItem className="rounded-0">
+        <AccordionHeader targetId="2">Categories</AccordionHeader>
+      </AccordionItem>
     );
   }
 
   return (
     <>
-      <div>
-        <Accordion
-          open={open}
-          toggle={toggle}
-          style={{
-            borderRadius: '0px',
-          }}
+      <AccordionItem className="rounded-0">
+        <AccordionHeader targetId="2">Categories</AccordionHeader>
+        <AccordionBody
+          className="text-bg-dark rounded-0"
+          accordionId="2"
         >
-          <AccordionItem>
-            <AccordionHeader targetId="1">Categories</AccordionHeader>
-            <AccordionBody
-              className="text-bg-dark rounded-0"
-              accordionId="1"
-            >
-              <Form>
-                {categories.map((c, index) => (
-                  <FormGroup
-                    key={index}
-                    check
-                  >
-                    <Label>{c.name}</Label>
-                    <Input
-                      name="categoryId"
-                      type="radio"
-                      value={c.id}
-                      onChange={handleCategorySelect}
-                    />
-                  </FormGroup>
-                ))}
-              </Form>
-            </AccordionBody>
-          </AccordionItem>
-        </Accordion>
-      </div>
+          <Form>
+            {categories.map((c, index) => (
+              <FormGroup
+                key={index}
+                check
+              >
+                <Label>{c.name}</Label>
+                <Input
+                  name="categoryId"
+                  type="radio"
+                  value={c.id}
+                  onChange={handleCategorySelect}
+                />
+              </FormGroup>
+            ))}
+          </Form>
+        </AccordionBody>
+      </AccordionItem>
     </>
   );
 };

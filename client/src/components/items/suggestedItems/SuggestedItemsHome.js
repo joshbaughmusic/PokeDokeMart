@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchSuggestedItemsByUser } from '../../../managers/ItemsManager.js';
 import { Container, Spinner } from 'reactstrap';
 import { SuggestedItemsCardHome } from './SuggestedItemsCardHome.js';
+import { SuggestedItemsCarouselHome } from './SuggestedItemsCarouselHome.js';
 
 export const SuggestedItemsHome = ({ loggedInUser }) => {
   const [suggestedItems, setSuggestedItems] = useState();
@@ -20,23 +21,15 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
 
   return (
     <>
-      <Container>
-        <div className="d-flex justify-content-center flex-wrap gap-3">
-          {suggestedItems.length === 0 ? (
-            <div>
-              Add some pokemon to your profile to receive personalized item
-              suggestions!
-            </div>
-          ) : (
-            suggestedItems.map((i, index) => (
-              <SuggestedItemsCardHome
-                item={i}
-                key={index}
-              />
-            ))
-          )}
+      <h3 className="suggested-items-heading text-center">Suggested items for you:</h3>
+      {suggestedItems.length === 0 ? (
+        <div className='text-center mt-5'>
+          Add some pokemon to your profile to receive personalized item
+          suggestions!
         </div>
-      </Container>
+      ) : (
+        <SuggestedItemsCarouselHome items={suggestedItems} />
+      )}
     </>
   );
 };

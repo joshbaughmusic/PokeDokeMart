@@ -4,6 +4,7 @@ import { Col, Container, Input, Label, Row, Spinner } from 'reactstrap';
 import { AllItemCard } from './AllItemCard.js';
 import { PaginationTool } from '../../utilities/PaginationTool.js';
 import { SortFilterCategoryShell } from './sort-filter-categories/SortFilterCategoryShell.js';
+import './AllItems.css';
 
 export const AllItems = () => {
   const [allItems, setAllItems] = useState();
@@ -35,37 +36,44 @@ export const AllItems = () => {
   };
 
   if (!allItems) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <Spinner />
+        </div>
+      </>
+    );
   }
 
   return (
     <>
-      <Container className="d-flex flex-column justify-content-between h-100">
-        <Row>
+      <Container className="d-flex flex-column all-items-container-outer justify-content-between">
+        <Row className="all-items-container-inner">
           <Col lg="3">
             <SortFilterCategoryShell
               setAllItems={setAllItems}
               allItems={allItems}
               getAllItems={getAllItems}
               setItemsPerPage={setItemsPerPage}
+              setCurrentPage={setCurrentPage}
             />
           </Col>
           <Col
             md="4"
             lg="9"
           >
-            <div className="allItems-card-container d-flex  flex-wrap justify-content-around gap-1">
+            <div className="allItems-card-container d-flex  flex-wrap gap-4">
               {currentItems.map((i, index) => (
-                <AllItemCard key={index}
+                <AllItemCard
+                  key={index}
                   item={i}
-                 
                 />
               ))}
             </div>
           </Col>
         </Row>
 
-        <div className="d-flex justify-content-center mt-5">
+        <div className="d-flex justify-content-center">
           <PaginationTool
             itemsPerPage={itemsPerPage}
             totalItems={allItems.length}

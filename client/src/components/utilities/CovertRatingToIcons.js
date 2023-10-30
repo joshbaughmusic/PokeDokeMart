@@ -3,7 +3,7 @@ import Pokeball from '../../images/pokeball_review_icon.png';
 export const ConvertRatingToIcons = ({ rating }) => {
   return (
     <>
-      <div>
+      <div className='d-flex align-items-center mt-1'>
         {Array(rating)
           .fill(0)
           .map((obj, index) => (

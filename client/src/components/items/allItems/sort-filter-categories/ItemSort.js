@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
 import {
-  Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
-  Button,
   Form,
   FormGroup,
   Input,
@@ -39,15 +36,10 @@ const sortValues = [
   },
 ];
 
-export const ItemSort = ({ setAllItems, allItems }) => {
-  const [open, setOpen] = useState();
-  const toggle = (id) => {
-    if (open === id) {
-      setOpen();
-    } else {
-      setOpen(id);
-    }
-  };
+export const ItemSort = ({
+  setAllItems,
+  allItems,
+}) => {
 
   const handleSortSelect = (e) => {
     const copy = [...allItems];
@@ -80,15 +72,8 @@ export const ItemSort = ({ setAllItems, allItems }) => {
 
   return (
     <>
-      <div>
-        <Accordion
-          open={open}
-          toggle={toggle}
-          style={{
-            borderRadius: '0px',
-          }}
-        >
-          <AccordionItem>
+     
+          <AccordionItem className="rounded-0">
             <AccordionHeader targetId="1">Sort By</AccordionHeader>
             <AccordionBody
               className="text-bg-dark rounded-0"
@@ -112,8 +97,7 @@ export const ItemSort = ({ setAllItems, allItems }) => {
               </Form>
             </AccordionBody>
           </AccordionItem>
-        </Accordion>
-      </div>
+     
     </>
   );
 };

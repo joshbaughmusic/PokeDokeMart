@@ -1,0 +1,37 @@
+.carousel-root {
+    width: 80%;
+}
+
+.carousel-status {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.suggested-items-heading {
+    margin-top: 175px;
+}
+
+
+.dot {
+    border-radius: 0px !important;
+}
+
+.item-card {
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.585);
+    border: solid rgba(0, 0, 0, 0.299) 1px;
+}
+
+.card-move-name {
+    font-size: small;
+}
+
+.card-item-name {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.667);
+    transition: 0.2s;
+}
+
+.card-item-name:hover {
+  color: lightgray;
+}
