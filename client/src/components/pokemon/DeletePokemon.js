@@ -33,6 +33,7 @@ export const DeletePokemon = ({ getMyPokemon, userPokemon }) => {
         toggle={toggle}
         className="rounded-0"
         backdrop="static"
+        centered={true}
       >
         <ModalHeader
           toggle={toggle}

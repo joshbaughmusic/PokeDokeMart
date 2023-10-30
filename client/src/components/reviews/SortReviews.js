@@ -25,7 +25,7 @@ const handleSort = (e) => {
     <>
       <div>
         <Label>Sort Reviews:</Label>
-        <Input type="select" onChange={handleSort}>
+        <Input className='rounded-0' type="select" onChange={handleSort}>
           <option value="newest">Newest First</option>
           <option value="oldest">Oldest First</option>
           <option value="highest">{`Rating (High to Low)`}</option>

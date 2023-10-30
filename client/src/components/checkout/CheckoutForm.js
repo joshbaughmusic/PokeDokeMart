@@ -115,7 +115,7 @@ export const CheckoutForm = ({ cartItems, loggedInUser }) => {
             navigate(newOrderUrl);
             clearCart();
           }}
-          className="rounded-0"
+          centered={true}
         >
           <ModalHeader toggle={toggle}>Success!</ModalHeader>
           <ModalBody>Order placed successfully!</ModalBody>

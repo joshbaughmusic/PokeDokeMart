@@ -43,50 +43,52 @@ export const NewReview = ({
 
   return (
     <>
-      {allReviewsByItem.some((r) => r.userProfileId === loggedInUser.id) ? (
-        <p>Thanks for leaving a review!</p>
-      ) : (
-        <Button
-          onClick={toggle}
+      <div className="d-flex justify-content-end">
+        {allReviewsByItem.some((r) => r.userProfileId === loggedInUser.id) ? (
+          <p>Thanks for leaving a review!</p>
+        ) : (
+          <Button
+            onClick={toggle}
+            className="rounded-0"
+          >
+            Leave a Review
+          </Button>
+        )}
+        <Modal
+          isOpen={modal}
+          toggle={toggle}
           className="rounded-0"
+          onClosed={() => {
+            setRating(0);
+            setReviewBody({ body: '' });
+          }}
         >
-          Leave a Review
-        </Button>
-      )}
-      <Modal
-        isOpen={modal}
-        toggle={toggle}
-        className="rounded-0"
-        onClosed={() => {
-          setRating(0);
-          setReviewBody({ body: '' });
-        }}
-      >
-        <ModalHeader toggle={toggle}>New Review:</ModalHeader>
-        <ModalBody>
-          <Form>
-            <FormGroup>
-              <Label>Rating</Label>
-              <PokeRating
-                rating={rating}
-                setRating={setRating}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Comment</Label>
-              <Input
-                type="textarea"
-                rows="5"
-                name="reviewBody"
-                onChange={handleChange}
-              />
-            </FormGroup>
-          </Form>
-        </ModalBody>
-        <ModalFooter>
-          <Button onClick={handleSubmit}>Submit</Button>
-        </ModalFooter>
-      </Modal>
+          <ModalHeader toggle={toggle}>New Review:</ModalHeader>
+          <ModalBody>
+            <Form>
+              <FormGroup>
+                <Label>Rating</Label>
+                <PokeRating
+                  rating={rating}
+                  setRating={setRating}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>Comment</Label>
+                <Input
+                  type="textarea"
+                  rows="5"
+                  name="reviewBody"
+                  onChange={handleChange}
+                />
+              </FormGroup>
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={handleSubmit}>Submit</Button>
+          </ModalFooter>
+        </Modal>
+      </div>
     </>
   );
 };
