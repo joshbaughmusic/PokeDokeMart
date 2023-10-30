@@ -74,6 +74,7 @@ export const EditPokemon = ({ getMyPokemon, allPokemon, userPokemon }) => {
           setVisibleSuccess(false);
           setVisibleError(false);
         }}
+        centered={true}
       >
         <ModalHeader
           toggle={toggle}

@@ -12,6 +12,7 @@ import { ConvertRatingToIcons } from '../utilities/CovertRatingToIcons.js';
 import { ItemDetailsEditReview } from './ItemDetailsEditReview.js';
 import { fetchDeleteReview } from '../../managers/ReviewManager.js';
 import { useState } from 'react';
+import "./ReviewCard.css"
 
 export const ItemDetailsSingleReview = ({
   review,
@@ -33,6 +34,7 @@ export const ItemDetailsSingleReview = ({
         isOpen={modal}
         toggle={toggle}
         backdrop="static"
+        centered={true}
       >
         <ModalHeader
           toggle={toggle}
@@ -60,7 +62,7 @@ export const ItemDetailsSingleReview = ({
           </Button>
         </ModalFooter>
       </Modal>
-      <Container className="mt-4 border">
+      <Container className="mt-4 text-bg-dark px-4 pb-4 review-card">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex gap-1 align-items-center">
             Rating: <ConvertRatingToIcons rating={review.rating} />
@@ -88,16 +90,16 @@ export const ItemDetailsSingleReview = ({
                   width: '30px',
                   height: '30px',
                   objectFit: 'cover',
-                  border: 'solid lightgrey 1px',
+                  border: 'solid lightgrey 2px',
                 }}
                 className="my-3"
               />
             )}
           </div>
         </div>
-        <div className="my-3">{`"${review.body}"`}</div>
+        <div className="mb-4 mt-1">{`"${review.body}"`}</div>
         {review.userProfileId === loggedInUser.id ? (
-          <>
+          <div className="d-flex gap-2">
             <ItemDetailsEditReview
               review={review}
               getAllReviewsByItem={getAllReviewsByItem}
@@ -108,7 +110,7 @@ export const ItemDetailsSingleReview = ({
             >
               Delete
             </Button>
-          </>
+          </div>
         ) : (
           ''
         )}

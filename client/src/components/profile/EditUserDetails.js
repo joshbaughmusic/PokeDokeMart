@@ -105,6 +105,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
           setVisibleError(false);
         }}
         backdrop="static"
+        centered={true}
       >
         <ModalHeader
           toggle={toggle}

@@ -50,6 +50,7 @@ export const ProfileSingleReview = ({
         isOpen={modal}
         toggle={toggle}
         backdrop="static"
+        centered={true}
       >
         <ModalHeader
           toggle={toggle}
@@ -78,9 +79,14 @@ export const ProfileSingleReview = ({
         </ModalFooter>
       </Modal>
 
-      <Container className="mt-4 border px-3 pb-3">
-        <div className='d-flex align-items-center gap-1 my-3'>
-          <h5 className='profile_review_name_link' onClick={() => navigate(`/items/${item.id}`)}>{item.name}</h5>
+      <Container className="mt-4 border px-4 pb-4 review-card">
+        <div className="d-flex align-items-center gap-1 my-3">
+          <h5
+            className="profile_review_name_link"
+            onClick={() => navigate(`/items/${item.id}`)}
+          >
+            {item.name}
+          </h5>
           <img
             src={item.image}
             alt=""
@@ -96,7 +102,7 @@ export const ProfileSingleReview = ({
         </div>
         <div className="my-3">{`"${review.body}"`}</div>
         {review.userProfileId === loggedInUser.id ? (
-          <>
+          <div className="d-flex gap-2">
             <ProfileEditReview
               review={review}
               getAllReviewsByUser={getAllReviewsByUser}
@@ -107,7 +113,7 @@ export const ProfileSingleReview = ({
             >
               Delete
             </Button>
-          </>
+          </div>
         ) : (
           ''
         )}

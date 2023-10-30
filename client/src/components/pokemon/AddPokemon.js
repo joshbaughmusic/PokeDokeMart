@@ -75,6 +75,7 @@ export const AddPokemon = ({ allPokemon, myPokemon, getMyPokemon }) => {
           setVisibleError(false);
         }}
         backdrop="static"
+        centered={true}
       >
         <ModalHeader
           toggle={toggle}

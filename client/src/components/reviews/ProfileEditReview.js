@@ -50,6 +50,7 @@ export const ProfileEditReview = ({ review, getAllReviewsByUser }) => {
         isOpen={modal}
         toggle={toggle}
         backdrop="static"
+        centered={true}
       >
         <ModalHeader
           toggle={toggle}

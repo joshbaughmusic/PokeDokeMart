@@ -26,7 +26,8 @@ public class ReviewController : ControllerBase
             //return all reviews
             return Ok(_dbContext.Reviews
             .Include(r => r.UserProfile)
-            .Include(r => r.Item));
+            .Include(r => r.Item)
+            .OrderByDescending(r => r.Date));
         }
         else
         {
@@ -43,6 +44,7 @@ public class ReviewController : ControllerBase
             .Include(r => r.UserProfile)
             .Include(r => r.Item)
             .Where(r => r.UserProfileId == convUserProfileId)
+            .OrderByDescending(r => r.Date)
             .ToList();
 
             return Ok(foundReviews);
@@ -64,6 +66,7 @@ public class ReviewController : ControllerBase
         .Include(r => r.UserProfile)
         .Include(r => r.Item)
         .Where(r => r.ItemId == id)
+        .OrderByDescending(r => r.Date)
         .ToList();
 
         return Ok(reviewsForItem);

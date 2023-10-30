@@ -21,3 +21,7 @@ html {
 button {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.585);
 }
+
+.modal-content {
+  border-radius: 0px !important;
+}
