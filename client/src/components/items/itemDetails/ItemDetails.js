@@ -40,7 +40,13 @@ export const ItemDetails = ({ loggedInUser }) => {
   };
 
   if (!item) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <Spinner />
+        </div>
+      </>
+    );
   }
 
   return (
@@ -52,6 +58,7 @@ export const ItemDetails = ({ loggedInUser }) => {
               <img
                 src={item.image}
                 alt=""
+                className='item-details-img'
                 style={{
                   width: '60%',
                 }}

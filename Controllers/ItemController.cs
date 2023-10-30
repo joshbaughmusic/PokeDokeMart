@@ -118,7 +118,7 @@ public class ItemController : ControllerBase
         {
             relatedItems = _dbContext.Items
             .Include(i => i.Category)
-            .Where(i => i.CategoryId == 1 || i.CategoryId == 2 && i.Id != foundItem.Id)
+            .Where(i => (i.CategoryId == 1 || i.CategoryId == 2) && i.Id != foundItem.Id)
             .ToList();
         }
         else

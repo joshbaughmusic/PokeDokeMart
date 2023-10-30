@@ -16,7 +16,13 @@ export const AlsoConsiderSection = ({ item }) => {
   }, [item]);
 
   if (!relatedItems) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <Spinner />
+        </div>
+      </>
+    );
   }
   return (
     <>
