@@ -73,7 +73,7 @@ export const AllItems = () => {
           </Col>
         </Row>
 
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center mt-5">
           <PaginationTool
             itemsPerPage={itemsPerPage}
             totalItems={allItems.length}
