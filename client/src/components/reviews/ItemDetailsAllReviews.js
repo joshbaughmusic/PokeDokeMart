@@ -88,14 +88,14 @@ export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
           {isOpen ? (
             <Button
               onClick={toggle}
-              className="rounded-0 w-75"
+              className="rounded-0 w-100"
             >
-              Hide Reviews <AiOutlineUp />
+              Hide All Reviews <AiOutlineUp />
             </Button>
           ) : (
             <Button
               onClick={toggle}
-              className="rounded-0 w-75"
+              className="rounded-0 w-100"
             >
               View All Reviews <AiOutlineDown />
             </Button>

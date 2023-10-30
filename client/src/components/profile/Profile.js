@@ -30,8 +30,8 @@ export const Profile = ({ loggedInUser }) => {
   }
   return (
     <>
-      <Container className="text-bg-dark my-5 p-5">
-        <Row>
+      <Container className="text-bg-dark my-5 p-5 profile-container">
+        <Row className='mb-4'>
           <Col className="d-flex gap-4 align-items-center h-100">
             <div className="profile-details p-4">
               <h1 className="profile-heading">

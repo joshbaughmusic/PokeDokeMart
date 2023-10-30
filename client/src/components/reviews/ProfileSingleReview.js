@@ -79,26 +79,28 @@ export const ProfileSingleReview = ({
         </ModalFooter>
       </Modal>
 
-      <Container className="mt-4 border px-4 pb-4 review-card">
-        <div className="d-flex align-items-center gap-1 my-3">
-          <h5
-            className="profile_review_name_link"
-            onClick={() => navigate(`/items/${item.id}`)}
-          >
-            {item.name}
-          </h5>
-          <img
-            src={item.image}
-            alt=""
-          />
+      <Container className="mt-4 px-4 pb-4 profile-review-card">
+        <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex align-items-center gap-1 my-3">
+            <img
+              src={item.image}
+              alt=""
+            />
+            <h5
+              className="profile_review_name_link"
+              onClick={() => navigate(`/items/${item.id}`)}
+            >
+              {item.name}
+            </h5>
+          </div>
+        <div>{dateFormatter(review.date)}</div>
         </div>
+
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex gap-1 align-items-center">
             Rating: <ConvertRatingToIcons rating={review.rating} />
           </div>
-          <div className="d-flex gap-3 align-items-center">
-            <div>{dateFormatter(review.date)}</div>
-          </div>
+          <div className=""></div>
         </div>
         <div className="my-3">{`"${review.body}"`}</div>
         {review.userProfileId === loggedInUser.id ? (
