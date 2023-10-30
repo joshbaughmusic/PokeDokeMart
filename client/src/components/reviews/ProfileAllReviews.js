@@ -15,7 +15,13 @@ export const ProfileAllReviews = ({ loggedInUser }) => {
   }, []);
 
   if (!allReviewsByUser) {
-    return <Spinner />;
+      return (
+        <>
+          <div className="d-flex justify-content-center h-100 align-items-center mb-5 mt-3">
+            <Spinner />
+          </div>
+        </>
+      );
   }
 
   if (allReviewsByUser.length === 0) {

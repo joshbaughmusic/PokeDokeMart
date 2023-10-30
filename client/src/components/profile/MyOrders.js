@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const MyOrders = ({ orders }) => {
   return (
     <>
-      <Container className="mt-5">
+      <Container className="mt-4">
         <h4 className='mb-3'>My Orders:</h4>
         <Table>
           <thead>

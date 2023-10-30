@@ -30,52 +30,54 @@ export const Profile = ({ loggedInUser }) => {
   }
   return (
     <>
-      <Container className="text-bg-dark my-5 p-4">
-        <h1 className="profile-heading mb-3">
-          {profile.firstName} {profile.lastName}
-        </h1>
+      <Container className="text-bg-dark my-5 p-5">
         <Row>
-          <Col className="d-flex gap-4 align-items-center">
-            <div>
-              {profile.profilePictureUrl ? (
-                <img
-                  className="profile-image"
-                  src={profile.profilePictureUrl}
-                  alt=""
-                  style={{
-                    width: '210px',
-                    height: '210px',
-                    objectFit: 'cover',
-                  }}
-                />
-              ) : (
-                <img
-                  className="profile-image"
-                  src={PersonSprite}
-                  alt=""
-                  style={{
-                    width: '200px',
-                    height: '200px',
-                    objectFit: 'cover',
-                  }}
-                />
-              )}
-            </div>
-            <div className="profile-details p-3">
-              <div>
-                <div className="d-flex justify-content-between align-items-baseline">
-                  <h5>Details:</h5>
-                  <EditUserDetails
-                    profile={profile}
-                    getCurrentUserProfile={getCurrentUserProfile}
-                  />
+          <Col className="d-flex gap-4 align-items-center h-100">
+            <div className="profile-details p-4">
+              <h1 className="profile-heading">
+                {profile.firstName} {profile.lastName}
+              </h1>
+              <div className="d-flex align-items-center gap-4">
+                <div>
+                  {profile.profilePictureUrl ? (
+                    <img
+                      className="profile-image"
+                      src={profile.profilePictureUrl}
+                      alt=""
+                      style={{
+                        width: '210px',
+                        height: '210px',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  ) : (
+                    <img
+                      className="profile-image"
+                      src={PersonSprite}
+                      alt=""
+                      style={{
+                        width: '200px',
+                        height: '200px',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  )}
                 </div>
-                <div className="pt-3">
-                  <p>Email: {profile.email}</p>
-                  <p>Street: {profile.address}</p>
-                  <p>
-                    C/R: {profile.city.name}, {profile.region.name}
-                  </p>
+                <div>
+                  <div className="d-flex justify-content-between align-items-baseline">
+                    <h5>Details:</h5>
+                    <EditUserDetails
+                      profile={profile}
+                      getCurrentUserProfile={getCurrentUserProfile}
+                    />
+                  </div>
+                  <div className="pt-3">
+                    <p>Email: {profile.email}</p>
+                    <p>Street: {profile.address}</p>
+                    <p>
+                      C/R: {profile.city.name}, {profile.region.name}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
