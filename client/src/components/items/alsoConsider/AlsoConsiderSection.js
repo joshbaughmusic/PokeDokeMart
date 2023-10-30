@@ -22,15 +22,7 @@ export const AlsoConsiderSection = ({ item }) => {
     <>
       <div className='mt-5'>
         <h5>Also Consider:</h5>
-        {/* <ListGroup className='w-50'> */}
-          {/* {relatedItems.map((i, index) => (
-            <AlsoConsiderCard
-              item={i}
-              key={index}
-            />
-          ))} */}
           <AlsoConsiderCarousel relatedItems={relatedItems} />
-        {/* </ListGroup> */}
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
 import { ItemDetailsAllReviews } from '../../reviews/ItemDetailsAllReviews.js';
 import { AlsoConsiderSection } from '../alsoConsider/AlsoConsiderSection.js';
+import "./ItemDetails.css"
 
 export const ItemDetails = ({ loggedInUser }) => {
   const [item, setItem] = useState();

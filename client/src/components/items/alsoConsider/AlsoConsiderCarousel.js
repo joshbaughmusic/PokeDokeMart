@@ -36,7 +36,7 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
         onExited={() => setAnimating(false)}
         key={index}
         style={{
-          width: '12em',
+          width: '15em',
         }}
       >
         <Card
@@ -47,8 +47,8 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
           className="rounded-0 mt-2 pb-4 item-card"
           role="button"
           style={{
-            width: '14em',
-            height: '20em',
+            width: '15em',
+            height: '22em',
           }}
         >
           <img
@@ -97,7 +97,7 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
         next={next}
         previous={previous}
         style={{
-            width: "14em"
+            width: "15em"
         }}
         
       >
@@ -105,6 +105,7 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
           items={relatedItems}
           activeIndex={activeIndex}
           onClickHandler={goToIndex}
+          className="px-3"
         />
         {slides}
         <CarouselControl
