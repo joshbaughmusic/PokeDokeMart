@@ -5,7 +5,7 @@ import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
 import { ItemDetailsAllReviews } from '../../reviews/ItemDetailsAllReviews.js';
 import { AlsoConsiderSection } from '../alsoConsider/AlsoConsiderSection.js';
-import "./ItemDetails.css"
+import './ItemDetails.css';
 import PokeballLoading from '../../../images/pokeball-loading.gif';
 
 export const ItemDetails = ({ loggedInUser }) => {
@@ -16,7 +16,11 @@ export const ItemDetails = ({ loggedInUser }) => {
   const { addToCart } = useShoppingCart();
 
   const getSingleItem = () => {
-    fetchSingleItem(id).then(setItem);
+    fetchSingleItem(id).then((res) => {
+      setTimeout(() => {
+        setItem(res);
+      }, 300);
+    });
   };
 
   useEffect(() => {
@@ -78,7 +82,7 @@ export const ItemDetails = ({ loggedInUser }) => {
               >
                 {item.move ? (
                   <>
-                  <h5 className="mb-3">Move Description:</h5>
+                    <h5 className="mb-3">Move Description:</h5>
                     <h3 className="mb-3">{item.move.name}</h3>
 
                     <p>{item.description}</p>
@@ -125,7 +129,9 @@ export const ItemDetails = ({ loggedInUser }) => {
                 <div className="fs-3 mx-3">{quantity}</div>
                 <Button
                   className="rounded-0"
-                  onClick={() => quantity <99 ? setQuantity(quantity + 1) : null}
+                  onClick={() =>
+                    quantity < 99 ? setQuantity(quantity + 1) : null
+                  }
                 >
                   +
                 </Button>
@@ -148,7 +154,10 @@ export const ItemDetails = ({ loggedInUser }) => {
                 Add to cart
               </Button>
             )}
-            <AlsoConsiderSection item={item} />
+            <AlsoConsiderSection
+              item={item}
+              setQuantity={setQuantity}
+            />
           </Col>
         </Row>
         <Row>

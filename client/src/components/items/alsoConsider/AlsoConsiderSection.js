@@ -5,7 +5,7 @@ import { AlsoConsiderCarousel } from './AlsoConsiderCarousel.js';
 import PokeballLoading from '../../../images/pokeball-loading.gif';
 
 
-export const AlsoConsiderSection = ({ item }) => {
+export const AlsoConsiderSection = ({ item, setQuantity }) => {
   const [relatedItems, setRelatedItems] = useState();
 
   const getRelatedItems = () => {
@@ -30,7 +30,7 @@ export const AlsoConsiderSection = ({ item }) => {
     <>
       <div className='mt-5'>
         <h5 className='mb-3'>Also Consider:</h5>
-          <AlsoConsiderCarousel relatedItems={relatedItems} />
+          <AlsoConsiderCarousel relatedItems={relatedItems} setQuantity={setQuantity} />
       </div>
     </>
   );

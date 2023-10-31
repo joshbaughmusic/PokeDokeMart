@@ -1,14 +1,23 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Card, CardBody, CardSubtitle, CardTitle, Carousel, CarouselControl, CarouselIndicators, CarouselItem } from "reactstrap";
-import { calculateAverageReviewScore } from "../../utilities/averageReviewScore.js";
-import { ConvertRatingToIcons } from "../../utilities/CovertRatingToIcons.js";
-import "./AlsoConsiderCarousel.css"
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Card,
+  CardBody,
+  CardSubtitle,
+  CardTitle,
+  Carousel,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselItem,
+} from 'reactstrap';
+import { calculateAverageReviewScore } from '../../utilities/averageReviewScore.js';
+import { ConvertRatingToIcons } from '../../utilities/CovertRatingToIcons.js';
+import './AlsoConsiderCarousel.css';
 
-export const AlsoConsiderCarousel = ({ relatedItems }) => {
+export const AlsoConsiderCarousel = ({ relatedItems, setQuantity }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const next = () => {
     if (animating) return;
@@ -28,7 +37,6 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
-  
 
   const slides = relatedItems.map((item, index) => {
     return (
@@ -42,7 +50,10 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
         className="also-consider-carousel"
       >
         <Card
-          onClick={() => navigate(`/items/${item.id}`)}
+          onClick={() => {
+            navigate(`/items/${item.id}`);
+            setQuantity(1)
+          }}
           color="dark"
           key={index}
           inverse
@@ -93,41 +104,44 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
     );
   });
 
- if (relatedItems.length === 0) {
-  return <>
-  <div>No related items currently available!</div></>
- }
-   return (
-     <>
-       <Carousel
-         activeIndex={activeIndex}
-         next={next}
-         previous={previous}
-         style={{
-           width: '15em',
-         }}
-         className="also-consider-carousel"
-       >
-         <CarouselIndicators
-           items={relatedItems}
-           activeIndex={activeIndex}
-           onClickHandler={goToIndex}
-           className="px-3 "
-         />
-         {slides}
-         <CarouselControl
-           direction="prev"
-           directionText="Previous"
-           onClickHandler={previous}
-           className="mb-4"
-         />
-         <CarouselControl
-           direction="next"
-           directionText="Next"
-           onClickHandler={next}
-           className="mb-4"
-         />
-       </Carousel>
-     </>
-   );
+  if (relatedItems.length === 0) {
+    return (
+      <>
+        <div>No related items currently available!</div>
+      </>
+    );
+  }
+  return (
+    <>
+      <Carousel
+        activeIndex={activeIndex}
+        next={next}
+        previous={previous}
+        style={{
+          width: '15em',
+        }}
+        className="also-consider-carousel"
+      >
+        <CarouselIndicators
+          items={relatedItems}
+          activeIndex={activeIndex}
+          onClickHandler={goToIndex}
+          className="px-3 "
+        />
+        {slides}
+        <CarouselControl
+          direction="prev"
+          directionText="Previous"
+          onClickHandler={previous}
+          className="mb-4"
+        />
+        <CarouselControl
+          direction="next"
+          directionText="Next"
+          onClickHandler={next}
+          className="mb-4"
+        />
+      </Carousel>
+    </>
+  );
 };

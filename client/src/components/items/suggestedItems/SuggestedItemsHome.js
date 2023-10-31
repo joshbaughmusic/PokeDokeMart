@@ -7,10 +7,14 @@ import { useNavigate } from 'react-router-dom';
 
 export const SuggestedItemsHome = ({ loggedInUser }) => {
   const [suggestedItems, setSuggestedItems] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getSuggestedItemsByUser = () => {
-    fetchSuggestedItemsByUser(loggedInUser.id, 12).then(setSuggestedItems);
+    fetchSuggestedItemsByUser(loggedInUser.id, 12).then((res) => {
+      setTimeout(() => {
+        setSuggestedItems(res);
+      }, 1000);
+    });
   };
 
   useEffect(() => {
@@ -24,7 +28,7 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
           <img
             style={{
               width: '200px',
-              marginTop: "80px"
+              marginTop: '80px',
             }}
             src={PokeballLoading}
             alt=""
@@ -41,8 +45,15 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
       </h3>
       {suggestedItems.length === 0 ? (
         <div className="text-center mt-5">
-          Add some pokemon to your <span role="button" className='suggested-items-profile-link' onClick={() => navigate("/profile")}>profile</span> to receive personalized
-          item suggestions!
+          Add some pokemon to your{' '}
+          <span
+            role="button"
+            className="suggested-items-profile-link"
+            onClick={() => navigate('/profile')}
+          >
+            profile
+          </span>{' '}
+          to receive personalized item suggestions!
         </div>
       ) : (
         <SuggestedItemsCarouselHome items={suggestedItems} />

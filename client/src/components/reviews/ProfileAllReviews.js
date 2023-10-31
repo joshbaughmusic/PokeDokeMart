@@ -30,8 +30,8 @@ export const ProfileAllReviews = ({ loggedInUser }) => {
 
   if (allReviewsByUser.length === 0) {
     return (
-      <div className="d-flex justify-content-between align-items-center">
-        <div>No reviews yet!</div>
+      <div className="d-flex justify-content-center align-items-center mt-4">
+        <h5>No reviews yet!</h5>
       </div>
     );
   }

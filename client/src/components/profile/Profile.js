@@ -13,7 +13,11 @@ export const Profile = ({ loggedInUser }) => {
   const [profile, setProfile] = useState();
 
   const getCurrentUserProfile = () => [
-    fetchCurrentUserProfile().then(setProfile),
+    fetchCurrentUserProfile().then((res) => {
+      setTimeout(() => {
+        setProfile(res);
+      }, 300);
+    }),
   ];
 
   useEffect(() => {
@@ -38,7 +42,7 @@ export const Profile = ({ loggedInUser }) => {
   return (
     <>
       <Container className="text-bg-dark my-5 p-5 profile-container">
-        <Row className='mb-4'>
+        <Row className="mb-4">
           <Col className="d-flex gap-4 align-items-center h-100">
             <div className="profile-details p-4">
               <h1 className="profile-heading">

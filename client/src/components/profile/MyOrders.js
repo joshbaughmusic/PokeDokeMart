@@ -8,6 +8,14 @@ export const MyOrders = ({ orders }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
+
+  if (orders.length === 0) {
+    return (
+      <div className="d-flex justify-content-center align-items-center mt-3">
+        <h5>No orders yet!</h5>
+      </div>
+    );
+  }
   return (
     <>
       <Container className="mt-4">
