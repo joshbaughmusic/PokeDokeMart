@@ -62,7 +62,7 @@ export const ItemDetailsSingleReview = ({
           </Button>
         </ModalFooter>
       </Modal>
-      <Container className="mt-4 text-bg-dark px-4 pb-4 review-card">
+      <Container className="mt-4 px-4 pb-4 review-card">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex gap-1 align-items-center">
             Rating: <ConvertRatingToIcons rating={review.rating} />

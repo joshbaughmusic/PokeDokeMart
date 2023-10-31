@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { fetchSuggestedItemsBySingleUserPokemon } from '../../../managers/ItemsManager.js';
 import { Container, Spinner } from 'reactstrap';
-import { SuggestedItemsCardPokeDetails } from './SuggestedItemCardPokeDetails.js';
+import { SuggestedItemsCardPokeDetails } from './SuggestedItemCardPokeDetails.js';import PokeballLoading from '../../../images/pokeball-loading.gif';
+
 
 export const SuggestedItemsPokeDetails = ({ userPokemon }) => {
   const [suggestedItems, setSuggestedItems] = useState();
@@ -19,7 +20,7 @@ export const SuggestedItemsPokeDetails = ({ userPokemon }) => {
   if (!suggestedItems) {
    return (
      <>
-       <div className="d-flex justify-content-center h-100 align-items-center mt-5">
+       <div className="d-flex justify-content-center h-100 align-items-center mb-5 mt-3">
          <Spinner />
        </div>
      </>

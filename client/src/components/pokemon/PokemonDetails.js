@@ -4,6 +4,7 @@ import { Button, ButtonGroup, Col, Container, Row, Spinner } from 'reactstrap';
 import { useEffect, useState } from 'react';
 import { SuggestedItemsPokeDetails } from '../items/suggestedItems/SuggestedItemsPokeDetails.js';
 import "./PokemonDetails.css"
+import PokeballLoading from '../../images/pokeball-loading.gif';
 
 export const PokemonDetails = () => {
   const [userPokemon, setUserPokemon] = useState();
@@ -18,13 +19,19 @@ export const PokemonDetails = () => {
   }, []);
 
   if (!userPokemon) {
-    return (
-      <>
-        <div className="d-flex justify-content-center h-75 align-items-center">
-          <Spinner />
-        </div>
-      </>
-    );
+ return (
+   <>
+     <div className="d-flex justify-content-center h-75 align-items-center">
+       <img
+         style={{
+           width: '200px',
+         }}
+         src={PokeballLoading}
+         alt=""
+       />
+     </div>
+   </>
+ );
   }
   return (
     <>

@@ -23,7 +23,7 @@ export const SuggestedItemsCardPokeDetails = ({ item, index }) => {
           alt="Sample"
           src={item.image}
         />
-        <CardBody className="d-flex flex-column justify-content-between text-center">
+        <CardBody className="d-flex flex-column justify-content-between text-center card-body">
           <div>
             <CardTitle tag="h5">
               <span className="card-item-name">{item.name}</span>

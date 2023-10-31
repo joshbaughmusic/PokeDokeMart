@@ -5,6 +5,7 @@ import { AllItemCard } from './AllItemCard.js';
 import { PaginationTool } from '../../utilities/PaginationTool.js';
 import { SortFilterCategoryShell } from './sort-filter-categories/SortFilterCategoryShell.js';
 import './AllItems.css';
+import PokeballLoading from "../../../images/pokeball-loading.gif"
 
 export const AllItems = () => {
   const [allItems, setAllItems] = useState();
@@ -39,7 +40,13 @@ export const AllItems = () => {
     return (
       <>
         <div className="d-flex justify-content-center h-75 align-items-center">
-          <Spinner />
+          <img
+          style={{
+            width: "200px"
+          }}
+            src={PokeballLoading}
+            alt=""
+          />
         </div>
       </>
     );

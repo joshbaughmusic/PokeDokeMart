@@ -46,7 +46,7 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
           color="dark"
           key={index}
           inverse
-          className="rounded-0 pb-4"
+          className="rounded-0"
           role="button"
           style={{
             width: '15em',
@@ -58,7 +58,7 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
             src={item.image}
             className="w-75 align-self-center"
           />
-          <CardBody className="d-flex flex-column justify-content-between text-center">
+          <CardBody className="d-flex flex-column justify-content-between text-center card-body pb-5">
             <div>
               <CardTitle tag="h5">
                 <span className="card-item-name">{item.name}</span>
@@ -92,36 +92,42 @@ export const AlsoConsiderCarousel = ({ relatedItems }) => {
       </CarouselItem>
     );
   });
-  return (
-    <>
-      <Carousel
-        activeIndex={activeIndex}
-        next={next}
-        previous={previous}
-        style={{
-            width: "15em"
-        }}
-        className="also-consider-carousel"
-        
-      >
-        <CarouselIndicators
-          items={relatedItems}
-          activeIndex={activeIndex}
-          onClickHandler={goToIndex}
-          className="px-3"
-        />
-        {slides}
-        <CarouselControl
-          direction="prev"
-          directionText="Previous"
-          onClickHandler={previous}
-        />
-        <CarouselControl
-          direction="next"
-          directionText="Next"
-          onClickHandler={next}
-        />
-      </Carousel>
-    </>
-  );
+
+ if (relatedItems.length === 0) {
+  return <>
+  <div>No related items currently available!</div></>
+ }
+   return (
+     <>
+       <Carousel
+         activeIndex={activeIndex}
+         next={next}
+         previous={previous}
+         style={{
+           width: '15em',
+         }}
+         className="also-consider-carousel"
+       >
+         <CarouselIndicators
+           items={relatedItems}
+           activeIndex={activeIndex}
+           onClickHandler={goToIndex}
+           className="px-3 "
+         />
+         {slides}
+         <CarouselControl
+           direction="prev"
+           directionText="Previous"
+           onClickHandler={previous}
+           className="mb-4"
+         />
+         <CarouselControl
+           direction="next"
+           directionText="Next"
+           onClickHandler={next}
+           className="mb-4"
+         />
+       </Carousel>
+     </>
+   );
 };

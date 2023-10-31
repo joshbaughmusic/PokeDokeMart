@@ -103,7 +103,131 @@ export const CheckoutForm = ({ cartItems, loggedInUser }) => {
   };
 
   if (!regions) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="checkout-bottom-container p-4 mt-5">
+          <div>
+            <Form>
+              <div className="d-flex justify-content-between">
+                <p> Info:</p>
+                <FormGroup className="d-flex gap-2">
+                  <Label>Use info on file?</Label>
+                  <Input
+                    type="checkbox"
+                    className="rounded-0 use-info-on-file-checkbox"
+                    onChange={handleUseDetailsOnFile}
+                  />
+                </FormGroup>
+              </div>
+              <FormGroup className="d-flex gap-2">
+                <Input
+                  name="firstName"
+                  value={info.firstName}
+                  onChange={handleChange}
+                  placeholder="First Name"
+                  className="rounded-0"
+                />
+                <Input
+                  name="middleInitial"
+                  value={info.middleInitial}
+                  onChange={handleChange}
+                  placeholder="MI (optional)"
+                  maxLength="1"
+                  className="rounded-0"
+                />
+                <Input
+                  name="lastName"
+                  value={info.lastName}
+                  onChange={handleChange}
+                  placeholder="Last Name"
+                  className="rounded-0"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  name="address"
+                  value={info.address}
+                  onChange={handleChange}
+                  placeholder="Address"
+                  className="rounded-0"
+                />
+              </FormGroup>
+              <FormGroup className="d-flex gap-2">
+                <Input
+                  name="regionId"
+                  value={info.regionId}
+                  onChange={handleChange}
+                  type="select"
+                  placeholder="Region"
+                  className="rounded-0"
+                >
+                  <option
+                    value={null}
+                    disabled={info.regionId !== ''}
+                  >
+                    Region
+                  </option>
+                </Input>
+
+                <Input
+                  name="cityId"
+                  type="select"
+                  value={info.cityId}
+                  onChange={handleChange}
+                  placeholder="City"
+                  className="rounded-0"
+                  disabled
+                >
+                  <option value={null}>City</option>
+                </Input>
+              </FormGroup>
+            </Form>
+          </div>
+          <div>
+            <Form>
+              <p>Card Info:</p>
+              <FormGroup>
+                <Input
+                  name="cardNumber"
+                  value={info.careNumber}
+                  onChange={handleChange}
+                  placeholder="Card Number"
+                  className="rounded-0"
+                  maxLength="16"
+                />
+              </FormGroup>
+              <FormGroup className="d-flex gap-2">
+                <Input
+                  name="cardMonth"
+                  value={info.cardMonth}
+                  onChange={handleChange}
+                  placeholder="MM"
+                  className="rounded-0"
+                  maxLength="2"
+                />
+                <Input
+                  name="cardYear"
+                  value={info.cardYear}
+                  onChange={handleChange}
+                  placeholder="YY"
+                  className="rounded-0"
+                  maxLength="2"
+                />
+                <Input
+                  name="cardCVC"
+                  value={info.cardCVC}
+                  onChange={handleChange}
+                  placeholder="CVC"
+                  className="rounded-0"
+                  maxLength="3"
+                />
+              </FormGroup>
+            </Form>
+          </div>
+          <Button className="rounded-0">Complete Purchase</Button>
+        </div>
+      </>
+    );
   }
   return (
     <>
@@ -121,163 +245,165 @@ export const CheckoutForm = ({ cartItems, loggedInUser }) => {
           <ModalBody>Order placed successfully!</ModalBody>
         </Modal>
       </div>
-      <div>
-        <Form>
-          <div className="d-flex justify-content-between">
-            <p> Info:</p>
+      <div className="checkout-bottom-container p-4 mt-5">
+        <div>
+          <Form>
+            <div className="d-flex justify-content-between">
+              <p> Info:</p>
+              <FormGroup className="d-flex gap-2">
+                <Label>Use info on file?</Label>
+                <Input
+                  type="checkbox"
+                  className="rounded-0"
+                  onChange={handleUseDetailsOnFile}
+                />
+              </FormGroup>
+            </div>
             <FormGroup className="d-flex gap-2">
-              <Label>Use info on file?</Label>
               <Input
-                type="checkbox"
+                name="firstName"
+                value={info.firstName}
+                onChange={handleChange}
+                placeholder="First Name"
                 className="rounded-0"
-                onChange={handleUseDetailsOnFile}
+              />
+              <Input
+                name="middleInitial"
+                value={info.middleInitial}
+                onChange={handleChange}
+                placeholder="MI (optional)"
+                maxLength="1"
+                className="rounded-0"
+              />
+              <Input
+                name="lastName"
+                value={info.lastName}
+                onChange={handleChange}
+                placeholder="Last Name"
+                className="rounded-0"
               />
             </FormGroup>
-          </div>
-          <FormGroup className="d-flex gap-2">
-            <Input
-              name="firstName"
-              value={info.firstName}
-              onChange={handleChange}
-              placeholder="First Name"
-              className="rounded-0"
-            />
-            <Input
-              name="middleInitial"
-              value={info.middleInitial}
-              onChange={handleChange}
-              placeholder="MI (optional)"
-              maxLength="1"
-              className="rounded-0"
-            />
-            <Input
-              name="lastName"
-              value={info.lastName}
-              onChange={handleChange}
-              placeholder="Last Name"
-              className="rounded-0"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Input
-              name="address"
-              value={info.address}
-              onChange={handleChange}
-              placeholder="Address"
-              className="rounded-0"
-            />
-          </FormGroup>
-          <FormGroup className="d-flex gap-2">
-            <Input
-              name="regionId"
-              value={info.regionId}
-              onChange={handleChange}
-              type="select"
-              placeholder="Region"
-              className="rounded-0"
-            >
-              <option
-                value={null}
-                disabled={info.regionId !== ''}
-              >
-                Region
-              </option>
-              {regions.map((r, index) => (
-                <option
-                  key={index}
-                  value={r.id}
-                >
-                  {r.name}
-                </option>
-              ))}
-            </Input>
-            {info.regionId && cities ? (
+            <FormGroup>
               <Input
-                name="cityId"
-                type="select"
-                value={info.cityId}
+                name="address"
+                value={info.address}
                 onChange={handleChange}
-                placeholder="City"
+                placeholder="Address"
+                className="rounded-0"
+              />
+            </FormGroup>
+            <FormGroup className="d-flex gap-2">
+              <Input
+                name="regionId"
+                value={info.regionId}
+                onChange={handleChange}
+                type="select"
+                placeholder="Region"
                 className="rounded-0"
               >
                 <option
                   value={null}
-                  disabled={info.cityId !== ''}
+                  disabled={info.regionId !== ''}
                 >
-                  City
+                  Region
                 </option>
-                {cities.map((c, index) => (
+                {regions.map((r, index) => (
                   <option
                     key={index}
-                    value={c.id}
+                    value={r.id}
                   >
-                    {c.name}
+                    {r.name}
                   </option>
                 ))}
               </Input>
-            ) : (
+              {info.regionId && cities ? (
+                <Input
+                  name="cityId"
+                  type="select"
+                  value={info.cityId}
+                  onChange={handleChange}
+                  placeholder="City"
+                  className="rounded-0"
+                >
+                  <option
+                    value={null}
+                    disabled={info.cityId !== ''}
+                  >
+                    City
+                  </option>
+                  {cities.map((c, index) => (
+                    <option
+                      key={index}
+                      value={c.id}
+                    >
+                      {c.name}
+                    </option>
+                  ))}
+                </Input>
+              ) : (
+                <Input
+                  name="cityId"
+                  type="select"
+                  value={info.cityId}
+                  onChange={handleChange}
+                  placeholder="City"
+                  className="rounded-0"
+                  disabled
+                >
+                  <option value={null}>City</option>
+                </Input>
+              )}
+            </FormGroup>
+          </Form>
+        </div>
+        <div>
+          <Form>
+            <p>Card Info:</p>
+            <FormGroup>
               <Input
-                name="cityId"
-                type="select"
-                value={info.cityId}
+                name="cardNumber"
+                value={info.careNumber}
                 onChange={handleChange}
-                placeholder="City"
+                placeholder="Card Number"
                 className="rounded-0"
-                disabled
-              >
-                <option value={null}>City</option>
-              </Input>
-            )}
-          </FormGroup>
-        </Form>
+                maxLength="16"
+              />
+            </FormGroup>
+            <FormGroup className="d-flex gap-2">
+              <Input
+                name="cardMonth"
+                value={info.cardMonth}
+                onChange={handleChange}
+                placeholder="MM"
+                className="rounded-0"
+                maxLength="2"
+              />
+              <Input
+                name="cardYear"
+                value={info.cardYear}
+                onChange={handleChange}
+                placeholder="YY"
+                className="rounded-0"
+                maxLength="2"
+              />
+              <Input
+                name="cardCVC"
+                value={info.cardCVC}
+                onChange={handleChange}
+                placeholder="CVC"
+                className="rounded-0"
+                maxLength="3"
+              />
+            </FormGroup>
+          </Form>
+        </div>
+        <Button
+          className="rounded-0"
+          onClick={handleCompleteOrder}
+        >
+          Complete Purchase
+        </Button>
       </div>
-      <div>
-        <Form>
-          <p>Card Info:</p>
-          <FormGroup>
-            <Input
-              name="cardNumber"
-              value={info.careNumber}
-              onChange={handleChange}
-              placeholder="Card Number"
-              className="rounded-0"
-              maxLength="16"
-            />
-          </FormGroup>
-          <FormGroup className="d-flex gap-2">
-            <Input
-              name="cardMonth"
-              value={info.cardMonth}
-              onChange={handleChange}
-              placeholder="MM"
-              className="rounded-0"
-              maxLength="2"
-            />
-            <Input
-              name="cardYear"
-              value={info.cardYear}
-              onChange={handleChange}
-              placeholder="YY"
-              className="rounded-0"
-              maxLength="2"
-            />
-            <Input
-              name="cardCVC"
-              value={info.cardCVC}
-              onChange={handleChange}
-              placeholder="CVC"
-              className="rounded-0"
-              maxLength="3"
-            />
-          </FormGroup>
-        </Form>
-      </div>
-      <Button
-        className="rounded-0"
-        onClick={handleCompleteOrder}
-      >
-        Complete Purchase
-      </Button>
     </>
   );
 };

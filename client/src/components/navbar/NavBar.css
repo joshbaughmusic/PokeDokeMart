@@ -1,0 +1,41 @@
+.nav-bar-all {
+      background-color: rgb(27,30,33);
+}
+
+.pokeball-nav-icon {
+    width: 40px;
+}
+
+@media (min-width: 992px) {
+    .nav-left-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  .nav-right-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 991px) {
+    .nav-left-section {
+        display: block;
+    }
+    .nav-right-section {
+      display: block;
+    }
+
+    .cart-nav {
+        margin-left: 37px;
+        margin-bottom: 20px;
+    }
+
+    .cart-icon {
+    }
+
+    .cart-count {
+    }
+}

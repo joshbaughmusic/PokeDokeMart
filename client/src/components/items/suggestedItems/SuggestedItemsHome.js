@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchSuggestedItemsByUser } from '../../../managers/ItemsManager.js';
 import { Spinner } from 'reactstrap';
 import { SuggestedItemsCarouselHome } from './SuggestedItemsCarouselHome.js';
+import PokeballLoading from '../../../images/pokeball-loading.gif';
 
 export const SuggestedItemsHome = ({ loggedInUser }) => {
   const [suggestedItems, setSuggestedItems] = useState();
@@ -15,13 +16,20 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
   }, []);
 
   if (!suggestedItems) {
-     return (
-       <>
-         <div className="d-flex justify-content-center h-100 align-items-center mt-5">
-           <Spinner />
-         </div>
-       </>
-     );
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <img
+            style={{
+              width: '200px',
+              marginTop: "80px"
+            }}
+            src={PokeballLoading}
+            alt=""
+          />
+        </div>
+      </>
+    );
   }
 
   return (

@@ -11,6 +11,8 @@ import {
 } from 'reactstrap';
 import { fetchAllCities, fetchCitiesByRegionId } from '../../managers/CityManager.js';
 import { fetchAllRegions } from '../../managers/RegionManager.js';
+import "./Register.css"
+import PokeballLoading from '../../images/pokeball-loading.gif';
 
 export default function Register({ setLoggedInUser }) {
   const [firstName, setFirstName] = useState('');
@@ -73,12 +75,24 @@ export default function Register({ setLoggedInUser }) {
   };
 
   if (!regions || !cities) {
-    return <Spinner />;
+      return (
+        <>
+          <div className="d-flex justify-content-center h-75 align-items-center">
+            <img
+              style={{
+                width: '200px',
+              }}
+              src={PokeballLoading}
+              alt=""
+            />
+          </div>
+        </>
+      );
   }
 
   return (
     <div
-      className="container"
+      className="container register-card mt-5 p-4"
       style={{ maxWidth: '500px' }}
     >
       <div style={{ color: 'red' }}>
@@ -90,9 +104,9 @@ export default function Register({ setLoggedInUser }) {
       </div>
       <h3>Sign Up</h3>
       <FormGroup>
-        <Label>First Name</Label>
         <Input
-          className="rounded-0"
+          placeholder="First Name"
+          className="rounded-0 mt-4"
           type="text"
           value={firstName}
           onChange={(e) => {
@@ -101,9 +115,9 @@ export default function Register({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Last Name</Label>
         <Input
-          className="rounded-0"
+          placeholder="Last Name"
+          className="rounded-0 mt-4"
           type="text"
           value={lastName}
           onChange={(e) => {
@@ -112,9 +126,9 @@ export default function Register({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Email</Label>
         <Input
-          className="rounded-0"
+          placeholder="Email"
+          className="rounded-0 mt-4"
           type="email"
           value={email}
           onChange={(e) => {
@@ -123,9 +137,9 @@ export default function Register({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>User Name</Label>
         <Input
-          className="rounded-0"
+          placeholder="User Name"
+          className="rounded-0 mt-4"
           type="text"
           value={userName}
           onChange={(e) => {
@@ -134,9 +148,9 @@ export default function Register({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Address</Label>
         <Input
-          className="rounded-0"
+          placeholder="Address"
+          className="rounded-0 mt-4"
           type="text"
           value={address}
           onChange={(e) => {
@@ -145,7 +159,6 @@ export default function Register({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Region</Label>
         <Input
           value={regionId}
           onChange={(e) => {
@@ -153,7 +166,7 @@ export default function Register({ setLoggedInUser }) {
           }}
           type="select"
           placeholder="Region"
-          className="rounded-0"
+          className="rounded-0 mt-4"
         >
           <option
             value={null}
@@ -172,8 +185,6 @@ export default function Register({ setLoggedInUser }) {
         </Input>
       </FormGroup>
       <FormGroup>
-        <Label>City</Label>
-
         {regionId && cities ? (
           <Input
             type="select"
@@ -182,7 +193,7 @@ export default function Register({ setLoggedInUser }) {
               setCityId(e.target.value);
             }}
             placeholder="City"
-            className="rounded-0"
+            className="rounded-0 mt-4"
           >
             <option
               value={null}
@@ -207,7 +218,7 @@ export default function Register({ setLoggedInUser }) {
               setCityId(e.target.value);
             }}
             placeholder="City"
-            className="rounded-0"
+            className="rounded-0 mt-4"
             disabled
           >
             <option value={null}>City</option>
@@ -215,9 +226,9 @@ export default function Register({ setLoggedInUser }) {
         )}
       </FormGroup>
       <FormGroup>
-        <Label>Password</Label>
         <Input
-          className="rounded-0"
+          placeholder="Password"
+          className="rounded-0 mt-4"
           invalid={passwordMismatch}
           type="password"
           value={password}
@@ -228,9 +239,9 @@ export default function Register({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label> Confirm Password</Label>
         <Input
-          className="rounded-0"
+          placeholder="Confirm Password"
+          className="rounded-0 mt-4"
           invalid={passwordMismatch}
           type="password"
           value={confirmPassword}
@@ -242,7 +253,7 @@ export default function Register({ setLoggedInUser }) {
         <FormFeedback>Passwords do not match!</FormFeedback>
       </FormGroup>
       <Button
-        className="rounded-0"
+        className="rounded-0 mb-3 mt-1"
         onClick={handleSubmit}
         disabled={passwordMismatch}
       >

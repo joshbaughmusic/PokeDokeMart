@@ -6,6 +6,7 @@ import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
 import { ItemDetailsAllReviews } from '../../reviews/ItemDetailsAllReviews.js';
 import { AlsoConsiderSection } from '../alsoConsider/AlsoConsiderSection.js';
 import "./ItemDetails.css"
+import PokeballLoading from '../../../images/pokeball-loading.gif';
 
 export const ItemDetails = ({ loggedInUser }) => {
   const [item, setItem] = useState();
@@ -43,7 +44,13 @@ export const ItemDetails = ({ loggedInUser }) => {
     return (
       <>
         <div className="d-flex justify-content-center h-75 align-items-center">
-          <Spinner />
+          <img
+            style={{
+              width: '200px',
+            }}
+            src={PokeballLoading}
+            alt=""
+          />
         </div>
       </>
     );

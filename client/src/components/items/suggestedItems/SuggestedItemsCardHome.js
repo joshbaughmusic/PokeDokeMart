@@ -25,7 +25,7 @@ export const SuggestedItemsCardHome = ({ item }) => {
           alt="Sample"
           src={item.image}
         />
-        <CardBody className="d-flex flex-column justify-content-between">
+        <CardBody className="d-flex flex-column justify-content-between card-body">
           <div>
             <CardTitle tag="h5">
               <span className="card-item-name">{item.name}</span>

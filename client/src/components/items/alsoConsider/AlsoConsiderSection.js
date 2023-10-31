@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { fetchRelatedItems } from '../../../managers/ItemsManager.js';
 import { Spinner } from 'reactstrap';
 import { AlsoConsiderCarousel } from './AlsoConsiderCarousel.js';
+import PokeballLoading from '../../../images/pokeball-loading.gif';
+
 
 export const AlsoConsiderSection = ({ item }) => {
   const [relatedItems, setRelatedItems] = useState();
@@ -16,13 +18,13 @@ export const AlsoConsiderSection = ({ item }) => {
   }, [item]);
 
   if (!relatedItems) {
-    return (
-      <>
-        <div className="d-flex justify-content-center h-75 align-items-center">
-          <Spinner />
-        </div>
-      </>
-    );
+   return (
+     <>
+       <div className="d-flex justify-content-center h-100 align-items-center mb-5 mt-3">
+         <Spinner />
+       </div>
+     </>
+   );
   }
   return (
     <>
