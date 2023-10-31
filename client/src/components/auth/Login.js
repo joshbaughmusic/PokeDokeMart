@@ -18,6 +18,9 @@ export default function Login({ setLoggedInUser }) {
       } else {
         setLoggedInUser(user);
         navigate("/");
+        setTimeout(() => {
+          localStorage.setItem('seenAnimation', true)
+        }, 5000)
       }
     });
   };

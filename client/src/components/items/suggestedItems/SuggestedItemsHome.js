@@ -13,7 +13,7 @@ export const SuggestedItemsHome = ({ loggedInUser }) => {
     fetchSuggestedItemsByUser(loggedInUser.id, 12).then((res) => {
       setTimeout(() => {
         setSuggestedItems(res);
-      }, 1000);
+      }, 800);
     });
   };
 
