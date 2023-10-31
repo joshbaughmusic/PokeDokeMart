@@ -76,7 +76,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                 <div className="nav-right-section">
                   <Cart />
                   <Button
-                    className="rounded-0"
+                    className="rounded-0 logout-button"
                     onClick={(e) => {
                       e.preventDefault();
                       setOpen(false);

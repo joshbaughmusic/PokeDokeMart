@@ -1,17 +1,17 @@
 .nav-bar-all {
-      background-color: rgb(27,30,33);
+  background-color: rgb(27, 30, 33);
 }
 
 .pokeball-nav-icon {
-    width: 40px;
+  width: 40px;
 }
 
 @media (min-width: 992px) {
-    .nav-left-section {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  .nav-left-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .nav-right-section {
     display: flex;
     align-items: center;
@@ -21,21 +21,26 @@
 }
 
 @media (max-width: 991px) {
-    .nav-left-section {
-        display: block;
-    }
-    .nav-right-section {
-      display: block;
-    }
+  .nav-left-section {
+    display: block;
+  }
+  .nav-right-section {
+    display: block;
+  }
 
-    .cart-nav {
-        margin-left: 37px;
-        margin-bottom: 20px;
-    }
+  .cart-nav {
+    margin-left: 37px;
+    margin-bottom: 10px;
+  }
 
-    .cart-icon {
-    }
-
-    .cart-count {
-    }
+  .logout-button {
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: rgb(152, 154, 155);
+  }
+  .logout-button:hover {
+    color: rgb(202, 198, 198);
+    background: none;
+  }
 }
