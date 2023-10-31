@@ -31,17 +31,26 @@ export const Home = ({ loggedInUser }) => {
   return (
     <>
       <Container>
-        <div className="d-flex flex-column align-items-center justify-content-between">
-          <h1 className="display-1 text-center home-heading">
-            {displayedText}
-          </h1>
-          <span className="blink-caret"></span>
-          {index - 1 === text.length ? (
+        {localStorage.getItem('seenAnimation') ? (
+          <div className="d-flex flex-column align-items-center justify-content-between">
+            <h1 className="display-1 text-center home-heading">
+              Welcome to PokeDokeMart!
+            </h1>
+
             <SuggestedItemsHome loggedInUser={loggedInUser} />
-          ) : (
-            ''
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="d-flex flex-column align-items-center justify-content-between">
+            <h1 className="display-1 text-center home-heading">
+              {displayedText}
+            </h1>
+            {index - 1 === text.length ? (
+              <SuggestedItemsHome loggedInUser={loggedInUser} />
+            ) : (
+              ''
+            )}
+          </div>
+        )}
       </Container>
     </>
   );

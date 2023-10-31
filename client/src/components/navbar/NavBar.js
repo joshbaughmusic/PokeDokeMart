@@ -84,6 +84,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                         setLoggedInUser(null);
                         setOpen(false);
                       });
+                      localStorage.removeItem("seenAnimation")
                     }}
                   >
                     Logout
