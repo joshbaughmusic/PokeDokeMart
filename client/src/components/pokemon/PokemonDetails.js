@@ -37,7 +37,7 @@ export const PokemonDetails = () => {
             />
           </Col>
           <Col className="d-flex flex-column justify-content-center">
-            <div className="pokemon-details-info-container text-bg-dark p-4 w-75">
+            <div className="pokemon-details-info-container text-bg-dark p-4">
               <div className='mb-4'>
 
               <h1 className="display-5">{userPokemon.nickName}</h1>

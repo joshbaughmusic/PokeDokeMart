@@ -1,3 +1,49 @@
 .offcanvas-header .btn-close {
-    box-shadow: none;
+  box-shadow: none;
+}
+
+.cart-list-item {
+  background-color: rgb(27, 30, 33);
+  color: white;
+  margin-bottom: 10px;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.621);
+  border: 1px solid rgba(0, 0, 0, 0.317);
+  background-color: rgba(0, 0, 0, 0.183);
+}
+
+.cart-quantity-input {
+  width: 60px;
+  padding: 2px 5px;
+}
+
+.cart-delete-button:hover {
+  cursor: pointer;
+  color: lightgray;
+  transition: 0.2s;
+}
+
+.cart-total {
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+}
+
+.cart-heading {
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+}
+
+.cart-count {
+  left: 22px;
+  top: -10px;
+  background-color: rgba(0, 0, 0, 0.539);
+  width: 20px;
+  height: 20px;
+  padding: 12px;
+  border: 1px solid rgba(38, 38, 38, 0.524);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.621);
+  border-radius: 50%;
+}
+
+.cart-item-name-link:hover {
+  cursor: pointer;
+  color: lightgray;
+  transition: 0.2s;
 }

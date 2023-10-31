@@ -31,14 +31,20 @@ export const Cart = () => {
 
   return (
     <div>
-      <NavItem onClick={toggle}>
+      <NavItem
+        onClick={toggle}
+        role="button"
+        className="d-flex gap-1 position-relative"
+      >
         <FiShoppingCart
           style={{
             fontSize: '25px',
           }}
           className="cart-icon"
-        />{' '}
-        {getUniqueItemCount()}
+        />
+        <div className="position-absolute d-flex justify-content-center align-items-center cart-count">
+          <div>{getUniqueItemCount()}</div>
+        </div>
       </NavItem>
       <Offcanvas
         isOpen={isOpen}
@@ -47,7 +53,12 @@ export const Cart = () => {
         toggle={toggle}
         className="text-bg-dark"
       >
-        <OffcanvasHeader toggle={toggle}>Your PokeCart</OffcanvasHeader>
+        <OffcanvasHeader
+          toggle={toggle}
+          className="cart-heading"
+        >
+          Your PokeCart
+        </OffcanvasHeader>
         <OffcanvasBody className="d-flex flex-column justify-content-between">
           <ListGroup>
             {cartItems.length > 0 ? (
@@ -55,29 +66,42 @@ export const Cart = () => {
                 return (
                   <ListGroupItem
                     key={index}
-                    className="text-bg-dark"
+                    className="cart-list-item p-3 rounded-0"
                   >
-                    <img
-                      src={item.image}
-                      alt=""
-                    />
-                    <p>{item.name}</p>
-                    <p>P{item.cost}</p>
-                    <Input
-                      type="number"
-                      min={1}
-                      value={item.quantity}
-                      className="rounded-0"
-                      onChange={(e) =>
-                        alterCartQuantity(item, parseInt(e.target.value))
-                      }
-                    />
-                    <AiOutlineClose
-                      style={{
-                        fontSize: '25px',
-                      }}
-                      onClick={() => removeFromCart(item.id)}
-                    />
+                    <div className="d-flex justify-content-between">
+                      <div className="d-flex align-items-center gap-1">
+                        <img
+                          src={item.image}
+                          alt=""
+                        />
+                        <div className='cart-item-name-link'
+                          onClick={() => {
+                            navigate(`/items/${item.id}`);
+                            toggle()
+                          }}
+                        >
+                          {item.name}
+                        </div>
+                      </div>
+                      <Input
+                        type="number"
+                        min={1}
+                        max={99}
+                        value={item.quantity}
+                        className="rounded-0 cart-quantity-input"
+                        onChange={(e) =>
+                          alterCartQuantity(item, parseInt(e.target.value))
+                        }
+                      />
+                      <AiOutlineClose
+                        className="cart-delete-button"
+                        style={{
+                          fontSize: '25px',
+                        }}
+                        onClick={() => removeFromCart(item.id)}
+                      />
+                    </div>
+                    <div>P{item.cost}</div>
                   </ListGroupItem>
                 );
               })
@@ -87,7 +111,7 @@ export const Cart = () => {
           </ListGroup>
           {cartItems.length > 0 ? (
             <div>
-              <h5>
+              <h5 className="mb-4 cart-total">
                 Total: P
                 {cartItems.reduce(
                   (totalPrice, item) => totalPrice + item.cost * item.quantity,

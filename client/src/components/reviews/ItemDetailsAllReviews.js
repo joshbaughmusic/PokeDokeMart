@@ -71,7 +71,7 @@ export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
           getAllReviewsByItem={getAllReviewsByItem}
         />
       </div>
-      <div className="mt-3 mb-4">
+      <div className="mt-3">
         <div className="d-flex justify-content-between align-items-end">
           <div className="d-flex gap-1 align-items-center">
             <div>Avg: {`(${allReviewsByItem.length})`}</div>
@@ -84,7 +84,7 @@ export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
             setAllReviewsByItem={setAllReviewsByItem}
           />
         </div>
-        <div className="w-100 d-flex justify-content-center mt-5">
+        <div className="w-100 d-flex justify-content-center mt-4">
           {isOpen ? (
             <Button
               onClick={toggle}
