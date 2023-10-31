@@ -36,6 +36,7 @@ export const Checkout = ({loggedInUser}) => {
                 <Input
                   type="number"
                   min={1}
+                  max={99}
                   value={item.quantity}
                   onChange={(e) =>
                     alterCartQuantity(item, parseInt(e.target.value))

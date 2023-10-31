@@ -16,7 +16,11 @@
 }
 .accordion-button:not(.collapsed) {
     background-color: rgb(195, 195, 195) !important;
-    box-shadow:none !important;
+    box-shadow: none !important;
+}
+
+.accordion-button {
+    box-shadow: none !important;
 }
 
 /* .active>.page-link {

@@ -118,7 +118,7 @@ export const ItemDetails = ({ loggedInUser }) => {
                 <div className="fs-3 mx-3">{quantity}</div>
                 <Button
                   className="rounded-0"
-                  onClick={() => setQuantity(quantity + 1)}
+                  onClick={() => quantity <99 ? setQuantity(quantity + 1) : null}
                 >
                   +
                 </Button>
