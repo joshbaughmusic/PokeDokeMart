@@ -44,3 +44,13 @@
 .carousel.carousel-slider .control-arrow {
   box-shadow: none;
 }
+
+.suggested-items-profile-link:hover {
+  color: lightgray;
+  transition: 0.2s;
+}
+
+.suggested-items-profile-link {
+  border-bottom: 1px solid white;
+  padding-bottom: 2px;
+}
