@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../managers/authManager";
 import { Button, FormFeedback, FormGroup, Input, Label } from "reactstrap";
+import "./Login.css"
 
 export default function Login({ setLoggedInUser }) {
   const navigate = useNavigate();
@@ -23,14 +24,14 @@ export default function Login({ setLoggedInUser }) {
 
   return (
     <div
-      className="container"
+      className="container login-card p-4 mt-5"
       style={{ maxWidth: '500px' }}
     >
       <h3>Login</h3>
       <FormGroup>
-        <Label>Email</Label>
         <Input
-          className="rounded-0"
+          placeholder="Email"
+          className="rounded-0 mt-4"
           invalid={failedLogin}
           type="text"
           value={email}
@@ -41,9 +42,9 @@ export default function Login({ setLoggedInUser }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label>Password</Label>
         <Input
-          className="rounded-0"
+          placeholder="Password"
+          className="rounded-0 mt-4"
           invalid={failedLogin}
           type="password"
           value={password}
@@ -56,7 +57,7 @@ export default function Login({ setLoggedInUser }) {
       </FormGroup>
 
       <Button
-        className="rounded-0"
+        className="rounded-0 mb-3 mt-1"
         onClick={handleSubmit}
       >
         Login

@@ -3,8 +3,8 @@
 }
 
 .item-details-left-panel {
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.585);
-  border: solid rgba(0, 0, 0, 0.299) 1px;
+  border: 1px solid rgba(0, 0, 0, 0.317);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.621);
 }
 
 /* .item-details-img {
@@ -14,5 +14,11 @@
 } */
 
 .item-heading {
-        text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+}
+
+.item-details-description {
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.621);
+  border: 1px solid rgba(0, 0, 0, 0.317);
+  background-color: rgba(0, 0, 0, 0.183);
 }

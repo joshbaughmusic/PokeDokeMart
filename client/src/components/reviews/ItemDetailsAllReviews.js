@@ -14,6 +14,7 @@ import { NewReview } from './NewReview.js';
 import { SortReviews } from './SortReviews.js';
 import './ItemDetailsAllReview.css';
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
+import PokeballLoading from '../../images/pokeball-loading.gif';
 
 export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
   const [allReviewsByItem, setAllReviewsByItem] = useState();
@@ -31,37 +32,40 @@ export const ItemDetailsAllReviews = ({ itemId, loggedInUser }) => {
   }, [itemId]);
 
   if (!allReviewsByItem) {
-    return (
-      <>
-        <div className="d-flex justify-content-center h-75 align-items-center">
-          <Spinner />
-        </div>
-      </>
-    );
+   return (
+     <>
+       <div className="d-flex justify-content-center h-100 align-items-center mb-5 mt-3">
+         <Spinner />
+       </div>
+     </>
+   );
+
   }
 
   if (allReviewsByItem.length === 0) {
     return (
       <>
-        <div className="mt-5 d-flex justify-content-between">
-          <h4 className="review-heading">Reviews:</h4>
+        <div className="mt-5 mb-5 item-details-all-reviews-container text-bg-dark p-4">
+          <div className="d-flex justify-content-between">
+            <h4 className="review-heading">Reviews:</h4>
 
-          <NewReview
-            loggedInUser={loggedInUser}
-            allReviewsByItem={allReviewsByItem}
-            itemId={itemId}
-            getAllReviewsByItem={getAllReviewsByItem}
-          />
-        </div>
-        <div className="d-flex justify-content-center mt-5">
-          <p className="fs-3">No reviews yet!</p>
+            <NewReview
+              loggedInUser={loggedInUser}
+              allReviewsByItem={allReviewsByItem}
+              itemId={itemId}
+              getAllReviewsByItem={getAllReviewsByItem}
+            />
+          </div>
+          <div className="d-flex justify-content-center mt-5">
+            <p className="fs-3">No reviews yet!</p>
+          </div>
         </div>
       </>
     );
   }
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 mb-5 item-details-all-reviews-container text-bg-dark p-4">
       <div className="d-flex justify-content-between">
         <h4 className="review-heading">Reviews:</h4>
         <NewReview

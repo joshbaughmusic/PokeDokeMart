@@ -1,0 +1,40 @@
+.checkout-heading {
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+}
+
+th {
+  padding-left: 0px !important;
+}
+
+.checkout-cost {
+  margin-top: 3px;
+}
+
+/* .checkout-total {
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+} */
+
+.checkout-delete-button:hover {
+  cursor: pointer;
+  color: lightgray;
+  transition: 0.2s;
+}
+
+.checkout-delete-button {
+  margin-top: 4px;
+}
+
+.checkout-bottom-container {
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.621);
+  border: 1px solid rgba(0, 0, 0, 0.317);
+  background-color: rgba(0, 0, 0, 0.183);
+}
+
+.checkout-container {
+  border: 1px solid rgba(0, 0, 0, 0.317);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.621);
+}
+
+.form-check-input:hover {
+    cursor: pointer;
+}

@@ -15,6 +15,8 @@ import './Pokemon.css';
 import { AddPokemon } from './AddPokemon.js';
 import { EditPokemon } from './EditPokemon.js';
 import { DeletePokemon } from './DeletePokemon.js';
+import PokeballLoading from '../../images/pokeball-loading.gif';
+
 
 export const MyPokemonList = () => {
   const [myPokemon, setMyPokemon] = useState();
@@ -35,13 +37,14 @@ export const MyPokemonList = () => {
   }, []);
 
   if (!myPokemon || !allPokemon) {
-    return (
-      <>
-        <div className="d-flex justify-content-center h-100 align-items-center">
-          <Spinner />
-        </div>
-      </>
-    );
+ return (
+   <>
+     <div className="d-flex justify-content-center h-100 align-items-center mb-5 mt-3">
+       <Spinner />
+     </div>
+   </>
+ );
+
   }
   return (
     <>

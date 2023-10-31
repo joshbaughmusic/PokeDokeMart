@@ -13,6 +13,7 @@ import {
 import { logout } from '../../managers/authManager';
 import "./NavBar.css"
 import { Cart } from '../cart/Cart.js';
+import Pokeball from '../../images/pokeball_review_icon.png';
 
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
@@ -23,17 +24,21 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
   return (
     <div>
       <Navbar
-        color="dark"
         dark
         fixed="true"
         expand="lg"
-        className="d-flex align-items-center"
+        className="d-flex align-items-center nav-bar-all"
       >
         <NavbarBrand
           className="mr-auto fs-4"
           tag={RRNavLink}
           to="/"
         >
+          <img
+            className="pokeball-nav-icon"
+            src={Pokeball}
+            alt=""
+          />
           PokeDokeMart
         </NavbarBrand>
         {loggedInUser ? (
@@ -45,44 +50,47 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
             >
               <Nav
                 navbar
-                className="d-flex align-items-center"
+                className="d-flex align-items-center justify-content-between w-100 text-center"
               >
-                <NavItem>
-                  <NavLink
-                    tag={RRNavLink}
-                    to="/items"
+                <div className="nav-left-section">
+                  <NavItem>
+                    <NavLink
+                      tag={RRNavLink}
+                      to="/items"
+                    >
+                      Items
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      tag={RRNavLink}
+                      to="/profile"
+                    >
+                      Profile
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink></NavLink>
+                  </NavItem>
+                </div>
+                <div className="nav-right-section">
+                  <Cart />
+                  <Button
+                    className="rounded-0"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpen(false);
+                      logout().then(() => {
+                        setLoggedInUser(null);
+                        setOpen(false);
+                      });
+                    }}
                   >
-                    Items
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    tag={RRNavLink}
-                    to="/profile"
-                  >
-                    Profile
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink>
-                    <Cart />
-                  </NavLink>
-                </NavItem>
+                    Logout
+                  </Button>
+                </div>
               </Nav>
             </Collapse>
-            <Button
-              className="rounded-0"
-              onClick={(e) => {
-                e.preventDefault();
-                setOpen(false);
-                logout().then(() => {
-                  setLoggedInUser(null);
-                  setOpen(false);
-                });
-              }}
-            >
-              Logout
-            </Button>
           </>
         ) : (
           <Nav navbar>
@@ -91,7 +99,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                 tag={RRNavLink}
                 to="/login"
               >
-                <Button color="primary">Login</Button>
+                <Button className="rounded-0">Login</Button>
               </NavLink>
             </NavItem>
           </Nav>

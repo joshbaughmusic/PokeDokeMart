@@ -1,6 +1,7 @@
 import { Container } from 'reactstrap';
 import './Home.css';
 import { SuggestedItemsHome } from '../items/suggestedItems/SuggestedItemsHome.js';
+import Pokeball from '../../images/pokeball_review_icon.png';
 
 export const Home = ({loggedInUser}) => {
   return (

@@ -7,6 +7,7 @@ import { ProfileAllReviews } from '../reviews/ProfileAllReviews.js';
 import { MyPokemonList } from '../pokemon/MyPokemonList.js';
 import PersonSprite from '../../images/personsprite.png';
 import './Profile.css';
+import PokeballLoading from '../../images/pokeball-loading.gif';
 
 export const Profile = ({ loggedInUser }) => {
   const [profile, setProfile] = useState();
@@ -23,7 +24,13 @@ export const Profile = ({ loggedInUser }) => {
     return (
       <>
         <div className="d-flex justify-content-center h-75 align-items-center">
-          <Spinner />
+          <img
+            style={{
+              width: '200px',
+            }}
+            src={PokeballLoading}
+            alt=""
+          />
         </div>
       </>
     );

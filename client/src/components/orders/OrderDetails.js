@@ -4,6 +4,7 @@ import { fetchSingleOrder } from '../../managers/OrderManager.js';
 import { Container, Spinner, Table } from 'reactstrap';
 import { dateFormatter } from '../utilities/dateFormatter.js';
 import './OrderDetails.css';
+import PokeballLoading from '../../images/pokeball-loading.gif';
 
 export const OrderDetails = () => {
   const { id } = useParams();
@@ -19,13 +20,20 @@ export const OrderDetails = () => {
   }, []);
 
   if (!order) {
-    return (
-      <>
-        <div className="d-flex justify-content-center h-75 align-items-center">
-          <Spinner />
-        </div>
-      </>
-    );
+   return (
+     <>
+       <div className="d-flex justify-content-center h-75 align-items-center">
+         <img
+           style={{
+             width: '200px',
+           }}
+           src={PokeballLoading}
+           alt=""
+         />
+       </div>
+     </>
+   );
+
   }
   return (
     <>
@@ -45,16 +53,18 @@ export const OrderDetails = () => {
             {order.orderItems.map((oi, index) => {
               return (
                 <tr key={index}>
-                  <td className="text-bg-dark d-flex">
-                    <img
-                      src={oi.item.image}
-                      alt=""
-                    />
-                    <div
-                      className="order-details-item-link"
-                      onClick={() => navigate(`/items/${oi.item.id}`)}
-                    >
-                      {oi.item.name}
+                  <td className="text-bg-dark">
+                    <div className="d-flex gap-1">
+                      <img
+                        src={oi.item.image}
+                        alt=""
+                      />
+                      <div
+                        className="order-details-item-link"
+                        onClick={() => navigate(`/items/${oi.item.id}`)}
+                      >
+                        {oi.item.name}
+                      </div>
                     </div>
                   </td>
                   <td className="text-bg-dark">P{oi.item.cost}</td>

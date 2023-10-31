@@ -1,6 +1,7 @@
 .review-card {
-  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.585);
-  border: solid rgba(0, 0, 0, 0.299) 1px;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.621);
+  border: 1px solid rgba(0, 0, 0, 0.317);
+    background-color: rgba(0, 0, 0, 0.183);
 }
 
 .profile-review-card {

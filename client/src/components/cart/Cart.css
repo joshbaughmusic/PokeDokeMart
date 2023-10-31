@@ -1,5 +1,13 @@
 .offcanvas-header .btn-close {
   box-shadow: none;
+  display: none;
+}
+
+.offcanvas-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .cart-list-item {
@@ -24,10 +32,15 @@
 
 .cart-total {
   text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+  font-size: 19px;
 }
+
 
 .cart-heading {
   text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.533);
+  background-color: rgb(27, 30, 33);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.621);
+
 }
 
 .cart-count {
@@ -46,4 +59,11 @@
   cursor: pointer;
   color: lightgray;
   transition: 0.2s;
+}
+
+.cart-nav {
+  color: rgb(152,154,155);
+}
+.cart-nav:hover {
+  color: rgb(202, 198, 198);
 }

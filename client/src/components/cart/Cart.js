@@ -15,6 +15,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { AiOutlineClose } from 'react-icons/ai';
 import './Cart.css';
 import { useNavigate } from 'react-router-dom';
+import PokeballLoading from '../../images/pokeball-loading.gif';
 
 export const Cart = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,20 @@ export const Cart = () => {
   const navigate = useNavigate();
 
   if (!cartItems) {
-    return <Spinner />;
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <img
+            style={{
+              width: '200px',
+            }}
+            src={PokeballLoading}
+            alt=""
+          />
+        </div>
+      </>
+    );
+
   }
 
   return (
@@ -34,7 +48,7 @@ export const Cart = () => {
       <NavItem
         onClick={toggle}
         role="button"
-        className="d-flex gap-1 position-relative"
+        className="d-flex gap-1 position-relative cart-nav"
       >
         <FiShoppingCart
           style={{
@@ -57,7 +71,16 @@ export const Cart = () => {
           toggle={toggle}
           className="cart-heading"
         >
-          Your PokeCart
+          
+            <div className="cart-heading-text">Your PokeCart</div>
+            <AiOutlineClose
+              className="cart-delete-button"
+              style={{
+                fontSize: '25px',
+              }}
+              onClick={() => toggle()}
+            />
+          
         </OffcanvasHeader>
         <OffcanvasBody className="d-flex flex-column justify-content-between">
           <ListGroup>
@@ -74,10 +97,11 @@ export const Cart = () => {
                           src={item.image}
                           alt=""
                         />
-                        <div className='cart-item-name-link'
+                        <div
+                          className="cart-item-name-link"
                           onClick={() => {
                             navigate(`/items/${item.id}`);
-                            toggle()
+                            toggle();
                           }}
                         >
                           {item.name}
@@ -110,8 +134,8 @@ export const Cart = () => {
             )}
           </ListGroup>
           {cartItems.length > 0 ? (
-            <div>
-              <h5 className="mb-4 cart-total">
+            <div className='d-flex justify-content-between align-items-center'>
+              <h5 className="cart-total mb-1">
                 Total: P
                 {cartItems.reduce(
                   (totalPrice, item) => totalPrice + item.cost * item.quantity,
