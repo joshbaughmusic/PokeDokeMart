@@ -46,6 +46,11 @@ public class PokemonController : ControllerBase
     [Authorize]
     public IActionResult GetSingleUserPokemon(int id)
     {
+
+        var loggedInUser = _dbContext
+             .UserProfiles
+             .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
         UserPokemon foundUserPokemon = _dbContext.UserPokemon
         .Include(up => up.Pokemon)
         .ThenInclude(p => p.PokemonLearnableMoves)
@@ -62,7 +67,12 @@ public class PokemonController : ControllerBase
 
         if (foundUserPokemon == null)
         {
-            return NotFound();
+            return NotFound("That pokemon doesn't exist");
+        }
+
+        if (foundUserPokemon.UserProfileId != loggedInUser.Id)
+        {
+            return Unauthorized("You are not authorized to view this content");
         }
 
         return Ok(foundUserPokemon);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchSingleOrder } from '../../managers/OrderManager.js';
-import { Container, Spinner, Table } from 'reactstrap';
+import { Alert, Container, Spinner, Table } from 'reactstrap';
 import { dateFormatter } from '../utilities/dateFormatter.js';
 import './OrderDetails.css';
 import PokeballLoading from '../../images/pokeball-loading.gif';
@@ -9,35 +9,60 @@ import PokeballLoading from '../../images/pokeball-loading.gif';
 export const OrderDetails = () => {
   const { id } = useParams();
   const [order, setOrder] = useState();
+  const [error, setError] = useState();
   const navigate = useNavigate();
 
   const getSingleOrder = () => {
-    fetchSingleOrder(id).then(setOrder);
+    fetchSingleOrder(id)
+      .then((res) => {
+         if (res.status === 404) {
+           setError('That order could not be found');
+         }
+        setOrder(res);
+      })
+      .catch(() => {
+        setError("You are not authorized to view this content");
+      });
   };
 
   useEffect(() => {
     getSingleOrder();
   }, []);
 
-  if (!order) {
-   return (
-     <>
-       <div className="d-flex justify-content-center h-75 align-items-center">
-         <img
-           style={{
-             width: '200px',
-           }}
-           src={PokeballLoading}
-           alt=""
-         />
-       </div>
-     </>
-   );
-
+  if (error) {
+    return (
+      <>
+        <div className="d-flex fs-5 justify-content-center h-75 align-items-center">
+          <Alert
+            className="rounded-0 m-0 p-3"
+            color="danger"
+          >
+            {error}
+          </Alert>
+        </div>
+      </>
+    );
   }
+
+  if (!order) {
+    return (
+      <>
+        <div className="d-flex justify-content-center h-75 align-items-center">
+          <img
+            style={{
+              width: '200px',
+            }}
+            src={PokeballLoading}
+            alt=""
+          />
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      <Container className="text-bg-dark my-5  p-5 order-details-container">
+      <Container className="text-bg-dark my-5 p-5 order-details-container">
         <div className="d-flex justify-content-between align-items-baseline">
           <h2 className="mb-4 order-details-heading">Order Details</h2>
           <h5>{dateFormatter(order.date)}</h5>

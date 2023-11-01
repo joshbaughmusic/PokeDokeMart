@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { fetchSingleUserPokemon } from '../../managers/PokemonManager.js';
-import { Button, ButtonGroup, Col, Container, Row, Spinner } from 'reactstrap';
+import { Alert, Button, ButtonGroup, Col, Container, Row, Spinner } from 'reactstrap';
 import { useEffect, useState } from 'react';
 import { SuggestedItemsPokeDetails } from '../items/suggestedItems/SuggestedItemsPokeDetails.js';
 import "./PokemonDetails.css"
@@ -8,15 +8,42 @@ import PokeballLoading from '../../images/pokeball-loading.gif';
 
 export const PokemonDetails = () => {
   const [userPokemon, setUserPokemon] = useState();
+    const [error, setError] = useState();
+
   const { id } = useParams();
 
   const getSingleUserPokemon = () => {
-    fetchSingleUserPokemon(id).then(setUserPokemon);
+    fetchSingleUserPokemon(id)
+      .then((res) => {
+        if (res.status === 404) {
+          setError("That pokemon could not be found")
+        }
+        setUserPokemon(res);
+      })
+      .catch(() => {
+        setError('You are not authorized to view this content');
+      });
   };
 
   useEffect(() => {
     getSingleUserPokemon();
   }, []);
+
+  if (error) {
+    return (
+      <>
+        <div className="d-flex fs-5 justify-content-center h-75 align-items-center">
+          <Alert
+            className="rounded-0 m-0 p-3"
+            color="danger"
+          >
+            {error}
+          </Alert>
+        </div>
+      </>
+    );
+  }
+
 
   if (!userPokemon) {
  return (

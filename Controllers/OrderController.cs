@@ -55,7 +55,10 @@ public class OrderController : ControllerBase
     [Authorize]
     public IActionResult GetSingleOrder(int id)
     {
-        
+        var loggedInUser = _dbContext
+             .UserProfiles
+             .SingleOrDefault(up => up.IdentityUserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
         Order foundOrder = _dbContext.Orders
         .Include(o => o.OrderItems)
         .ThenInclude(oi => oi.Item)
@@ -67,6 +70,11 @@ public class OrderController : ControllerBase
         if (foundOrder == null)
         {
             return NotFound();
+        }
+
+        if (foundOrder.UserProfileId != loggedInUser.Id)
+        {
+            return Unauthorized("You are not allowed to view this content.");
         }
 
         return Ok(foundOrder);

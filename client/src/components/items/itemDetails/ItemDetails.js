@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchSingleItem } from '../../../managers/ItemsManager.js';
-import { Button, Col, Container, Row, Spinner } from 'reactstrap';
+import { Alert, Button, Col, Container, Row, Spinner } from 'reactstrap';
 import { useShoppingCart } from '../../../context/ShoppingCartContext.js';
 import { ItemDetailsAllReviews } from '../../reviews/ItemDetailsAllReviews.js';
 import { AlsoConsiderSection } from '../alsoConsider/AlsoConsiderSection.js';
@@ -14,9 +14,14 @@ export const ItemDetails = ({ loggedInUser }) => {
   const { id } = useParams();
   const [successMessage, setSuccessMessage] = useState(false);
   const { addToCart } = useShoppingCart();
+    const [error, setError] = useState();
+
 
   const getSingleItem = () => {
     fetchSingleItem(id).then((res) => {
+      if (res.status === 404) {
+        setError('That item could not be found');
+      }
       setTimeout(() => {
         setItem(res);
       }, 300);
@@ -43,6 +48,21 @@ export const ItemDetails = ({ loggedInUser }) => {
       setSuccessMessage(false);
     }, 3000);
   };
+
+  if (error) {
+    return (
+      <>
+        <div className="d-flex fs-5 justify-content-center h-75 align-items-center">
+          <Alert
+            className="rounded-0 m-0 p-3"
+            color="danger"
+          >
+            {error}
+          </Alert>
+        </div>
+      </>
+    );
+  }
 
   if (!item) {
     return (
