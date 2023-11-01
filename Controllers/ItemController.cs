@@ -23,7 +23,10 @@ public class ItemController : ControllerBase
         if (categoryId == null)
         {
             List<Item> allItems = _dbContext.Items
-            .Include(i => i.Move).ToList();
+            .Include(i => i.Move)
+            .OrderBy(i => i.CategoryId)
+            .OrderBy(i => i.Id)
+            .ToList();
 
             foreach (Item i in allItems)
             {
