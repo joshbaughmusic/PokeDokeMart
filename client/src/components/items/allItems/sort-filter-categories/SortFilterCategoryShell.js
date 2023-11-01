@@ -12,6 +12,8 @@ export const SortFilterCategoryShell = ({
   setCurrentPage,
 }) => {
   const [open, setOpen] = useState();
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSort, setSelectedSort] = useState(null);
   const toggle = (id) => {
     if (open === id) {
       setOpen();
@@ -21,6 +23,8 @@ export const SortFilterCategoryShell = ({
   };
   const handleReset = () => {
     getAllItems();
+    setSelectedCategory(null)
+    setSelectedSort(null)
   };
 
   return (
@@ -41,22 +45,27 @@ export const SortFilterCategoryShell = ({
               getAllItems={getAllItems}
               toggle={toggle}
               open={open}
+              selectedSort={selectedSort}
+              setSelectedSort={setSelectedSort}
             />
             <ItemCategories
+              allItems={allItems}
               setAllItems={setAllItems}
               getAllItems={getAllItems}
               toggle={toggle}
               open={open}
               setCurrentPage={setCurrentPage}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
             />
           </Accordion>
         </div>
-          <Button
-            className="mt-3 rounded-0 w-100"
-            onClick={handleReset}
-          >
-            Reset Filters
-          </Button>
+        <Button
+          className="mt-3 rounded-0 w-100"
+          onClick={handleReset}
+        >
+          Reset Filters
+        </Button>
         <div className="mt-4">
           <Label>Items Per Page:</Label>
           <Input

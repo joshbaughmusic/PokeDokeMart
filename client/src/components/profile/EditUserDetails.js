@@ -144,6 +144,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
             <FormGroup>
               <Label>Email</Label>
               <Input
+                maxLength={30}
                 name="email"
                 value={updatedUserProfile.email}
                 onChange={handleChange}
@@ -153,6 +154,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
             <FormGroup>
               <Label>First Name</Label>
               <Input
+                maxLength={20}
                 name="firstName"
                 value={updatedUserProfile.firstName}
                 onChange={handleChange}
@@ -162,6 +164,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
             <FormGroup>
               <Label>Last Name</Label>
               <Input
+                maxLength={20}
                 name="lastName"
                 value={updatedUserProfile.lastName}
                 onChange={handleChange}
@@ -171,6 +174,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
             <FormGroup>
               <Label>Address</Label>
               <Input
+                maxLength={30}
                 name="address"
                 value={updatedUserProfile.address}
                 onChange={handleChange}

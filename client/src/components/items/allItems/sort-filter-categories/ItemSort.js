@@ -36,12 +36,9 @@ const sortValues = [
   },
 ];
 
-export const ItemSort = ({
-  setAllItems,
-  allItems,
-}) => {
-
+export const ItemSort = ({ setAllItems, allItems, selectedSort, setSelectedSort }) => {
   const handleSortSelect = (e) => {
+    setSelectedSort(e.target.value)
     const copy = [...allItems];
     if (e.target.value === 'a-z') {
       setAllItems(copy.sort((a, b) => a.name.localeCompare(b.name)));
@@ -72,32 +69,31 @@ export const ItemSort = ({
 
   return (
     <>
-     
-          <AccordionItem className="rounded-0">
-            <AccordionHeader targetId="1">Sort By</AccordionHeader>
-            <AccordionBody
-              className="text-bg-dark rounded-0"
-              accordionId="1"
-            >
-              <Form>
-                {sortValues.map((s, index) => (
-                  <FormGroup
-                    key={index}
-                    check
-                  >
-                    <Label>{s.name}</Label>
-                    <Input
-                      name="categoryId"
-                      type="radio"
-                      value={s.value}
-                      onChange={handleSortSelect}
-                    />
-                  </FormGroup>
-                ))}
-              </Form>
-            </AccordionBody>
-          </AccordionItem>
-     
+      <AccordionItem className="rounded-0">
+        <AccordionHeader targetId="1">Sort By</AccordionHeader>
+        <AccordionBody
+          className="text-bg-dark rounded-0"
+          accordionId="1"
+        >
+          <Form>
+            {sortValues.map((s, index) => (
+              <FormGroup
+                key={index}
+                check
+              >
+                <Label>{s.name}</Label>
+                <Input
+                  name="categoryId"
+                  type="radio"
+                  value={s.value}
+                  onChange={handleSortSelect}
+                  checked={s.value === selectedSort}
+                />
+              </FormGroup>
+            ))}
+          </Form>
+        </AccordionBody>
+      </AccordionItem>
     </>
   );
 };

@@ -108,6 +108,7 @@ export default function Register({ setLoggedInUser }) {
       <h3>Sign Up</h3>
       <FormGroup>
         <Input
+          maxLength={20}
           placeholder="First Name"
           className="rounded-0 mt-4"
           type="text"
@@ -119,6 +120,7 @@ export default function Register({ setLoggedInUser }) {
       </FormGroup>
       <FormGroup>
         <Input
+          maxLength={20}
           placeholder="Last Name"
           className="rounded-0 mt-4"
           type="text"
@@ -130,6 +132,7 @@ export default function Register({ setLoggedInUser }) {
       </FormGroup>
       <FormGroup>
         <Input
+          maxLength={30}
           placeholder="Email"
           className="rounded-0 mt-4"
           type="email"
@@ -141,6 +144,7 @@ export default function Register({ setLoggedInUser }) {
       </FormGroup>
       <FormGroup>
         <Input
+          maxLength={20}
           placeholder="User Name"
           className="rounded-0 mt-4"
           type="text"
@@ -152,6 +156,7 @@ export default function Register({ setLoggedInUser }) {
       </FormGroup>
       <FormGroup>
         <Input
+          maxLength={30}
           placeholder="Address"
           className="rounded-0 mt-4"
           type="text"

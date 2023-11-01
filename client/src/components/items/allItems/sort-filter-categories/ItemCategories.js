@@ -13,7 +13,12 @@ import {
   fetchItemsByCategoryId,
 } from '../../../../managers/ItemsManager.js';
 
-export const ItemCategories = ({ setAllItems, setCurrentPage }) => {
+export const ItemCategories = ({
+  setAllItems,
+  setCurrentPage,
+  selectedCategory,
+  setSelectedCategory,
+}) => {
   const [categories, setCategories] = useState();
 
   const getAllCategories = () => {
@@ -25,9 +30,10 @@ export const ItemCategories = ({ setAllItems, setCurrentPage }) => {
   }, []);
 
   const handleCategorySelect = (e) => {
+    setSelectedCategory(e.target.value);
     fetchItemsByCategoryId(e.target.value).then((res) => {
-      setAllItems(res)
-      setCurrentPage(1)
+      setAllItems(res);
+      setCurrentPage(1);
     });
   };
 
@@ -59,6 +65,7 @@ export const ItemCategories = ({ setAllItems, setCurrentPage }) => {
                   type="radio"
                   value={c.id}
                   onChange={handleCategorySelect}
+                  checked={c.id === parseInt(selectedCategory)}
                 />
               </FormGroup>
             ))}
