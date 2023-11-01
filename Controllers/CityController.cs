@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -16,14 +17,14 @@ public class CityController : ControllerBase
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAllCities()
     {
         return Ok(_dbContext.Cities);
     }
 
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetSingleCity(int id)
     {
         City foundCity = _dbContext.Cities.SingleOrDefault(c => c.Id == id);
@@ -35,7 +36,7 @@ public class CityController : ControllerBase
     }
 
     [HttpGet("region/{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetCitiesByRegionId(int id)
     {
         List<City> foundCities = _dbContext.Cities.Where(c => c.RegionId == id).ToList();

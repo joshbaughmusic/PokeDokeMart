@@ -3,6 +3,7 @@ using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -17,7 +18,7 @@ public class ReviewController : ControllerBase
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAllReviews(string userProfileId)
     {
 
@@ -52,7 +53,7 @@ public class ReviewController : ControllerBase
     }
 
     [HttpGet("item/{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAllReviewsForItem(int id)
     {
         Item foundItem = _dbContext.Items.SingleOrDefault(i => i.Id == id);
@@ -73,7 +74,7 @@ public class ReviewController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetSingleReview(int id)
     {
         Review foundReview = _dbContext.Reviews
@@ -92,7 +93,7 @@ public class ReviewController : ControllerBase
     }
 
     [HttpPost]
-    // [Authorize]
+    [Authorize]
     public IActionResult CreateNewReview(Review incomingReview)
     {
         var loggedInUser = _dbContext
@@ -115,7 +116,7 @@ public class ReviewController : ControllerBase
     }
 
     [HttpPut]
-    // [Authorize]
+    [Authorize]
     public IActionResult UpdateReview(Review incomingReview)
     {
         Review foundReview = _dbContext.Reviews.SingleOrDefault(r => r.Id == incomingReview.Id);
@@ -134,7 +135,7 @@ public class ReviewController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult DeleteReview(int id)
     {
         Review foundReview = _dbContext.Reviews.SingleOrDefault(r => r.Id == id);

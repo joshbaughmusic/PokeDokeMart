@@ -3,6 +3,7 @@ using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -17,7 +18,7 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAllOrders(string userProfileId)
     {
         if (userProfileId == null)
@@ -51,7 +52,7 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetSingleOrder(int id)
     {
         
@@ -72,7 +73,7 @@ public class OrderController : ControllerBase
     }
 
     [HttpPost]
-    // [Authorize]
+    [Authorize]
     public IActionResult CreateNewOrder(Order incomingOrder)
     {
         var loggedInUser = _dbContext

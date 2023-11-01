@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -16,7 +17,7 @@ public class OrderItemController : ControllerBase
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAllOrderItems()
     {
         return Ok(_dbContext.OrderItems

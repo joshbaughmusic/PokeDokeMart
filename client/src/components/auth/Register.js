@@ -69,6 +69,9 @@ export default function Register({ setLoggedInUser }) {
         } else {
           setLoggedInUser(res);
           navigate('/');
+          setTimeout(() => {
+            localStorage.setItem('seenAnimation', true);
+          }, 5000);
         }
       });
     }

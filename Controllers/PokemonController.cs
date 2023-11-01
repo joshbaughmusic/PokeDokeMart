@@ -3,6 +3,7 @@ using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -17,38 +18,15 @@ public class PokemonController : ControllerBase
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAllPokemon()
     {
         return Ok(_dbContext.Pokemon);
     }
 
-    // [HttpGet("{id}")]
-    // // [Authorize]
-    // public IActionResult GetSinglePokemon(int id)
-    // {
-    //     Pokemon foundPokemon = _dbContext.Pokemon
-    //     .Include(p => p.PokemonLearnableMoves)
-    //     .ThenInclude(plm => plm.Move)
-    //     .ThenInclude(m => m.PokeType)
-    //     .Include(p => p.PokemonLearnableMoves)
-    //     .ThenInclude(plm => plm.Move)
-    //     .ThenInclude(m => m.DamageClass)
-    //     .Include(p => p.PokemonTypes)
-    //     .ThenInclude(pt => pt.PokeType)
-    //     .SingleOrDefault(o => o.Id == id);
-
-    //     if (foundPokemon == null)
-    //     {
-    //         return NotFound();
-    //     }
-
-    //     return Ok(foundPokemon);
-    // }
-
 
     [HttpGet("mypokemon")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetMyPokemon()
     {
         var loggedInUser = _dbContext
@@ -65,7 +43,7 @@ public class PokemonController : ControllerBase
     }
 
     [HttpGet("mypokemon/{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetSingleUserPokemon(int id)
     {
         UserPokemon foundUserPokemon = _dbContext.UserPokemon
@@ -91,7 +69,7 @@ public class PokemonController : ControllerBase
     }
 
     [HttpPost]
-    // [Authorize]
+    [Authorize]
     public IActionResult CreateNewUserPokemon(UserPokemon incomingUserPokemon)
     {
 
@@ -124,7 +102,7 @@ public class PokemonController : ControllerBase
     }
 
     [HttpPut]
-    // [Authorize]
+    [Authorize]
     public IActionResult UpdateUserPokemon(UserPokemon incomingUserPokemon)
     {
         UserPokemon foundUserPokemon = _dbContext.UserPokemon.SingleOrDefault(up => up.Id == incomingUserPokemon.Id);
@@ -153,7 +131,7 @@ public class PokemonController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult DeleteUserPokemon(int id)
     {
         UserPokemon foundUserPokemon = _dbContext.UserPokemon.SingleOrDefault(up => up.Id == id);
