@@ -123,13 +123,16 @@ public class UserProfileController : ControllerBase
         foundUserProfile.Address = updatedUserProfile.Address;
         foundUserProfile.RegionId = updatedUserProfile.RegionId;
         foundUserProfile.CityId = updatedUserProfile.CityId;
+
+        if (updatedUserProfile.ProfilePictureUrl != "") 
+        {
         foundUserProfile.ProfilePictureUrl = updatedUserProfile.ProfilePictureUrl;
+        }
 
         _dbContext.SaveChanges();
 
         return NoContent();
     }
-
 
     [HttpPost("promote/{id}")]
     [Authorize(Roles = "Admin")]

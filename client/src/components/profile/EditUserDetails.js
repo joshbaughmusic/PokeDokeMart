@@ -14,7 +14,10 @@ import {
 } from 'reactstrap';
 import { fetchAllRegions } from '../../managers/RegionManager.js';
 import { fetchCitiesByRegionId } from '../../managers/CityManager.js';
-import { fetchUpdateUserProfile } from '../../managers/ProfileManager.js';
+import {
+  fetchUpdateUserProfile,
+} from '../../managers/ProfileManager.js';
+import axios from 'axios';
 
 export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
   const [updatedUserProfile, setUpdatedUserProfile] = useState({
@@ -25,7 +28,7 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
     address: profile.address,
     cityId: profile.cityId,
     regionId: profile.regionId,
-    profilePictureUrl: profile.profilePictureUrl
+    profilePictureUrl: '',
   });
   const [cities, setCities] = useState();
   const [regions, setRegions] = useState();
@@ -33,6 +36,8 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
   const [visibleSuccess, setVisibleSuccess] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [modal, setModal] = useState(false);
+  const [image, setImage] = useState();
+
   const toggle = () => setModal(!modal);
   const onDismissError = () => setVisibleError(false);
 
@@ -61,6 +66,20 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
     });
   };
 
+  const handleUpload = async (e) => {
+    const formData = new FormData();
+    formData.append('file', e.target.files[0]);
+    formData.append('upload_preset', 'unsigned');
+    await axios
+      .post('https://api.cloudinary.com/v1_1/dfanwgskl/image/upload', formData)
+      .then((response) => {
+        setUpdatedUserProfile({
+          ...updatedUserProfile,
+          profilePictureUrl: response.data['secure_url'],
+        });
+      });
+  };
+
   const handleSubmit = () => {
     if (
       updatedUserProfile.firstName &&
@@ -72,11 +91,11 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
     ) {
       fetchUpdateUserProfile(updatedUserProfile).then(() => {
         getCurrentUserProfile();
-        setDisabled(true)
+        setDisabled(true);
         setVisibleSuccess(true);
         setTimeout(() => {
           toggle();
-          setDisabled(false)
+          setDisabled(false);
         }, 2000);
       });
     } else {
@@ -213,12 +232,10 @@ export const EditUserDetails = ({ profile, getCurrentUserProfile }) => {
               </>
             </FormGroup>
             <FormGroup>
-              <Label>Profile Picture Url</Label>
+              <Label>Profile Picture</Label>
               <Input
-                name="profilePictureUrl"
-                value={updatedUserProfile.profilePictureUrl}
-                onChange={handleChange}
-                className="rounded-0"
+                type="file"
+                onChange={handleUpload}
               />
             </FormGroup>
           </Form>

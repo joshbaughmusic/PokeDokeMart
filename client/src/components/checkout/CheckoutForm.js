@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalBody,
   Label,
+  Alert,
 } from 'reactstrap';
 import { fetchAllRegions } from '../../managers/RegionManager.js';
 import { fetchCitiesByRegionId } from '../../managers/CityManager.js';
@@ -36,6 +37,7 @@ export const CheckoutForm = ({ cartItems, loggedInUser }) => {
     cardCVC: '',
   });
   const { clearCart } = useShoppingCart();
+  const [showError, setShowError] = useState(false)
 
   const getAllRegions = () => {
     fetchAllRegions().then(setRegions);
@@ -85,21 +87,38 @@ export const CheckoutForm = ({ cartItems, loggedInUser }) => {
   };
 
   const handleCompleteOrder = () => {
-    const newOrderItems = cartItems.map((i) => {
-      return {
-        itemId: i.id,
-        quantity: i.quantity,
-        item: i,
+    if (
+      info.firstName &&
+      info.lastName &&
+      info.address &&
+      info.regionId &&
+      info.cityId &&
+      info.cardNumber &&
+      info.cardMonth &&
+      info.cardYear &&
+      info.cardCVC
+    ) {
+      const newOrderItems = cartItems.map((i) => {
+        return {
+          itemId: i.id,
+          quantity: i.quantity,
+          item: i,
+        };
+      });
+      const orderObject = {
+        ...info,
+        orderItems: newOrderItems,
       };
-    });
-    const orderObject = {
-      ...info,
-      orderItems: newOrderItems,
-    };
-    fetchCreateNewOrder(orderObject).then((res) => {
-      toggle();
-      setNewOrderUrl(`/order/${res.id}`);
-    });
+      fetchCreateNewOrder(orderObject).then((res) => {
+        toggle();
+        setNewOrderUrl(`/order/${res.id}`);
+      });
+    } else {
+      setShowError(true)
+      setTimeout(() => {
+        setShowError(false)
+      }, 3000)
+    }
   };
 
   if (!regions) {
@@ -397,12 +416,21 @@ export const CheckoutForm = ({ cartItems, loggedInUser }) => {
             </FormGroup>
           </Form>
         </div>
-        <Button
-          className="rounded-0"
-          onClick={handleCompleteOrder}
-        >
-          Complete Purchase
-        </Button>
+        <div className="d-flex justify-content-between align-items-center">
+          <Button
+            className="rounded-0 my-2"
+            onClick={handleCompleteOrder}
+          >
+            Complete Purchase
+          </Button>
+          {showError ? (
+            <Alert className='rounded-0 m-0 p-2' color="danger">
+              Please fill out all required info!
+            </Alert>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     </>
   );

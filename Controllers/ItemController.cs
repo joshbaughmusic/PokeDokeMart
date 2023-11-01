@@ -3,6 +3,7 @@ using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -17,7 +18,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAllItems(string categoryId)
     {
         if (categoryId == null)
@@ -61,7 +62,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetSingleItem(int id)
     {
         Item foundItem = _dbContext.Items
@@ -82,7 +83,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpGet("{id}/related")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetRelatedItems(int id, int amount)
     {
         Item foundItem = _dbContext.Items
@@ -155,7 +156,7 @@ public class ItemController : ControllerBase
 
 
     [HttpGet("suggested/userpokemon/{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetSuggestedItemsBySingleUserPokemon(int id, int amount)
     {
         UserPokemon foundUserPokemon = _dbContext.UserPokemon
@@ -266,7 +267,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpGet("suggested/user/{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetSuggestedItemsByUser(int id, int amount)
     {
         UserProfile foundUser = _dbContext.UserProfiles

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PokeDokeMartRedux.Models;
 using PokeDokeMartRedux.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PokeDokeMartRedux.Controllers;
 
@@ -16,7 +17,7 @@ public class MoveController : ControllerBase
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAllMoves()
     {
         return Ok(_dbContext.Moves
@@ -25,7 +26,7 @@ public class MoveController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetSingleMove(int id)
     {
         Move foundMove = _dbContext.Moves
