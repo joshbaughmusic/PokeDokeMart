@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchSingleOrder } from '../../managers/OrderManager.js';
-import { Alert, Container, Spinner, Table } from 'reactstrap';
+import { Alert, Container, Table } from 'reactstrap';
 import { dateFormatter } from '../utilities/dateFormatter.js';
 import './OrderDetails.css';
 import PokeballLoading from '../../images/pokeball-loading.gif';

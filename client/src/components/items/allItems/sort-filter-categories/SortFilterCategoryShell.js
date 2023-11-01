@@ -51,6 +51,12 @@ export const SortFilterCategoryShell = ({
             />
           </Accordion>
         </div>
+          <Button
+            className="mt-3 rounded-0 w-100"
+            onClick={handleReset}
+          >
+            Reset Filters
+          </Button>
         <div className="mt-4">
           <Label>Items Per Page:</Label>
           <Input
@@ -62,12 +68,6 @@ export const SortFilterCategoryShell = ({
             <option value={24}>24</option>
             <option value={36}>36</option>
           </Input>
-          <Button
-            className="mt-4 rounded-0"
-            onClick={handleReset}
-          >
-            Reset Filters
-          </Button>
         </div>
       </div>
     </>
