@@ -43,8 +43,8 @@ export const Profile = ({ loggedInUser }) => {
     <>
       <Container className="text-bg-dark my-5 p-5 profile-container">
         <Row className="mb-4">
-          <Col className="d-flex gap-4 align-items-center h-100">
-            <div className="profile-details p-4">
+          <Col className="align-items-center h-100">
+            <div className="w-100 profile-details p-4 mb-xl-0 mb-lg-5 mb-md-5 mb-sm-5 mb-xs-5">
               <h1 className="profile-heading">
                 {profile.firstName} {profile.lastName}
               </h1>
@@ -75,7 +75,7 @@ export const Profile = ({ loggedInUser }) => {
                   )}
                 </div>
                 <div>
-                  <div className="d-flex justify-content-between align-items-baseline">
+                  <div className="d-xl-flex d-lg-flex d-md-flex d-sm-block  justify-content-between align-items-baseline">
                     <h5>Details:</h5>
                     <EditUserDetails
                       profile={profile}
@@ -83,7 +83,7 @@ export const Profile = ({ loggedInUser }) => {
                     />
                   </div>
                   <div className="pt-3">
-                    <p>Email: {profile.email}</p>
+                    <p className="text-break">Email: {profile.email}</p>
                     <p>Street: {profile.address}</p>
                     <p>
                       C/R: {profile.city.name}, {profile.region.name}
@@ -93,7 +93,7 @@ export const Profile = ({ loggedInUser }) => {
               </div>
             </div>
           </Col>
-          <Col>
+          <Col className="w-50">
             <MyPokemonList />
           </Col>
         </Row>
