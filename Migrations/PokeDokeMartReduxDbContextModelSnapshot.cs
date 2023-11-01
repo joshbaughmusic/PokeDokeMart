@@ -149,13 +149,13 @@ namespace PokeDokeMartRedux.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ad3ff9c6-a61f-46cf-b41e-71258c52e1e1",
+                            ConcurrencyStamp = "4aae0ad6-1088-49e7-8eef-ecaa7bd3980f",
                             Email = "ash@pokenet.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEL/g7uVOTUxSOuKpdWgoOcVOVPe74Tfpk1T8jx3bCMsUscgJMdvDcj0szApbBVb+tA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAtbOK444hQwMkTeFna9jnqYVFGtSJKwP51hssA80sslSCLhFxf5jXNpO0F68BLcTw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c8f65c6d-182c-42f6-8fbb-71f4a2806006",
+                            SecurityStamp = "887a5f4a-453c-4dc2-a6f9-b08640d4280b",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -2385,1068 +2385,600 @@ namespace PokeDokeMartRedux.Migrations
                             Id = 103,
                             CategoryId = 11,
                             Cost = 40000m,
-                            Description = "The target is attacked by a kick launched with muscle-packed power.",
-                            Effect = "Teaches Focus Punch to a compatible Pokémon.",
+                            Description = "The foe is slugged by a punch thrown with muscle-packed power.",
+                            Effect = "Teaches Mega Punch to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 1,
                             Name = "TM01",
-                            ShortEffect = "Teaches Hone Claws to a compatible Pokémon. (Gen IV & III: Focus Punch Gen II: DynamicPunch Gen I: Mega Punch)"
+                            ShortEffect = "Inflicts regular damage with no additional effect."
                         },
                         new
                         {
                             Id = 104,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "Numerous coins are hurled at the target to inflict damage. Money is earned after the battle.",
-                            Effect = "Teaches Dragon Claw to a compatible Pokémon.",
+                            Description = "Inflicts regular damage.  User's critical hit rate is one level higher when using this move.  User charges for one turn before attacking. This move cannot be selected by sleep talk.",
+                            Effect = "Teaches Razor Wind to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 2,
                             Name = "TM02",
-                            ShortEffect = "Teaches Dragon Claw to a compatible Pokémon. (Gen II: Headbutt Gen I: Razor Wind)"
+                            ShortEffect = "Requires a turn to charge before attacking."
                         },
                         new
                         {
                             Id = 105,
                             CategoryId = 11,
                             Cost = 50000m,
-                            Description = "The target is punched with a fiery fist. This may also leave the target with a burn.",
-                            Effect = "Teaches Water Pulse to a compatible Pokémon.",
+                            Description = "Raises the user's Attack by 2 stages.",
+                            Effect = "Teaches Swords Dance to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 3,
                             Name = "TM03",
-                            ShortEffect = "Teaches Psyshock to a compatible Pokémon. (Gen IV & III: Water Pulse Gen II: Curse Gen I: Swords Dance)"
+                            ShortEffect = "Raises the user's Attack by 2 stages."
                         },
                         new
                         {
                             Id = 106,
                             CategoryId = 11,
                             Cost = 50000m,
-                            Description = "The target is punched with an icy fist. This may also leave the target frozen.",
-                            Effect = "Teaches Calm Mind to a compatible Pokémon.",
+                            Description = "Switches the target out for another of its trainer's Pokémon selected at random.  Wild battles end immediately. Doesn't affect Pokémon with suction cups or under the effect of ingrain.",
+                            Effect = "Teaches Whirl Wind to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 4,
                             Name = "TM04",
-                            ShortEffect = "Teaches Calm Mind to a compatible Pokémon. (Gen II: Rollout Gen I: Whirlwind)"
+                            ShortEffect = "Immediately ends wild battles. Forces trainers to switch Pokémon."
                         },
                         new
                         {
                             Id = 107,
                             CategoryId = 11,
                             Cost = 50000m,
-                            Description = "The target is punched with an electrified fist. This may also leave the target with paralysis.",
-                            Effect = "Teaches Roar to a compatible Pokémon.",
+                            Description = "The foe is attacked by a kick launched with muscle-packed power.",
+                            Effect = "Teaches Mega Kick to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 5,
                             Name = "TM05",
-                            ShortEffect = "Teaches Roar to a compatible Pokémon. (Gen I: Mega Kick)"
+                            ShortEffect = "Inflicts regular damage with no additional effect."
                         },
                         new
                         {
                             Id = 108,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user flies up into the sky and then strikes its target on the next turn.",
+                            Description = "The target is badly poisoned, with the damage caused by poison doubling after each turn.",
                             Effect = "Teaches Toxic to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 6,
                             Name = "TM06",
-                            ShortEffect = "Teaches Toxic to a compatible Pokémon."
+                            ShortEffect = "Badly poisons the target, inflicting more damage every turn."
                         },
                         new
                         {
                             Id = 109,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.",
-                            Effect = "Teaches Hail to a compatible Pokémon.",
+                            Description = "The target faints; doesn't work on faster or higher-leveled Pokemon.",
+                            Effect = "Teaches Horn Drill to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 7,
                             Name = "TM07",
-                            ShortEffect = "Teaches Hail to a compatible Pokémon. (Gen II: Zap Cannon Gen I: Horn Drill)"
+                            ShortEffect = "Inflicts damage equal to the target's max HP. Ignores accuracy and evasion modifiers."
                         },
                         new
                         {
                             Id = 110,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user scatters curious leaves that chase the target. This attack never misses.",
-                            Effect = "Teaches Hidden Power to a compatible Pokémon.",
+                            Description = "The user attacks by dropping onto the target with its full body weight. This may also leave the target with paralysis.",
+                            Effect = "Teaches Body Slam to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 10,
-                            Name = "TM10",
-                            ShortEffect = "Teaches Hidden Power to a compatible Pokémon. (Gen I: Double-Edge)"
+                            MoveId = 8,
+                            Name = "TM08",
+                            ShortEffect = "Inflicts regular damage with no additional effect. Has a chance to paralyze the target."
                         },
                         new
                         {
                             Id = 111,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.",
-                            Effect = "Teaches Sunny Day to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "A reckless, full-body charge attack for slamming into the foe. It also damages the user a little.",
+                            Effect = "Teaches Take Down to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 11,
-                            Name = "TM11",
-                            ShortEffect = "Teaches Sunny Day to a compatible Pokémon. (Gen I: BubbleBeam)"
+                            MoveId = 9,
+                            Name = "TM09",
+                            ShortEffect = "Inflicts regular damage. User takes 1/4 the damage it inflicts in recoil."
                         },
                         new
                         {
                             Id = 112,
                             CategoryId = 11,
-                            Cost = 50000m,
-                            Description = "In this two-turn attack, the user gathers light and fills a blade with the light’s energy, attacking the target on the next turn.",
-                            Effect = "Teaches Taunt to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "A life-risking tackle that also hurts the user.",
+                            Effect = "Teaches Double Edge to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 12,
-                            Name = "TM12",
-                            ShortEffect = "Teaches Taunt to a compatible Pokémon. (Gen II: Sweet Scent Gen I: Water Gun)"
+                            MoveId = 10,
+                            Name = "TM10",
+                            ShortEffect = "Inflicts regular damage. User takes 1/3 the damage it inflicts in recoil."
                         },
                         new
                         {
                             Id = 113,
                             CategoryId = 11,
                             Cost = 10000m,
-                            Description = "The target becomes trapped within a fierce vortex of fire that rages for four to five turns.",
-                            Effect = "Teaches Ice Beam to a compatible Pokémon.",
+                            Description = "Forcefully sprays bubbles that may lower speed.",
+                            Effect = "Teaches Bubble Beam to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 13,
-                            Name = "TM13",
-                            ShortEffect = "Teaches Ice Beam to a compatible Pokémon. (Gen II: Snore)"
+                            MoveId = 11,
+                            Name = "TM11",
+                            ShortEffect = "Inflicts regular damage. Has a chance to lower the target's speed by one stage."
                         },
                         new
                         {
                             Id = 114,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user launches a weak jolt of electricity that paralyzes the target.",
-                            Effect = "Teaches Blizzard to a compatible Pokémon.",
+                            Cost = 50000m,
+                            Description = "The foe is struck with a lot of water expelled forcibly from the mouth.",
+                            Effect = "Teaches Water Gun to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 14,
-                            Name = "TM14",
-                            ShortEffect = "Teaches Blizzard to a compatible Pokémon."
+                            MoveId = 12,
+                            Name = "TM12",
+                            ShortEffect = "Inflicts regular damage with no additional effect."
                         },
                         new
                         {
                             Id = 115,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user burrows into the ground, then attacks on the next turn.",
-                            Effect = "Teaches Hyper Beam to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "Blasts the foe with an icy beam that may freeze it.",
+                            Effect = "Teaches Ice Beam to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 15,
-                            Name = "TM15",
-                            ShortEffect = "Teaches Hyper Beam to a compatible Pokémon."
+                            MoveId = 13,
+                            Name = "TM13",
+                            ShortEffect = "Inflicts regular damage.  Has a chance to freeze the target."
                         },
                         new
                         {
                             Id = 116,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "An earsplitting screech harshly lowers the target’s Defense stat.",
-                            Effect = "Teaches Light Screen to a compatible Pokémon.",
+                            Description = "A howling blizzard is summoned to strike the foe. It may also freeze the target solid.",
+                            Effect = "Teaches Blizzard to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 16,
-                            Name = "TM16",
-                            ShortEffect = "Teaches Light Screen to a compatible Pokémon. (Gen II: Icy Wind Gen I: Pay Day)"
+                            MoveId = 14,
+                            Name = "TM14",
+                            ShortEffect = "Inflicts regular damage.  Has a chance to freeze the target."
                         },
                         new
                         {
                             Id = 117,
                             CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "A wondrous wall of light is put up to reduce damage from special attacks for five turns.",
-                            Effect = "Teaches Protect to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "A severely damaging attack that makes the user rest on the next turn.",
+                            Effect = "Teaches Hyper Beam to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 17,
-                            Name = "TM17",
-                            ShortEffect = "Teaches Protect to a compatible Pokémon. (Gen I: Submission)"
+                            MoveId = 15,
+                            Name = "TM15",
+                            ShortEffect = "Inflicts regular damage. User loses its next turn to recharge, and cannot attack or switch out during that turn."
                         },
                         new
                         {
                             Id = 118,
                             CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "A wondrous wall of light is put up to reduce damage from physical attacks for five turns.",
-                            Effect = "Teaches Rain Dance to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "Numerous coins are hurled at the foe to inflict damage. Money is earned after battle.",
+                            Effect = "Teaches Pay Day to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 18,
-                            Name = "TM18",
-                            ShortEffect = "Teaches Rain Dance to a compatible Pokémon. (Gen I: Counter)"
+                            MoveId = 16,
+                            Name = "TM16",
+                            ShortEffect = "Inflicts regular damage.  After the battle ends, the winner receives five times the user's level in extra money for each time this move was used."
                         },
                         new
                         {
                             Id = 119,
                             CategoryId = 11,
                             Cost = 10000m,
-                            Description = "The user creates a protective field that prevents status conditions for five turns.",
-                            Effect = "Teaches Giga Drain to a compatible Pokémon.",
+                            Description = "The user grabs the foe and recklessly dives for the ground. It also hurts the user slightly.",
+                            Effect = "Teaches Submission to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 19,
-                            Name = "TM19",
-                            ShortEffect = "Teaches Telekinesis to a compatible Pokémon. (Gen IV & III & II: Giga Drain Gen I: Seismic Toss)"
+                            MoveId = 17,
+                            Name = "TM17",
+                            ShortEffect = "Inflicts regular damage. User takes 1/4 the damage it inflicts in recoil."
                         },
                         new
                         {
                             Id = 120,
                             CategoryId = 11,
-                            Cost = 100000m,
-                            Description = "The user attacks everything around it by causing an explosion. The user faints upon using this move.",
-                            Effect = "Teaches Safeguard to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "A retaliation move that counters any physical attack, inflicting double the damage taken.",
+                            Effect = "Teaches Counter to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 20,
-                            Name = "TM20",
-                            ShortEffect = "Teaches Safeguard to a compatible Pokémon. (Gen II: Endure Gen I: Rage)"
+                            MoveId = 18,
+                            Name = "TM18",
+                            ShortEffect = "Targets the last opposing Pokémon to hit the user with a physical move this turn.  Inflicts twice the damage that move did to the user."
                         },
                         new
                         {
                             Id = 121,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user goes to sleep for two turns. This fully restores the user’s HP and heals any status conditions.",
-                            Effect = "Teaches Frustration to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "The foe is thrown using the power of gravity. It inflicts damage equal to the user's level.",
+                            Effect = "Teaches Seismic Toss to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 21,
-                            Name = "TM21",
-                            ShortEffect = "Teaches Frustration to a compatible Pokémon. (Gen I: Mega Drain)"
+                            MoveId = 19,
+                            Name = "TM19",
+                            ShortEffect = "Inflicts damage equal to the user's level. Type immunity applies, but other type effects are ignored."
                         },
                         new
                         {
                             Id = 122,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "Large boulders are hurled at opposing Pokémon to inflict damage. This may also make the opposing Pokémon flinch.",
-                            Effect = "Teaches SolarBeam to a compatible Pokémon.",
+                            Cost = 100000m,
+                            Description = "While this move is in use, it gains attack power each time the user is hit in battle.",
+                            Effect = "Teaches Rage to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 22,
-                            Name = "TM22",
-                            ShortEffect = "Teaches SolarBeam to a compatible Pokémon."
+                            MoveId = 20,
+                            Name = "TM20",
+                            ShortEffect = "Inflicts regular damage. Every time the user is hit after it uses this move but before its next action, its Attack raises by one stage."
                         },
                         new
                         {
                             Id = 123,
                             CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "The user attacks and steals the target’s held item simultaneously. The user can’t steal anything if it already holds an item.",
-                            Effect = "Teaches Iron Tail to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.",
+                            Effect = "Teaches Mega Darin to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 23,
-                            Name = "TM23",
-                            ShortEffect = "Teaches Smack Down to a compatible Pokémon. (Gen IV & III & II: Iron Tail Gen I: Dragon Rage)"
+                            MoveId = 21,
+                            Name = "TM21",
+                            ShortEffect = "Inflicts regular damage. Drains half the damage inflicted to heal the user."
                         },
                         new
                         {
                             Id = 124,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "This attack can be used only if the user is asleep. The harsh noise may also make the target flinch.",
-                            Effect = "Teaches Thunderbolt to a compatible Pokémon.",
+                            Description = "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn.",
+                            Effect = "Teaches SolarBeam to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 24,
-                            Name = "TM24",
-                            ShortEffect = "Teaches Thunderbolt to a compatible Pokémon. (Gen II: DragonBreath)"
+                            MoveId = 22,
+                            Name = "TM22",
+                            ShortEffect = "Inflicts regular damage. User charges for one turn before attacking."
                         },
                         new
                         {
                             Id = 125,
                             CategoryId = 11,
                             Cost = 10000m,
-                            Description = "This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession.",
-                            Effect = "Teaches Thunder to a compatible Pokémon.",
+                            Description = "The user attacks with a dragon-like force that always inflicts 40 points of damage.",
+                            Effect = "Teaches Dragon Rage to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 25,
-                            Name = "TM25",
-                            ShortEffect = "Teaches Thunder to a compatible Pokémon."
+                            MoveId = 23,
+                            Name = "TM23",
+                            ShortEffect = "Always deals 40 points of damage."
                         },
                         new
                         {
                             Id = 126,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user frightens the target with a scary face to harshly lower its Speed stat.",
-                            Effect = "Teaches Earthquake to a compatible Pokémon.",
+                            Description = "A strong electric blast is loosed at the foe. It may also leave the foe paralyzed.",
+                            Effect = "Teaches Thunderbolt to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 26,
-                            Name = "TM26",
-                            ShortEffect = "Teaches Earthquake to a compatible Pokémon."
+                            MoveId = 24,
+                            Name = "TM24",
+                            ShortEffect = "Inflicts regular damage. Has a chance to paralyze the target."
                         },
                         new
                         {
                             Id = 127,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user attacks with a gust of chilled air. This also lowers opposing Pokémon’s Speed stats.",
-                            Effect = "Teaches Return to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "A wicked thunderbolt is dropped on the foe to inflict damage. It may also leave the target paralyzed.",
+                            Effect = "Teaches Thunder to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 27,
-                            Name = "TM27",
-                            ShortEffect = "Teaches Return to a compatible Pokémon. (Gen I: Fissure)"
+                            MoveId = 25,
+                            Name = "TM25",
+                            ShortEffect = "Inflicts regular damage. Has a chance to paralyze the target."
                         },
                         new
                         {
                             Id = 128,
                             CategoryId = 11,
-                            Cost = 100000m,
-                            Description = "A nutrient-draining attack. The user’s HP is restored by half the damage taken by the target.",
-                            Effect = "Teaches Dig to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "The user sets off an earthquake that hits all the Pokémon in the battle.",
+                            Effect = "Teaches Earthquake to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 28,
-                            Name = "TM28",
-                            ShortEffect = "Teaches Dig to a compatible Pokémon."
+                            MoveId = 26,
+                            Name = "TM26",
+                            ShortEffect = "Inflicts regular damage. If the target is in the first turn of dig, this move will hit with double power."
                         },
                         new
                         {
                             Id = 129,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user gazes at the target rather charmingly, making it less wary. This harshly lowers the target’s Attack stat.",
-                            Effect = "Teaches Psychic to a compatible Pokémon.",
+                            Description = "The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.",
+                            Effect = "Teaches Fissure to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 29,
-                            Name = "TM29",
-                            ShortEffect = "Teaches Psychic to a compatible Pokémon."
+                            MoveId = 27,
+                            Name = "TM27",
+                            ShortEffect = "Inflicts damage equal to the target's max HP. Ignores accuracy and evasion modifiers."
                         },
                         new
                         {
                             Id = 130,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The target is hit with wings of steel. This may also raise the user’s Defense stat.",
-                            Effect = "Teaches Shadow Ball to a compatible Pokémon.",
+                            Cost = 100000m,
+                            Description = "The user burrows, then attacks on the second turn. It can also be used to exit dungeons.",
+                            Effect = "Teaches Dig to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 30,
-                            Name = "TM30",
-                            ShortEffect = "Teaches Shadow Ball to a compatible Pokémon. (Gen I: Teleport)"
+                            MoveId = 28,
+                            Name = "TM28",
+                            ShortEffect = "Swift can hit the user while underground, and no other moves can."
                         },
                         new
                         {
                             Id = 131,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.",
-                            Effect = "Teaches Brick Break to a compatible Pokémon.",
+                            Description = "The foe is hit by a strong telekinetic force. It may also reduce the foe's Sp. Def stat.",
+                            Effect = "Teaches Psychic to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 31,
-                            Name = "TM31",
-                            ShortEffect = "Teaches Brick Break to a compatible Pokémon. (Gen II: Mud-Slap Gen I: Mimic)"
+                            MoveId = 29,
+                            Name = "TM29",
+                            ShortEffect = "Inflicts regular damage. Has a chance to lower the target's Special Defense by one stage."
                         },
                         new
                         {
                             Id = 132,
                             CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "A five-turn sandstorm is summoned to hurt all combatants except Rock, Ground, and Steel types. It raises the Sp. Def stat of Rock types.",
-                            Effect = "Teaches Double Team to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "Use it to flee from any wild Pokémon. It may also be used to warp to the last Poké Center visited.",
+                            Effect = "Teaches Teleport to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 32,
-                            Name = "TM32",
-                            ShortEffect = "Teaches Double Team to a compatible Pokémon."
+                            MoveId = 30,
+                            Name = "TM30",
+                            ShortEffect = "Does nothing. Wild battles end immediately."
                         },
                         new
                         {
                             Id = 133,
                             CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "The user summons a heavy rain that falls for five turns, powering up Water-type moves. It lowers the power of Fire-type moves.",
-                            Effect = "Teaches Reflect to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "The user copies the move last used by the foe. The move can be used for the rest of the battle.",
+                            Effect = "Teaches Mimic to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 33,
-                            Name = "TM33",
-                            ShortEffect = "Teaches Reflect to a compatible Pokémon. (Gen II: Ice Punch)"
+                            MoveId = 31,
+                            Name = "TM31",
+                            ShortEffect = "This move is replaced by the target's last successfully used move, and its PP changes to 5."
                         },
                         new
                         {
                             Id = 134,
                             CategoryId = 11,
                             Cost = 10000m,
-                            Description = "The user intensifies the sun for five turns, powering up Fire-type moves. It lowers the power of Water-type moves.",
-                            Effect = "Teaches Shock Wave to a compatible Pokémon.",
+                            Description = "By moving rapidly, the user makes illusory copies of itself to raise its evasiveness.",
+                            Effect = "Teaches Double Team to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 34,
-                            Name = "TM34",
-                            ShortEffect = "Teaches Sludge Wave to a compatible Pokémon. (Gen IV & III: Shock Wave Gen II: Swagger Gen I: Bide)"
+                            MoveId = 32,
+                            Name = "TM32",
+                            ShortEffect = "Raises the user's evasion by one stage."
                         },
                         new
                         {
                             Id = 135,
                             CategoryId = 11,
                             Cost = 10000m,
-                            Description = "The user summons a hailstorm lasting five turns. It damages all Pokémon except Ice types.",
-                            Effect = "Teaches Flamethrower to a compatible Pokémon.",
+                            Description = "A wondrous wall of light is put up to suppress damage from physical attacks for five turns.",
+                            Effect = "Teaches Reflect to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 35,
-                            Name = "TM35",
-                            ShortEffect = "Teaches Flamethrower to a compatible Pokémon. (Gen II: Sleep Talk Gen I: Metronome)"
+                            MoveId = 33,
+                            Name = "TM33",
+                            ShortEffect = "Erects a barrier around the user's side of the field that reduces damage from physical attacks by half for five turns"
                         },
                         new
                         {
                             Id = 136,
                             CategoryId = 11,
                             Cost = 10000m,
-                            Description = "A unique attack that varies in type depending on the Pokémon using it.",
-                            Effect = "Teaches Sludge Bomb to a compatible Pokémon.",
+                            Description = "User waits for two turns.  On the second turn, the user inflicts twice the damage it accumulated on the last Pokémon to hit it.",
+                            Effect = "Teaches Bide to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 36,
-                            Name = "TM36",
-                            ShortEffect = "Teaches Sludge Bomb to a compatible Pokémon. (Gen II: Mud-Slap Gen I: Self-Destruct)"
+                            MoveId = 34,
+                            Name = "TM34",
+                            ShortEffect = "The user endures attacks for two turns, then strikes back double."
                         },
                         new
                         {
                             Id = 137,
                             CategoryId = 11,
                             Cost = 10000m,
-                            Description = "The user summons a heavy rain that falls for five turns, powering up Water-type moves. It lowers the power of Fire-type moves.",
-                            Effect = "Teaches Sandstorm to a compatible Pokémon.",
+                            Description = "The user performs a random move; almost any known move can be selected.",
+                            Effect = "Teaches Metronome to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 37,
-                            Name = "TM37",
-                            ShortEffect = "Teaches Sandstorm to a compatible Pokémon. (Gen II: Egg Bomb Gen I: Eggbomb)"
+                            MoveId = 35,
+                            Name = "TM35",
+                            ShortEffect = "The user performs a random move; almost any known move can be selected."
                         },
                         new
                         {
                             Id = 138,
                             CategoryId = 11,
                             Cost = 10000m,
-                            Description = "The user summons a hailstorm lasting five turns. It damages all Pokémon except Ice types.",
-                            Effect = "Teaches Fire Blast to a compatible Pokémon.",
+                            Description = "The user blows up to inflict damage on all Pokémon in battle. The user faints upon using this move.",
+                            Effect = "Teaches Self-Destruct to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 38,
-                            Name = "TM38",
-                            ShortEffect = "Teaches Fire Blast to a compatible Pokémon."
+                            MoveId = 36,
+                            Name = "TM36",
+                            ShortEffect = "User faints, even if the attack fails or misses.  Inflicts regular damage."
                         },
                         new
                         {
                             Id = 139,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "A unique attack that varies in type depending on the Pokémon using it.",
-                            Effect = "Teaches Swift to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "A large egg is hurled with maximum force at the foe to inflict damage.",
+                            Effect = "Teaches Eggbomb to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 39,
-                            Name = "TM39",
-                            ShortEffect = "Teaches Swift to a compatible Pokémon. (Gen I: Swift)"
+                            MoveId = 37,
+                            Name = "TM37",
+                            ShortEffect = "Inflicts regular damage with no additional effect."
                         },
                         new
                         {
                             Id = 140,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user attacks by wrapping its opponent in a fierce wind that flies up into the sky. It may also confuse the target.",
-                            Effect = "Teaches Skull Bash to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "The foe is attacked with an intense blast of all-consuming fire. It may also leave the target with a burn.",
+                            Effect = "Teaches Fire Blast to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 40,
-                            Name = "TM40",
-                            ShortEffect = "Teaches Skull Bash to a compatible Pokémon."
+                            MoveId = 38,
+                            Name = "TM38",
+                            ShortEffect = "Inflicts regular damage. Has a chance to burn the target."
                         },
                         new
                         {
                             Id = 141,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user crunches up the target with sharp fangs. It may also lower the target’s Defense stat.",
-                            Effect = "Teaches Earthquake to a compatible Pokémon.",
+                            Description = "Star-shaped rays are shot at the foe. This attack never misses.",
+                            Effect = "Teaches Swift to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 41,
-                            Name = "TM41",
-                            ShortEffect = "Teaches Earthquake to a compatible Pokémon. (Gen I: Earthquake)"
+                            MoveId = 39,
+                            Name = "TM39",
+                            ShortEffect = "Inflicts regular damage. Ignores accuracy and evasion modifiers."
                         },
                         new
                         {
                             Id = 142,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user lands and rests its body. It restores the user’s HP by up to half of its max HP.",
-                            Effect = "Teaches Facade to a compatible Pokémon.",
+                            Description = "The user tucks in its head to raise its Defense in the first turn, then rams the foe on the next turn.",
+                            Effect = "Teaches Skull Bash to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 42,
-                            Name = "TM42",
-                            ShortEffect = "Teaches Facade to a compatible Pokémon. (Gen I: Dream Eater)"
+                            MoveId = 40,
+                            Name = "TM40",
+                            ShortEffect = "Inflicts regular damage. Raises the user's Defense by one stage.  User then charges for one turn before attacking."
                         },
                         new
                         {
                             Id = 143,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user draws power to attack by using its held Berry. The Berry determines its type and power.",
-                            Effect = "Teaches Flame Charge to a compatible Pokémon.",
+                            Description = "Restores 1/2 of the user's max HP. However, this move fails if the user's current HP is 511 or 255 HP below its value at full health.",
+                            Effect = "Teaches Soft-Boiled to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 43,
-                            Name = "TM43",
-                            ShortEffect = "Teaches Flame Charge to a compatible Pokémon."
+                            MoveId = 41,
+                            Name = "TM41",
+                            ShortEffect = "Restores 1/2 of the user's max HP. However, this move fails if the user's current HP is 511 or 255 HP below its value at full health."
                         },
                         new
                         {
                             Id = 144,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user hardens its body’s surface like iron, sharply raising its Defense stat.",
-                            Effect = "Teaches Rest to a compatible Pokémon.",
+                            Description = "An attack that works only on a sleeping foe. It absorbs half the damage caused to heal the user's HP.",
+                            Effect = "Teaches Dream Eater to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 44,
-                            Name = "TM44",
-                            ShortEffect = "Teaches Rest to a compatible Pokémon. (Gen I: Rest)"
+                            MoveId = 42,
+                            Name = "TM42",
+                            ShortEffect = "Restores the user's HP by 1/2 of the damage inflicted on the target but only works on a sleeping target."
                         },
                         new
                         {
                             Id = 145,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user attacks with a punch. This may also lower the target’s Defense stat.",
-                            Effect = "Teaches Attract to a compatible Pokémon.",
+                            Description = "A second-turn attack move with a high critical-hit ratio. It may also make the target flinch.",
+                            Effect = "Teaches Sky Attack to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 45,
-                            Name = "TM45",
-                            ShortEffect = "Teaches Attract to a compatible Pokémon. (Gen I: Attract)"
+                            MoveId = 43,
+                            Name = "TM43",
+                            ShortEffect = "Inflicts regular damage. User charges for one turn before attacking."
                         },
                         new
                         {
                             Id = 146,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "The user attacks the target with a hazardous, full-power headbutt. The target also takes damage from the user’s Life Orb.",
-                            Effect = "Teaches Thief to a compatible Pokémon.",
+                            Description = "User falls to sleep and immediately regains all its HP.  If the user has another major status effect, sleep will replace it.",
+                            Effect = "Teaches Rest to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 46,
-                            Name = "TM46",
-                            ShortEffect = "Teaches Thief to a compatible Pokémon."
+                            MoveId = 44,
+                            Name = "TM44",
+                            ShortEffect = "User falls to sleep and immediately regains all its HP.  If the user has another major status effect, sleep will replace it."
                         },
                         new
                         {
                             Id = 147,
                             CategoryId = 11,
                             Cost = 1000m,
-                            Description = "A barrier reflects back to the target moves like Leech Seed and moves that damage status.",
-                            Effect = "Teaches Low Sweep to a compatible Pokémon.",
+                            Description = "A weak electric charge is launched at the target. It causes paralysis if it hits.",
+                            Effect = "Teaches Thunder Wave to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 47,
-                            Name = "TM47",
-                            ShortEffect = "Teaches Low Sweep to a compatible Pokémon. (Gen I: Submission)"
+                            MoveId = 45,
+                            Name = "TM45",
+                            ShortEffect = "A weak jolt of electricity that paralyzes the foe."
                         },
                         new
                         {
                             Id = 148,
                             CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "The user slams a barrage of hard-shelled seeds down on the target from above.",
-                            Effect = "Teaches Round to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "The foe is attacked with an odd, hot energy wave. The attack varies in intensity.",
+                            Effect = "Teaches Psywave to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 48,
-                            Name = "TM48",
-                            ShortEffect = "Teaches Round to a compatible Pokémon. (Gen I: Rock Slide)"
+                            MoveId = 46,
+                            Name = "TM46",
+                            ShortEffect = "Inflicts typeless damage between 50% and 150% of the user's level, selected at random in increments of 10%."
                         },
                         new
                         {
                             Id = 149,
                             CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "The user charges at the target using every bit of its power. The user can’t move on the next turn.",
-                            Effect = "Teaches Echoed Voice to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "The user explodes to inflict terrible damage even while fainting itself.",
+                            Effect = "Teaches Explosion to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 49,
-                            Name = "TM49",
-                            ShortEffect = "Teaches Echoed Voice to a compatible Pokémon."
+                            MoveId = 47,
+                            Name = "TM47",
+                            ShortEffect = "Halves the target's Defense for damage calculation, which is similar to doubling the attack's power."
                         },
                         new
                         {
                             Id = 150,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user scatters curious leaves that chase the target. This attack never misses.",
-                            Effect = "Teaches Overheat to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "The user slams a barrage of rocks down on the target from above.",
+                            Effect = "Teaches Rock Slide to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 50,
-                            Name = "TM50",
-                            ShortEffect = "Teaches Overheat to a compatible Pokémon."
+                            MoveId = 48,
+                            Name = "TM48",
+                            ShortEffect = "Inflicts regular damage.  Has a chance to make the target flinch."
                         },
                         new
                         {
                             Id = 151,
                             CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user traps the target inside a harshly raging sandstorm for four to five turns.",
-                            Effect = "Teaches Snatch to a compatible Pokémon.",
+                            Cost = 10000m,
+                            Description = "The user strikes with a simultaneous three- beam attack. May also paralyze, burn, or freeze the target.",
+                            Effect = "Teaches Echoed Voice to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 49,
                             Name = "TM49",
-                            ShortEffect = "Teaches Echoed Voice to a compatible Pokémon. (Gen IV & III: Snatch Gen II: Fury Cutter Gen I: Tri Attack)"
+                            ShortEffect = "Inflicts regular damage. Has a chance to burn, freeze, or paralyze the target."
                         },
                         new
                         {
                             Id = 152,
                             CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "The user forcefully shoots seeds at the target two to five times in a row.",
-                            Effect = "Teaches Overheat to a compatible Pokémon.",
+                            Cost = 1000m,
+                            Description = "The user takes one-fourth of its maximum HP to create a substitute; this move fails if the user does not have enough HP for this.",
+                            Effect = "Teaches Substitute to a compatible Pokémon.",
                             Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
                             MoveId = 50,
                             Name = "TM50",
-                            ShortEffect = "Teaches Overheat to a compatible Pokémon. (Gen II: Nightmare Gen I: Substitute)"
-                        },
-                        new
-                        {
-                            Id = 153,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user launches sharp icicles at the target two to five times in a row.",
-                            Effect = "Teaches Roost to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 51,
-                            Name = "TM51",
-                            ShortEffect = "Teaches Ally Switch to a compatible Pokémon. (Gen IV: Roost)"
-                        },
-                        new
-                        {
-                            Id = 154,
-                            CategoryId = 11,
-                            Cost = 100000m,
-                            Description = "The user bounces up high, then drops on the target on the second turn. This may also leave the target with paralysis.",
-                            Effect = "Teaches Focus Blast to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 52,
-                            Name = "TM52",
-                            ShortEffect = "Teaches Focus Blast to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 155,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user attacks by hurling a blob of mud at the target. This also lowers the target’s Speed stat.",
-                            Effect = "Teaches Energy Ball to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 53,
-                            Name = "TM53",
-                            ShortEffect = "Teaches Energy Ball to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 156,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user hurls hard rocks at the target. Two to five rocks are launched in a row.",
-                            Effect = "Teaches False Swipe to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 54,
-                            Name = "TM54",
-                            ShortEffect = "Teaches False Swipe to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 157,
-                            CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "If the target’s HP is half or less, this attack will hit with double the power.",
-                            Effect = "Teaches Brine to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 55,
-                            Name = "TM55",
-                            ShortEffect = "Teaches Scald to a compatible Pokémon. (Gen IV: Brine)"
-                        },
-                        new
-                        {
-                            Id = 158,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "After making its attack, the user rushes back to switch places with a party Pokémon in waiting.",
-                            Effect = "Teaches Fling to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 56,
-                            Name = "TM56",
-                            ShortEffect = "Teaches Fling to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 159,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user stores power, then attacks. If the user moves after the target, this attack’s power will be doubled.",
-                            Effect = "Teaches Charge Beam to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 57,
-                            Name = "TM57",
-                            ShortEffect = "Teaches Charge Beam to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 160,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "If the target has already taken some damage in the same turn, this attack’s power is doubled.",
-                            Effect = "Teaches Endure to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 58,
-                            Name = "TM58",
-                            ShortEffect = "Teaches Sky Drop to a compatible Pokémon. (Gen IV: Endure)"
-                        },
-                        new
-                        {
-                            Id = 161,
-                            CategoryId = 11,
-                            Cost = 30000m,
-                            Description = "The user employs its psychic power to switch changes to its Attack and Sp. Atk stats with the target.",
-                            Effect = "Teaches Drain Punch to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 60,
-                            Name = "TM60",
-                            ShortEffect = "Teaches Quash to a compatible Pokémon. (Gen IV: Drain Punch)"
-                        },
-                        new
-                        {
-                            Id = 162,
-                            CategoryId = 11,
-                            Cost = 30000m,
-                            Description = "The user employs its psychic power to switch changes to its Defense and Sp. Def stats with the target.",
-                            Effect = "Teaches Will-O-Wisp to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 61,
-                            Name = "TM61",
-                            ShortEffect = "Teaches Will-O-Wisp to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 163,
-                            CategoryId = 11,
-                            Cost = 30000m,
-                            Description = "The user exchanges Speed stats with the target.",
-                            Effect = "Teaches Silver Wind to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 62,
-                            Name = "TM62",
-                            ShortEffect = "Teaches Acrobatics to a compatible Pokémon. (Gen IV: Silver Wind)"
-                        },
-                        new
-                        {
-                            Id = 164,
-                            CategoryId = 11,
-                            Cost = 50000m,
-                            Description = "An energy-draining punch. The user’s HP is restored by half the damage taken by the target.",
-                            Effect = "Teaches Embargo to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 63,
-                            Name = "TM63",
-                            ShortEffect = "Teaches Embargo to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 165,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The power of this attack move is doubled if the user has been hurt by the target in the same turn.",
-                            Effect = "Teaches Explosion to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 64,
-                            Name = "TM64",
-                            ShortEffect = "Teaches Explosion to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 166,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user slashes with a sharp claw made from shadows. Critical hits land more easily.",
-                            Effect = "Teaches Shadow Claw to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 65,
-                            Name = "TM65",
-                            ShortEffect = "Teaches Shadow Claw to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 167,
-                            CategoryId = 11,
-                            Cost = 30000m,
-                            Description = "The user bites with electrified fangs. This may also make the target flinch or leave it with paralysis.",
-                            Effect = "Teaches Payback to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 66,
-                            Name = "TM66",
-                            ShortEffect = "Teaches Payback to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 168,
-                            CategoryId = 11,
-                            Cost = 30000m,
-                            Description = "The user bites with cold-infused fangs. This may also make the target flinch or leave it frozen.",
-                            Effect = "Teaches Recycle to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 67,
-                            Name = "TM67",
-                            ShortEffect = "Teaches Retaliate to a compatible Pokémon. (Gen IV: Recycle)"
-                        },
-                        new
-                        {
-                            Id = 169,
-                            CategoryId = 11,
-                            Cost = 30000m,
-                            Description = "The user bites with flame-cloaked fangs. This may also make the target flinch or leave it with a burn.",
-                            Effect = "Teaches Giga Impact to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 68,
-                            Name = "TM68",
-                            ShortEffect = "Teaches Giga Impact to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 170,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user tears at the target with blades formed by psychic power. Critical hits land more easily.",
-                            Effect = "Teaches Rock Polish to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 69,
-                            Name = "TM69",
-                            ShortEffect = "Teaches Rock Polish to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 171,
-                            CategoryId = 11,
-                            Cost = 50000m,
-                            Description = "The user creates a bizarre area in which slower Pokémon get to move first for five turns.",
-                            Effect = "Teaches Flash to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 70,
-                            Name = "TM70",
-                            ShortEffect = "Teaches Flash to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 172,
-                            CategoryId = 11,
-                            Cost = 50000m,
-                            Description = "The user creates a bizarre area in which Pokémon’s Defense and Sp. Def stats are swapped for five turns.",
-                            Effect = "Teaches Stone Edge to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 71,
-                            Name = "TM71",
-                            ShortEffect = "Teaches Stone Edge to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 173,
-                            CategoryId = 11,
-                            Cost = 50000m,
-                            Description = "The user creates a bizarre area in which Pokémon’s held items lose their effects for five turns.",
-                            Effect = "Teaches Avalanche to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 72,
-                            Name = "TM72",
-                            ShortEffect = "Teaches Volt Switch to a compatible Pokémon. (Gen IV: Avalanche)"
-                        },
-                        new
-                        {
-                            Id = 174,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "A slashing attack with a poisonous blade that may also poison the target. Critical hits land more easily.",
-                            Effect = "Teaches Thunder Wave to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 73,
-                            Name = "TM73",
-                            ShortEffect = "Teaches Thunder Wave to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 175,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user drenches the target in a special poisonous liquid. This move’s power is doubled if the target is poisoned.",
-                            Effect = "Teaches Gyro Ball to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 74,
-                            Name = "TM74",
-                            ShortEffect = "Teaches Gyro Ball to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 176,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user makes a swift attack on the target’s legs, which lowers the target’s Speed stat.",
-                            Effect = "Teaches Swords Dance to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 75,
-                            Name = "TM75",
-                            ShortEffect = "Teaches Swords Dance to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 177,
-                            CategoryId = 11,
-                            Cost = 10000m,
-                            Description = "The user attacks the target with a song. Others can join in the Round to increase the power of the attack.",
-                            Effect = "Teaches Stealth Rock to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 76,
-                            Name = "TM76",
-                            ShortEffect = "Teaches Struggle Bug to a compatible Pokémon. (Gen IV: Stealth Rock)"
-                        },
-                        new
-                        {
-                            Id = 178,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "This relentless attack does massive damage to a target affected by status conditions.",
-                            Effect = "Teaches Psych Up to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 77,
-                            Name = "TM77",
-                            ShortEffect = "Teaches Psych Up to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 179,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user nimbly strikes the target. If the user is not holding an item, this attack inflicts massive damage.",
-                            Effect = "Teaches Captivate to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 78,
-                            Name = "TM78",
-                            ShortEffect = "Teaches Bulldoze to a compatible Pokémon. (Gen IV: Captivate)"
-                        },
-                        new
-                        {
-                            Id = 180,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user gets revenge for a fainted ally. If an ally fainted in the previous turn, this move’s power is increased.",
-                            Effect = "Teaches Dark Pulse to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 79,
-                            Name = "TM79",
-                            ShortEffect = "Teaches Frost Breath to a compatible Pokémon. (Gen IV: Dark Pulse)"
-                        },
-                        new
-                        {
-                            Id = 181,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "After making its attack, the user rushes back to switch places with a party Pokémon in waiting.",
-                            Effect = "Teaches Rock Slide to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 80,
-                            Name = "TM80",
-                            ShortEffect = "Teaches Rock Slide to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 182,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user strikes everything around it by stomping down on the ground. This lowers the Speed stats of those hit.",
-                            Effect = "Teaches X-Scissor to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 81,
-                            Name = "TM81",
-                            ShortEffect = "Teaches X-Scissor to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 183,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stats.",
-                            Effect = "Teaches Sleep Talk to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 82,
-                            Name = "TM82",
-                            ShortEffect = "Teaches Dragon Tail to a compatible Pokémon. (Gen IV: Sleep Talk)"
-                        },
-                        new
-                        {
-                            Id = 184,
-                            CategoryId = 11,
-                            Cost = 100000m,
-                            Description = "The user cuts its target with sharp shells. This may also lower the target’s Defense stat.",
-                            Effect = "Teaches Natural Gift to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 83,
-                            Name = "TM83",
-                            ShortEffect = "Teaches Work Up to a compatible Pokémon. (Gen IV: Natural Gift)"
-                        },
-                        new
-                        {
-                            Id = 185,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user attacks by striking the target with its hard tail. It hits the target two to five times in a row.",
-                            Effect = "Teaches Poison Jab to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 84,
-                            Name = "TM84",
-                            ShortEffect = "Teaches Poison Jab to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 186,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user yells as if it’s ranting about something, which lowers the Sp. Atk stats of opposing Pokémon.",
-                            Effect = "Teaches Dream Eater to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 85,
-                            Name = "TM85",
-                            ShortEffect = "Teaches Dream Eater to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 187,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user vanishes somewhere, then strikes the target on the next turn. This move hits even if the target protects itself.",
-                            Effect = "Teaches Grass Knot to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 86,
-                            Name = "TM86",
-                            ShortEffect = "Teaches Grass Knot to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 188,
-                            CategoryId = 11,
-                            Cost = 1000m,
-                            Description = "The user steals the target’s HP with a kiss. The user’s HP is restored by over half of the damage taken by the target.",
-                            Effect = "Teaches Swagger to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 87,
-                            Name = "TM87",
-                            ShortEffect = "Teaches Swagger to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 189,
-                            CategoryId = 11,
-                            Cost = 20000m,
-                            Description = "The user turns the ground to grass for five turns. This restores the HP of Pokémon on the ground a little every turn and powers up Grass-type moves.",
-                            Effect = "Teaches Pluck to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 88,
-                            Name = "TM88",
-                            ShortEffect = "Teaches Pluck to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 190,
-                            CategoryId = 11,
-                            Cost = 20000m,
-                            Description = "This protects Pokémon on the ground from status conditions and halves damage from Dragon-type moves for five turns.",
-                            Effect = "Teaches U-Turn to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 89,
-                            Name = "TM89",
-                            ShortEffect = "Teaches U-turn to a compatible Pokémon."
-                        },
-                        new
-                        {
-                            Id = 191,
-                            CategoryId = 11,
-                            Cost = 20000m,
-                            Description = "The user electrifies the ground for five turns, powering up Electric-type moves. Pokémon on the ground no longer fall asleep.",
-                            Effect = "Teaches Substitute to a compatible Pokémon.",
-                            Image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
-                            MoveId = 90,
-                            Name = "TM90",
-                            ShortEffect = "Teaches Substitute to a compatible Pokémon."
+                            ShortEffect = "The user takes one-fourth of its maximum HP to create a substitute."
                         });
                 });
 
