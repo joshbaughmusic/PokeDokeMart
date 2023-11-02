@@ -96,12 +96,12 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
         ) : (
           <Nav navbar>
             <NavItem>
-              <NavLink
+              {/* <NavLink
                 tag={RRNavLink}
                 to="/login"
               >
                 <Button className="rounded-0">Login</Button>
-              </NavLink>
+              </NavLink> */}
             </NavItem>
           </Nav>
         )}
