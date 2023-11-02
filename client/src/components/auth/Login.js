@@ -60,13 +60,13 @@ export default function Login({ setLoggedInUser }) {
       </FormGroup>
 
       <Button
-        className="rounded-0 mb-3 mt-1"
+        className="rounded-0 mb-3 mt-2"
         onClick={handleSubmit}
       >
         Login
       </Button>
       <p>
-        Not signed up? Register <Link to="/register">here</Link>
+        New to PokeDokeMart? <Link to="/register">Sign Up</Link>
       </p>
     </div>
   );

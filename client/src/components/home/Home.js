@@ -31,7 +31,7 @@ export const Home = ({ loggedInUser }) => {
   return (
     <>
       <Container>
-        {/* {localStorage.getItem('seenAnimation') ? (
+        {localStorage.getItem('seenAnimation') ? (
           <div className="d-flex flex-column align-items-center justify-content-between">
             <h1 className="display-1 text-center home-heading">
               Welcome to PokeDokeMart!
@@ -39,7 +39,7 @@ export const Home = ({ loggedInUser }) => {
 
             <SuggestedItemsHome loggedInUser={loggedInUser} />
           </div>
-        ) : ( */}
+        ) : (
           <div className="d-flex flex-column align-items-center justify-content-between">
             <h1 className="display-1 text-center home-heading">
               {displayedText}
@@ -50,7 +50,7 @@ export const Home = ({ loggedInUser }) => {
               ''
             )}
           </div>
-        {/* )} */}
+        )}
       </Container>
     </>
   );
