@@ -92,40 +92,44 @@ export const Cart = () => {
                     className="cart-list-item p-3 rounded-0"
                   >
                     <div className="d-flex justify-content-between">
-                      <div className="d-flex align-items-center gap-1">
+                      <div className="d-flex align-items-center gap-2">
                         <img
                           src={item.image}
                           alt=""
                         />
-                        <div
-                          className="cart-item-name-link"
-                          onClick={() => {
-                            navigate(`/items/${item.id}`);
-                            toggle();
-                          }}
-                        >
-                          {item.name}
+                        <div>
+                          <div
+                            className="cart-item-name-link"
+                            onClick={() => {
+                              navigate(`/items/${item.id}`);
+                              toggle();
+                            }}
+                          >
+                            {item.name}
+                          </div>
+                          <div>P{item.cost}</div>
                         </div>
                       </div>
-                      <Input
-                        type="number"
-                        min={1}
-                        max={99}
-                        value={item.quantity}
-                        className="rounded-0 cart-quantity-input"
-                        onChange={(e) =>
-                          alterCartQuantity(item, parseInt(e.target.value))
-                        }
-                      />
-                      <AiOutlineClose
-                        className="cart-delete-button"
-                        style={{
-                          fontSize: '25px',
-                        }}
-                        onClick={() => removeFromCart(item.id)}
-                      />
+                      <div className="d-flex gap-3 align-items-center">
+                        <Input
+                          type="number"
+                          min={1}
+                          max={99}
+                          value={item.quantity}
+                          className="rounded-0 cart-quantity-input"
+                          onChange={(e) =>
+                            alterCartQuantity(item, parseInt(e.target.value))
+                          }
+                        />
+                        <AiOutlineClose
+                          className="cart-delete-button"
+                          style={{
+                            fontSize: '25px',
+                          }}
+                          onClick={() => removeFromCart(item.id)}
+                        />
+                      </div>
                     </div>
-                    <div>P{item.cost}</div>
                   </ListGroupItem>
                 );
               })
